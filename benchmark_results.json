@@ -1,0 +1,94 @@
+{
+  "timestamp": "2026-01-13T15:17:20.468022",
+  "device": "Jetson Orin Nano",
+  "gpu_info": {
+    "error": "[Errno 13] Permission denied: 'nvidia-smi'"
+  },
+  "statevector_benchmark": {
+    "4": {
+      "avg_time_ms": 27716.804191780586,
+      "std_time_ms": 38895.298418983024,
+      "gates_per_sec": 1.803959780284752,
+      "latency_per_gate_us": 554336.0838356117,
+      "memory_mb": 0.0001220703125,
+      "hilbert_dim": 16,
+      "n_trials": 3
+    },
+    "6": {
+      "avg_time_ms": 675.6637228342394,
+      "std_time_ms": 465.1506902257097,
+      "gates_per_sec": 74.00130909835232,
+      "latency_per_gate_us": 13513.274456684787,
+      "memory_mb": 0.00048828125,
+      "hilbert_dim": 64,
+      "n_trials": 3
+    },
+    "8": {
+      "avg_time_ms": 617.3773868940771,
+      "std_time_ms": 2.421201802221135,
+      "gates_per_sec": 80.98774114734212,
+      "latency_per_gate_us": 12347.547737881541,
+      "memory_mb": 0.001953125,
+      "hilbert_dim": 256,
+      "n_trials": 3
+    },
+    "10": {
+      "avg_time_ms": 1478.8225920250018,
+      "std_time_ms": 24.527988789427855,
+      "gates_per_sec": 33.810681733995764,
+      "latency_per_gate_us": 29576.451840500034,
+      "memory_mb": 0.0078125,
+      "hilbert_dim": 1024,
+      "n_trials": 3
+    },
+    "12": {
+      "avg_time_ms": 608.6648212124904,
+      "std_time_ms": 794.1021847849271,
+      "gates_per_sec": 82.14701796038997,
+      "latency_per_gate_us": 12173.29642424981,
+      "memory_mb": 0.03125,
+      "hilbert_dim": 4096,
+      "n_trials": 3
+    },
+    "14": {
+      "avg_time_ms": 48.35621345167359,
+      "std_time_ms": 0.19500495907037044,
+      "gates_per_sec": 1033.9932850608575,
+      "latency_per_gate_us": 967.1242690334718,
+      "memory_mb": 0.125,
+      "hilbert_dim": 16384,
+      "n_trials": 3
+    },
+    "16": {
+      "avg_time_ms": 47.53473059584697,
+      "std_time_ms": 0.22340203839742354,
+      "gates_per_sec": 1051.862488190233,
+      "latency_per_gate_us": 950.6946119169395,
+      "memory_mb": 0.5,
+      "hilbert_dim": 65536,
+      "n_trials": 3
+    }
+  },
+  "cnot_benchmark": {
+    "4": {
+      "avg_time_ms": 311.46046922852594,
+      "operation": "H on all qubits"
+    },
+    "6": {
+      "avg_time_ms": 4.130176113297542,
+      "operation": "H on all qubits"
+    },
+    "8": {
+      "avg_time_ms": 5.426112096756697,
+      "operation": "H on all qubits"
+    },
+    "10": {
+      "avg_time_ms": 6.514943825701873,
+      "operation": "H on all qubits"
+    },
+    "12": {
+      "avg_time_ms": 7.747381304701169,
+      "operation": "H on all qubits"
+    }
+  }
+}
