@@ -1,0 +1,68 @@
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+  3-TIER MEMORY: GPU → DRAM → STORAGE
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+======================================================================
+🚀 3-TIER MEMORY SIMULATION: GPU → DRAM → STORAGE
+======================================================================
+GPU chunk: 22 qubits = 32 MB
+DRAM cache: 8 chunks
+DRAM: 3.9 GB available
+Disk: 46.0 GB available
+----------------------------------------------------------------------
+
+🔬 [28 qubits]
+[3-Tier] 28 qubits = 268,435,456 amplitudes
+[3-Tier] Chunks: 64 x 4,194,304 = 32.0MB each
+[3-Tier] Total: 2.00 GB (on storage)
+[3-Tier] DRAM cache: 8 chunks = 0.25 GB
+[3-Tier] Storage: /tmp/edgequantum_3tier_28q
+[3-Tier] Initializing state vector to storage...
+   ✓ Initialized in 63.83s
+   ✓ Local gate (q0): 164.09s
+   ✓ Global gate (q27): 140.18s
+   ✓ Norm: 1.000000
+   📊 I/O: 192 reads   📊 I/O: 192 reads,    ❌ ERROR: [Errno 2] No such file or directory: 'chunk_000056.bin'
+Traceback (most recent call last):
+  File "/home/jetson/skim/edgeQuantum-iotj/code/three_tier_memory_sim.py", line 329, in run_3tier_scaling_test
+    sv.cleanup()
+  File "/home/jetson/skim/edgeQuantum-iotj/code/three_tier_memory_sim.py", line 237, in cleanup
+    shutil.rmtree(self.storage_dir)
+  File "/usr/lib/python3.8/shutil.py", line 718, in rmtree
+    _rmtree_safe_fd(fd, path, onerror)
+  File "/usr/lib/python3.8/shutil.py", line 675, in _rmtree_safe_fd
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "/usr/lib/python3.8/shutil.py", line 673, in _rmtree_safe_fd
+    os.unlink(entry.name, dir_fd=topfd)
+FileNotFoundError: [Errno 2] No such file or directory: 'chunk_000056.bin'
+
+=====================Traceback (most recent call last):
+  File "/home/jetson/skim/edgeQuantum-iotj/code/three_tier_memory_sim.py", line 329, in run_3tier_scaling_test
+    sv.cleanup()
+  File "/home/jetson/skim/edgeQuantum-iotj/code/three_tier_memory_sim.py", line 237, in cleanup
+    shutil.rmtree(self.storage_dir)
+  File "/usr/lib/python3.8/shutil.py", line 718, in rmtree
+    _rmtree_safe_fd(fd, path, onerror)
+  File "/usr/lib/python3.8/shutil.py", line 675, in _rmtree_safe_fd
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "/usr/lib/python3.8/shutil.py", line 673, in _rmtree_safe_fd
+    os.unlink(entry.name, dir_fd=topfd)
+FileNotFoundError: [Errno 2] No such file or directory: 'chunk_000029.bin'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jetson/skim/edgeQuantum-iotj/code/three_tier_memory_sim.py", line 396, in <module>
+    main()
+  File "/home/jetson/skim/edgeQuantum-iotj/code/three_tier_memory_sim.py", line 371, in main
+    results, max_q = run_3tier_scaling_test(
+  File "/home/jetson/skim/edgeQuantum-iotj/code/three_tier_memory_sim.py", line 338, in run_3tier_scaling_test
+    shutil.rmtree(storage_dir)
+  File "/usr/lib/python3.8/shutil.py", line 718, in rmtree
+    _rmtree_safe_fd(fd, path, onerror)
+  File "/usr/lib/python3.8/shutil.py", line 675, in _rmtree_safe_fd
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "/usr/lib/python3.8/shutil.py", line 673, in _rmtree_safe_fd
+    os.unlink(entry.name, dir_fd=topfd)
+FileNotFoundError: [Errno 2] No such file or directory: 'chunk_000012.bin'
