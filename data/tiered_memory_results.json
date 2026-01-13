@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-01-13T19:19:38.813380",
+  "device": "Jetson Orin Nano",
+  "method": "AURORA-Q style DRAM offloading",
+  "gpu_chunk_qubits": 24,
+  "max_qubits": 28,
+  "results": [
+    {
+      "qubits": 26,
+      "hilbert_dim": 67108864,
+      "init_time_s": 0.000400543212890625,
+      "local_gate_time_s": 83.90140724182129,
+      "global_gate_time_s": 1.7938330173492432,
+      "dram_gb": 0.5,
+      "gpu_gb": 0.125,
+      "norm": 0.9999999403953534,
+      "success": true
+    },
+    {
+      "qubits": 27,
+      "hilbert_dim": 134217728,
+      "init_time_s": 0.00044155120849609375,
+      "local_gate_time_s": 2.0881125926971436,
+      "global_gate_time_s": 2.992335796356201,
+      "dram_gb": 1.0,
+      "gpu_gb": 0.125,
+      "norm": 0.9999999403953534,
+      "success": true
+    },
+    {
+      "qubits": 28,
+      "hilbert_dim": 268435456,
+      "init_time_s": 0.0005581378936767578,
+      "local_gate_time_s": 4.300940275192261,
+      "global_gate_time_s": 7.340661287307739,
+      "dram_gb": 2.0,
+      "gpu_gb": 0.125,
+      "norm": 0.9999999403953534,
+      "success": true
+    },
+    {
+      "qubits": 29,
+      "error": "DRAM insufficient"
+    }
+  ]
+}
