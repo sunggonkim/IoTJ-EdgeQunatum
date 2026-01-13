@@ -1,0 +1,24 @@
+[31q] 2,147,483,648 amplitudes (2.1 billion)
+[31q] 512 chunks of 32MB
+[31q] Total: 16.0GB on storage: /tmp/eq31_5n_7b33z
+[31q] Expected time: ~30-40 minutes
+  Init: 0/512 (0%%, ETA 0s)
+  Init: 64/512 (12%%, ETA 505s)
+  Init: 128/512 (25%%, ETA 605s)
+  Init: 192/512 (37%%, ETA 588s)
+  Init: 256/512 (50%%, ETA 504s)
+  Init: 320/512 (62%%, ETA 386s)
+  Init: 384/512 (75%%, ETA 251s)
+  Init: 448/512 (87%%, ETA 124s)
+[31q] Init: 986.7s (16.4min)
+  Gate: 0/512 (0%%, ETA 0s)
+  Gate: 64/512 (12%%, ETA 1258s)
+  Gate: 128/512 (25%%, ETA 969s)
+  Gate: 192/512 (37%%, ETA 755s)
+  Gate: 256/512 (50%%, ETA 600s)
+  Gate: 320/512 (62%%, ETA 438s)
+  Gate: 384/512 (75%%, ETA 287s)
+  Gate: 448/512 (87%%, ETA 144s)
+[31q] Gate: 1136.8s (18.9min)
+[31q] Estimated norm: 8.0000
+[31q] SUCCESS! Init=987s Gate=1137s Total=2123s (35.4min)
