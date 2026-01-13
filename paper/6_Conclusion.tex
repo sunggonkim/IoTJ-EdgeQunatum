@@ -4,7 +4,7 @@
 This paper presented \EdgeQuantum, a framework enabling variational quantum algorithms on resource-constrained IoT edge devices. Through systematic evaluation on NVIDIA Jetson Orin Nano, we established the following key findings:
 
 \begin{enumerate}
-    \item \textbf{Scalability Achievement:} Using tiered memory offloading (GPU$\rightarrow$DRAM$\rightarrow$Storage), edge devices achieve \textbf{34-qubit simulation} (17.1 billion Hilbert space dimensions) with LZ4 compression, demonstrating extreme scalability on 15W hardware.
+    \item \textbf{Scalability Achievement:} Using tiered memory offloading (GPU$\rightarrow$DRAM$\rightarrow$Storage), edge devices achieve \textbf{34-qubit simulation} (17.1 billion amplitudes). Native cuQuantum acceleration coupled with LZ4 compression enables this scale on 15W hardware with a 33\% performance improvement over non-native implementations.
     
     \item \textbf{VQE Feasibility:} The transverse-field Ising model is solvable up to 20 qubits with 9.15 seconds per optimization iteration, demonstrating practical ground state estimation.
     

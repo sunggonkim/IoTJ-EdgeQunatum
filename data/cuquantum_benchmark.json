@@ -1,0 +1,52 @@
+[
+  {
+    "qubits": 28,
+    "init_time_s": 0.10766291618347168,
+    "gate_time_s": 6.850555896759033,
+    "total_time_s": 6.958218812942505,
+    "storage_gb": 0.008240941911935806,
+    "raw_gb": 2.0,
+    "compression_ratio": 242.69070470006477,
+    "success": true
+  },
+  {
+    "qubits": 30,
+    "init_time_s": 0.13434815406799316,
+    "gate_time_s": 25.676772117614746,
+    "total_time_s": 25.81112027168274,
+    "storage_gb": 0.03296375647187233,
+    "raw_gb": 8.0,
+    "compression_ratio": 242.69078698073523,
+    "success": true
+  },
+  {
+    "qubits": 32,
+    "init_time_s": 0.41583919525146484,
+    "gate_time_s": 102.98553347587585,
+    "total_time_s": 103.40137267112732,
+    "storage_gb": 0.13185501471161842,
+    "raw_gb": 32.0,
+    "compression_ratio": 242.69080755091156,
+    "success": true
+  },
+  {
+    "qubits": 33,
+    "init_time_s": 0.789353609085083,
+    "gate_time_s": 200.65273094177246,
+    "total_time_s": 201.44208455085754,
+    "storage_gb": 0.26371002569794655,
+    "raw_gb": 64.0,
+    "compression_ratio": 242.69081097927463,
+    "success": true
+  },
+  {
+    "qubits": 34,
+    "init_time_s": 2.2489748001098633,
+    "gate_time_s": 384.8221592903137,
+    "total_time_s": 387.0711340904236,
+    "storage_gb": 0.5274200476706028,
+    "raw_gb": 128.0,
+    "compression_ratio": 242.6908126934562,
+    "success": true
+  }
+]

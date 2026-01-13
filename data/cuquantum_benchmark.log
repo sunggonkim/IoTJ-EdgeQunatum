@@ -1,0 +1,158 @@
+========================================
+   NATIVE CUQUANTUM BENCHMARK START
+========================================
+
+⚡ [cuQuantum] 28 qubits (custatevec enabled)
+   - Chunks: 64, Chunk Size: 32.0MB
+   - Compression: ON (LZ4)
+  Running Init...
+  Init: 0/64 (0%)
+  Init: 6/64 (9%)
+  Init: 12/64 (18%)
+  Init: 18/64 (28%)
+  Init: 24/64 (37%)
+  Init: 30/64 (46%)
+  Init: 36/64 (56%)
+  Init: 42/64 (65%)
+  Init: 48/64 (75%)
+  Init: 54/64 (84%)
+  Init: 60/64 (93%)
+  Init Done: 0.11s
+  Applying H(q0) with custatevec...
+  Gate: 0/64 (0%)
+  Gate: 6/64 (9%)
+  Gate: 12/64 (18%)
+  Gate: 18/64 (28%)
+  Gate: 24/64 (37%)
+  Gate: 30/64 (46%)
+  Gate: 36/64 (56%)
+  Gate: 42/64 (65%)
+  Gate: 48/64 (75%)
+  Gate: 54/64 (84%)
+  Gate: 60/64 (93%)
+  Gate Done: 6.85s
+✅ [PASS] 28Q: Init=0.11s, Gate=6.85s, Storage=0.008GB (ratio=242.7x)
+
+⚡ [cuQuantum] 30 qubits (custatevec enabled)
+   - Chunks: 256, Chunk Size: 32.0MB
+   - Compression: ON (LZ4)
+  Running Init...
+  Init: 0/256 (0%)
+  Init: 25/256 (9%)
+  Init: 50/256 (19%)
+  Init: 75/256 (29%)
+  Init: 100/256 (39%)
+  Init: 125/256 (48%)
+  Init: 150/256 (58%)
+  Init: 175/256 (68%)
+  Init: 200/256 (78%)
+  Init: 225/256 (87%)
+  Init: 250/256 (97%)
+  Init Done: 0.13s
+  Applying H(q0) with custatevec...
+  Gate: 0/256 (0%)
+  Gate: 25/256 (9%)
+  Gate: 50/256 (19%)
+  Gate: 75/256 (29%)
+  Gate: 100/256 (39%)
+  Gate: 125/256 (48%)
+  Gate: 150/256 (58%)
+  Gate: 175/256 (68%)
+  Gate: 200/256 (78%)
+  Gate: 225/256 (87%)
+  Gate: 250/256 (97%)
+  Gate Done: 25.68s
+✅ [PASS] 30Q: Init=0.13s, Gate=25.68s, Storage=0.033GB (ratio=242.7x)
+
+⚡ [cuQuantum] 32 qubits (custatevec enabled)
+   - Chunks: 1024, Chunk Size: 32.0MB
+   - Compression: ON (LZ4)
+  Running Init...
+  Init: 0/1024 (0%)
+  Init: 102/1024 (9%)
+  Init: 204/1024 (19%)
+  Init: 306/1024 (29%)
+  Init: 408/1024 (39%)
+  Init: 510/1024 (49%)
+  Init: 612/1024 (59%)
+  Init: 714/1024 (69%)
+  Init: 816/1024 (79%)
+  Init: 918/1024 (89%)
+  Init: 1020/1024 (99%)
+  Init Done: 0.42s
+  Applying H(q0) with custatevec...
+  Gate: 0/1024 (0%)
+  Gate: 102/1024 (9%)
+  Gate: 204/1024 (19%)
+  Gate: 306/1024 (29%)
+  Gate: 408/1024 (39%)
+  Gate: 510/1024 (49%)
+  Gate: 612/1024 (59%)
+  Gate: 714/1024 (69%)
+  Gate: 816/1024 (79%)
+  Gate: 918/1024 (89%)
+  Gate: 1020/1024 (99%)
+  Gate Done: 102.99s
+✅ [PASS] 32Q: Init=0.42s, Gate=102.99s, Storage=0.132GB (ratio=242.7x)
+
+⚡ [cuQuantum] 33 qubits (custatevec enabled)
+   - Chunks: 2048, Chunk Size: 32.0MB
+   - Compression: ON (LZ4)
+  Running Init...
+  Init: 0/2048 (0%)
+  Init: 204/2048 (9%)
+  Init: 408/2048 (19%)
+  Init: 612/2048 (29%)
+  Init: 816/2048 (39%)
+  Init: 1020/2048 (49%)
+  Init: 1224/2048 (59%)
+  Init: 1428/2048 (69%)
+  Init: 1632/2048 (79%)
+  Init: 1836/2048 (89%)
+  Init: 2040/2048 (99%)
+  Init Done: 0.79s
+  Applying H(q0) with custatevec...
+  Gate: 0/2048 (0%)
+  Gate: 204/2048 (9%)
+  Gate: 408/2048 (19%)
+  Gate: 612/2048 (29%)
+  Gate: 816/2048 (39%)
+  Gate: 1020/2048 (49%)
+  Gate: 1224/2048 (59%)
+  Gate: 1428/2048 (69%)
+  Gate: 1632/2048 (79%)
+  Gate: 1836/2048 (89%)
+  Gate: 2040/2048 (99%)
+  Gate Done: 200.65s
+✅ [PASS] 33Q: Init=0.79s, Gate=200.65s, Storage=0.264GB (ratio=242.7x)
+
+⚡ [cuQuantum] 34 qubits (custatevec enabled)
+   - Chunks: 4096, Chunk Size: 32.0MB
+   - Compression: ON (LZ4)
+  Running Init...
+  Init: 0/4096 (0%)
+  Init: 409/4096 (9%)
+  Init: 818/4096 (19%)
+  Init: 1227/4096 (29%)
+  Init: 1636/4096 (39%)
+  Init: 2045/4096 (49%)
+  Init: 2454/4096 (59%)
+  Init: 2863/4096 (69%)
+  Init: 3272/4096 (79%)
+  Init: 3681/4096 (89%)
+  Init: 4090/4096 (99%)
+  Init Done: 2.25s
+  Applying H(q0) with custatevec...
+  Gate: 0/4096 (0%)
+  Gate: 409/4096 (9%)
+  Gate: 818/4096 (19%)
+  Gate: 1227/4096 (29%)
+  Gate: 1636/4096 (39%)
+  Gate: 2045/4096 (49%)
+  Gate: 2454/4096 (59%)
+  Gate: 2863/4096 (69%)
+  Gate: 3272/4096 (79%)
+  Gate: 3681/4096 (89%)
+  Gate: 4090/4096 (99%)
+  Gate Done: 384.82s
+✅ [PASS] 34Q: Init=2.25s, Gate=384.82s, Storage=0.527GB (ratio=242.7x)

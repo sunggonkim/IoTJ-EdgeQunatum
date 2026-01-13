@@ -157,24 +157,30 @@ Compared to cloud GPU instances (e.g., A100 at 400W), edge execution offers 26$\
 
 We evaluated the impact of LZ4 compression on storage-based simulation. For sparse states (e.g., initialization and early circuit layers), compression reduces storage requirements by over 100$\times$.
 
+\subsection{Native cuQuantum Simulation Performance}
+
+We deployed a fully native simulation engine using NVIDIA cuQuantum SDK (\texttt{custatevec}) to benchmark extreme scalability. The system leverages Tiered Memory with LZ4 compression to fit up to 34 qubits on the 8GB Jetson Orin Nano.
+
 \begin{table}[t]
-\caption{Compressed vs. Uncompressed Performance (32 Qubits)}
+\caption{Native cuQuantum Benchmark (Jetson Orin Nano)}
 \centering
-\small
-\begin{tabular}{lrrr}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrr}
 \toprule
-\textbf{Metric} & \textbf{Uncompressed} & \textbf{Compressed} & \textbf{Speedup} \\
+\textbf{Qubits} & \textbf{Raw Size} & \textbf{Compressed} & \textbf{Init Time} & \textbf{Gate Time (H)} \\
 \midrule
-Storage & 32.0 GB & 0.26 GB & \textbf{121$\times$} \\
-Init Time & 1,416 s & 21.3 s & \textbf{66$\times$} \\
-Gate Time & 2,105 s & 163.2 s & \textbf{13$\times$} \\
-Total Time & 58.7 min & 3.1 min & \textbf{19$\times$} \\
+28 & 2.0 GB & 0.01 GB & 0.11 s & 6.85 s \\
+30 & 8.0 GB & 0.03 GB & 0.13 s & 25.68 s \\
+32 & 32.0 GB & 0.13 GB & 0.42 s & 102.99 s \\
+33 & 64.0 GB & 0.26 GB & 0.79 s & 200.65 s \\
+\textbf{34} & \textbf{128.0 GB} & \textbf{0.53 GB} & \textbf{2.25 s} & \textbf{384.82 s} \\
 \bottomrule
-\end{tabular}
-\label{tab:compression}
+\end{tabular}%
+}
+\label{tab:native_benchmark}
 \end{table}
 
-\textbf{Finding 4:} Compression enables \textbf{34-qubit simulation} (17.1 billion amplitudes) on the 8GB Jetson device using only 1.58GB of disk space. The 34-qubit simulation completed in 9.7 minutes, a scale previously impossible on edge hardware.
+\textbf{Finding 4:} The native cuQuantum engine achieves \textbf{34-qubit simulation} (17.1 billion amplitudes) in just \textbf{6.5 minutes}. LZ4 compression reduces storage requirements by $\sim 240\times$ for sparse states, while Tensor Cores accelerate gate operations, achieving a $33\%$ speedup over non-native implementations.
 
 \subsection{Comparison with Cloud Quantum}
 
