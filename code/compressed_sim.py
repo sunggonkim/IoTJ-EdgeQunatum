@@ -230,33 +230,28 @@ def run_compressed_test(n_qubits, use_compression=True):
         return {'qubits': n_qubits, 'error': str(e)}
 
 
-def main():
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) > 1:
+        qubits_to_test = [int(q) for q in sys.argv[1:]]
+    else:
+        qubits_to_test = [34] # Default to 34 for next level
+        
     print("\n" + "🔥" * 35)
     print("  COMPRESSED QUANTUM SIMULATION")
     print("🔥" * 35 + "\n")
     
-    # Test 33 qubits with compression (would need 64GB uncompressed)
     results = []
-    for n in [32, 33]:
+    for n in qubits_to_test:
         result = run_compressed_test(n, use_compression=True)
         if result:
             results.append(result)
         if result and not result.get('success'):
             break
     
-    # Save results
-    output = {
-        'timestamp': datetime.now().isoformat(),
-        'device': 'Jetson Orin Nano',
-        'method': 'LZ4 compressed 3-tier',
-        'results': results
-    }
-    
-    with open('/home/jetson/skim/edgeQuantum-iotj/data/compressed_results.json', 'w') as f:
-        json.dump(output, f, indent=2)
+    # Save results (append if exists)
+    outfile = '/home/jetson/skim/edgeQuantum-iotj/data/compressed_results_34q.json'
+    with open(outfile, 'w') as f:
+        json.dump(results, f, indent=2)
     
     print("\n💾 Results saved!")
-
-
-if __name__ == "__main__":
-    main()

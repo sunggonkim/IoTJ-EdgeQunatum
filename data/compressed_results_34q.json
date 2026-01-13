@@ -1,0 +1,12 @@
+[
+  {
+    "qubits": 34,
+    "init_time_s": 90.8,
+    "gate_time_s": 493.1,
+    "total_time_s": 583.9,
+    "compression_ratio": 121.3,
+    "storage_saved_gb": 126.95,
+    "success": true,
+    "note": "17.1 billion amplitudes on Edge Device"
+  }
+]
