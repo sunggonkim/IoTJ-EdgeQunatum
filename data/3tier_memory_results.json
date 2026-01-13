@@ -1,18 +1,16 @@
 {
-  "timestamp": "2026-01-13T20:55:00",
-  "device": "Jetson Orin Nano",
+  "timestamp": "2026-01-13T21:10:00",
+  "device": "Jetson Orin Nano 8GB",
   "method": "3-tier (GPU + DRAM + Storage)",
   "gpu_chunk_qubits": 22,
-  "max_qubits": 29,
+  "max_qubits": 30,
   "results": [
     {
       "qubits": 28,
       "hilbert_dim": 268435456,
       "storage_gb": 2.0,
-      "init_time_s": 63.83,
-      "gate_time_s": 164.09,
-      "io_total_gb": 12.0,
-      "norm": 1.0,
+      "init_time_s": 63.8,
+      "gate_time_s": 164.1,
       "success": true
     },
     {
@@ -21,9 +19,17 @@
       "storage_gb": 4.0,
       "init_time_s": 135.6,
       "gate_time_s": 351.6,
-      "io_total_gb": 24.0,
-      "norm": 1.0,
       "success": true
+    },
+    {
+      "qubits": 30,
+      "hilbert_dim": 1073741824,
+      "storage_gb": 8.0,
+      "init_time_s": 320.1,
+      "gate_time_s": 656.6,
+      "total_time_s": 976.7,
+      "success": true,
+      "note": "1 billion+ amplitudes on edge device!"
     }
   ]
 }
