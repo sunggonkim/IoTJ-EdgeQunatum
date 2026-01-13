@@ -1,46 +1,22 @@
 {
-  "timestamp": "2026-01-13T21:46:00",
+  "timestamp": "2026-01-13T23:01:00",
   "device": "Jetson Orin Nano 8GB",
   "method": "3-tier (GPU + DRAM + Storage)",
-  "gpu_chunk_qubits": 22,
-  "max_qubits": 31,
+  "max_qubits": 32,
   "results": [
+    {"qubits": 28, "hilbert_dim": 268435456, "storage_gb": 2, "total_min": 3.8},
+    {"qubits": 29, "hilbert_dim": 536870912, "storage_gb": 4, "total_min": 8.1},
+    {"qubits": 30, "hilbert_dim": 1073741824, "storage_gb": 8, "total_min": 16.3},
+    {"qubits": 31, "hilbert_dim": 2147483648, "storage_gb": 16, "total_min": 35.4},
     {
-      "qubits": 28,
-      "hilbert_dim": 268435456,
-      "storage_gb": 2.0,
-      "init_time_s": 63.8,
-      "gate_time_s": 164.1,
-      "total_time_min": 3.8,
-      "success": true
-    },
-    {
-      "qubits": 29,
-      "hilbert_dim": 536870912,
-      "storage_gb": 4.0,
-      "init_time_s": 135.6,
-      "gate_time_s": 351.6,
-      "total_time_min": 8.1,
-      "success": true
-    },
-    {
-      "qubits": 30,
-      "hilbert_dim": 1073741824,
-      "storage_gb": 8.0,
-      "init_time_s": 320.1,
-      "gate_time_s": 656.6,
-      "total_time_min": 16.3,
-      "success": true
-    },
-    {
-      "qubits": 31,
-      "hilbert_dim": 2147483648,
-      "storage_gb": 16.0,
-      "init_time_s": 986.7,
-      "gate_time_s": 1136.8,
-      "total_time_min": 35.4,
-      "success": true,
-      "note": "2+ billion amplitudes on 15W edge device!"
+      "qubits": 32,
+      "hilbert_dim": 4294967296,
+      "storage_gb": 32,
+      "init_time_s": 1416.2,
+      "gate_time_s": 2105.2,
+      "total_time_s": 3521.4,
+      "total_min": 58.7,
+      "note": "4.3 billion amplitudes simulated on 15W edge device!"
     }
   ]
 }
