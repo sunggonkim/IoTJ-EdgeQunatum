@@ -1,0 +1,32 @@
+🚀 Running Native cuQuantum for: [35]
+
+⚡ [cuQuantum] 35 qubits (custatevec enabled)
+   - Chunks: 8192, Chunk Size: 32.0MB
+   - Compression: ON (LZ4)
+  Running Init...
+  Init: 0/8192 (0%)
+  Init: 819/8192 (9%)
+  Init: 1638/8192 (19%)
+  Init: 2457/8192 (29%)
+  Init: 3276/8192 (39%)
+  Init: 4095/8192 (49%)
+  Init: 4914/8192 (59%)
+  Init: 5733/8192 (69%)
+  Init: 6552/8192 (79%)
+  Init: 7371/8192 (89%)
+  Init: 8190/8192 (99%)
+  Init Done: 45.25s
+  Applying H(q0) with custatevec...
+  Gate: 0/8192 (0%)
+  Gate: 819/8192 (9%)
+  Gate: 1638/8192 (19%)
+  Gate: 2457/8192 (29%)
+  Gate: 3276/8192 (39%)
+  Gate: 4095/8192 (49%)
+  Gate: 4914/8192 (59%)
+  Gate: 5733/8192 (69%)
+  Gate: 6552/8192 (79%)
+  Gate: 7371/8192 (89%)
+  Gate: 8190/8192 (99%)
+  Gate Done: 761.16s
+✅ [PASS] 35Q: Init=45.25s, Gate=761.16s, Storage=1.055GB (ratio=242.7x)

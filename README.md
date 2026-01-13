@@ -19,10 +19,10 @@ This work demonstrates the feasibility of running variational quantum algorithms
 
 | Metric | EdgeQuantum (Ours) | Competitor (Qiskit/SV) |
 |--------|-------------------|------------------------|
-| **Max Qubits** | **34 (17.1B Amplitudes)** | 26 (GPU limit) |
+| **Max Qubits** | **35 (34.3B Amplitudes)** | 26 (GPU limit) |
 | **Engine** | **Native cuQuantum (custatevec)** | Custom / NumPy |
-| **Compression** | **LZ4 (240x ratio)** | None |
-| **Speed (34Q)** | **6.5 min (Total)** | N/A (OOM) |
+| **Compression** | **LZ4 (242x ratio)** | None |
+| **Speed (35Q)** | **13.4 min (Total)** | N/A (OOM) |
 | **Energy** | **15W (Jetson Nano)** | 400W (A100 GPU) |
 
 ### 📊 Native cuQuantum Benchmark
@@ -30,7 +30,8 @@ This work demonstrates the feasibility of running variational quantum algorithms
 - **30 Qubits**: 25.8s
 - **32 Qubits**: 1.7 min
 - **33 Qubits**: 3.4 min
-- **34 Qubits**: 6.5 min (128GB Data → 0.5GB Disk) - Max 28 qubits
+- **34 Qubits**: 6.5 min
+- **35 Qubits**: 13.4 min (256GB Data → 1.0GB Disk) - Max 28 qubits
 
 | Qubits | Hilbert Dim | DRAM | Gate Time |
 |--------|-------------|------|-----------|

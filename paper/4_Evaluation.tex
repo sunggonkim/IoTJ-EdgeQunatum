@@ -173,14 +173,15 @@ We deployed a fully native simulation engine using NVIDIA cuQuantum SDK (\texttt
 30 & 8.0 GB & 0.03 GB & 0.13 s & 25.68 s \\
 32 & 32.0 GB & 0.13 GB & 0.42 s & 102.99 s \\
 33 & 64.0 GB & 0.26 GB & 0.79 s & 200.65 s \\
-\textbf{34} & \textbf{128.0 GB} & \textbf{0.53 GB} & \textbf{2.25 s} & \textbf{384.82 s} \\
+34 & 128.0 GB & 0.53 GB & 2.25 s & 384.82 s \\
+\textbf{35} & \textbf{256.0 GB} & \textbf{1.05 GB} & \textbf{45.25 s} & \textbf{761.16 s} \\
 \bottomrule
 \end{tabular}%
 }
 \label{tab:native_benchmark}
 \end{table}
 
-\textbf{Finding 4:} The native cuQuantum engine achieves \textbf{34-qubit simulation} (17.1 billion amplitudes) in just \textbf{6.5 minutes}. LZ4 compression reduces storage requirements by $\sim 240\times$ for sparse states, while Tensor Cores accelerate gate operations, achieving a $33\%$ speedup over non-native implementations.
+\textbf{Finding 4:} The native cuQuantum engine achieves \textbf{35-qubit simulation} (34.3 billion amplitudes) in \textbf{13.4 minutes}. This scale (256GB raw state) is successfully simulated on an 8GB RAM device using only 1GB of disk space thanks to LZ4 compression and efficient tiered memory management.
 
 \subsection{Comparison with Cloud Quantum}
 

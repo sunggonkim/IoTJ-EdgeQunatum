@@ -213,4 +213,51 @@ def run_benchmark():
             json.dump(results, f, indent=2)
 
 if __name__ == "__main__":
-    run_benchmark()
+    if len(sys.argv) > 1:
+        # Run specific qubits from command line
+        qubits_to_run = [int(x) for x in sys.argv[1:]]
+        # Custom mini-benchmark runner
+        results = []
+        print(f"🚀 Running Native cuQuantum for: {qubits_to_run}")
+        
+        for q in qubits_to_run:
+            sim = None
+            try:
+                sim = CuQuantumTieredSim(q, use_compression=True)
+                t_init = sim._init_state()
+                t_gate = sim.apply_hadamard_q0()
+                storage_gb = sim.get_storage_gb()
+                raw_size_gb = (2**q * 8) / (1024**3)
+                comp_ratio = raw_size_gb / max(storage_gb, 1e-9)
+                
+                print(f"✅ [PASS] {q}Q: Init={t_init:.2f}s, Gate={t_gate:.2f}s, Storage={storage_gb:.3f}GB (ratio={comp_ratio:.1f}x)")
+                
+                # Append to existing json if needed or print
+                res = {
+                    "qubits": q,
+                    "init_time_s": t_init,
+                    "gate_time_s": t_gate,
+                    "total_time_s": t_init + t_gate,
+                    "storage_gb": storage_gb,
+                    "raw_gb": raw_size_gb,
+                    "compression_ratio": comp_ratio,
+                    "success": True
+                }
+                
+                # Append to file
+                try:
+                    with open('data/cuquantum_benchmark.json', 'r') as f:
+                        data = json.load(f)
+                except:
+                    data = []
+                data.append(res)
+                with open('data/cuquantum_benchmark.json', 'w') as f:
+                    json.dump(data, f, indent=2)
+                    
+            except Exception as e:
+                print(f"❌ [FAIL] {q}Q: {e}")
+            finally:
+                if sim: sim.cleanup()
+    else:
+        # Run default suite
+        run_benchmark()
