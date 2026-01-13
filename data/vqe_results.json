@@ -1,0 +1,122 @@
+{
+  "timestamp": "2026-01-13T15:52:04.280193",
+  "device": "Jetson Orin Nano",
+  "algorithm": "VQE",
+  "h2_result": {
+    "optimal_energy": -1.8368999967574648,
+    "exact_energy": -1.137,
+    "error": 0.6998999967574648
+  },
+  "ising_benchmark": {
+    "4": {
+      "n_params": 16,
+      "hilbert_dim": 16,
+      "optimal_energy": -2.368598258122802,
+      "n_iterations": 30,
+      "time_seconds": 5.846275456249714,
+      "time_per_iter_ms": 194.87584854165712,
+      "memory_cpu_mb": 1283.0234375,
+      "memory_gpu_mb": 0.0009765625,
+      "converged": "False"
+    },
+    "6": {
+      "n_params": 24,
+      "hilbert_dim": 64,
+      "optimal_energy": -2.9901540614664555,
+      "n_iterations": 30,
+      "time_seconds": 6.719285151921213,
+      "time_per_iter_ms": 223.97617173070708,
+      "memory_cpu_mb": 1283.24609375,
+      "memory_gpu_mb": 0.0009765625,
+      "converged": "False"
+    },
+    "8": {
+      "n_params": 32,
+      "hilbert_dim": 256,
+      "optimal_energy": -1.401767922565341,
+      "n_iterations": 30,
+      "time_seconds": 11.949839871842414,
+      "time_per_iter_ms": 398.32799572808045,
+      "memory_cpu_mb": 1281.171875,
+      "memory_gpu_mb": 0.00244140625,
+      "converged": "False"
+    },
+    "10": {
+      "n_params": 40,
+      "hilbert_dim": 1024,
+      "optimal_energy": -3.310769271105528,
+      "n_iterations": 30,
+      "time_seconds": 18.57267872011289,
+      "time_per_iter_ms": 619.0892906704297,
+      "memory_cpu_mb": 1281.68359375,
+      "memory_gpu_mb": 0.00830078125,
+      "converged": "False"
+    },
+    "12": {
+      "n_params": 48,
+      "hilbert_dim": 4096,
+      "optimal_energy": -0.18702485505491495,
+      "n_iterations": 30,
+      "time_seconds": 26.106360224075615,
+      "time_per_iter_ms": 870.2120074691871,
+      "memory_cpu_mb": 1281.68359375,
+      "memory_gpu_mb": 0.03173828125,
+      "converged": "False"
+    },
+    "14": {
+      "n_params": 56,
+      "hilbert_dim": 16384,
+      "optimal_energy": -2.532997764647007,
+      "n_iterations": 30,
+      "time_seconds": 35.05920083168894,
+      "time_per_iter_ms": 1168.6400277229648,
+      "memory_cpu_mb": 1281.84375,
+      "memory_gpu_mb": 0.12548828125,
+      "converged": "False"
+    },
+    "16": {
+      "n_params": 64,
+      "hilbert_dim": 65536,
+      "optimal_energy": -2.4733120002783835,
+      "n_iterations": 30,
+      "time_seconds": 44.284410272259265,
+      "time_per_iter_ms": 1476.147009075309,
+      "memory_cpu_mb": 1281.84375,
+      "memory_gpu_mb": 0.50048828125,
+      "converged": "False"
+    },
+    "18": {
+      "n_params": 72,
+      "hilbert_dim": 262144,
+      "optimal_energy": -0.6335849612951279,
+      "n_iterations": 30,
+      "time_seconds": 72.19769187178463,
+      "time_per_iter_ms": 2406.5897290594876,
+      "memory_cpu_mb": 1281.84375,
+      "memory_gpu_mb": 2.00048828125,
+      "converged": "False"
+    },
+    "20": {
+      "n_params": 80,
+      "hilbert_dim": 1048576,
+      "optimal_energy": -2.8055739402770996,
+      "n_iterations": 30,
+      "time_seconds": 274.46141596790403,
+      "time_per_iter_ms": 9148.713865596801,
+      "memory_cpu_mb": 1282.32421875,
+      "memory_gpu_mb": 8.00048828125,
+      "converged": "False"
+    },
+    "22": {
+      "n_params": 88,
+      "hilbert_dim": 4194304,
+      "optimal_energy": -0.4920153431594372,
+      "n_iterations": 30,
+      "time_seconds": 1231.1968368962407,
+      "time_per_iter_ms": 41039.89456320802,
+      "memory_cpu_mb": 1282.3203125,
+      "memory_gpu_mb": 32.00048828125,
+      "converged": "False"
+    }
+  }
+}
