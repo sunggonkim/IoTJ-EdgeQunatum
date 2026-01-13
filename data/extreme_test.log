@@ -1,0 +1,93 @@
+nohup: ignoring input
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+  JETSON ORIN NANO - QUANTUM SIMULATION STRESS TEST
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+======================================================================
+🚀 EXTREME QUBIT SCALING TEST - MEMORY LIMIT DISCOVERY
+======================================================================
+Starting from 20 qubits, pushing to 30 or OOM
+Timestamp: 2026-01-13T18:54:47.358324
+
+📊 Initial Memory Status:
+   CPU: 2.04 / 6.33 GB
+   GPU: 0.00 / 0.00 GB
+----------------------------------------------------------------------
+
+🔬 [20 qubits]
+   Hilbert dim: 1,048,576
+   Memory required: 0.01 GB (state vector only)
+   Allocating on GPU...
+   ✓ GPU allocation: 5.57s
+   Applying test gates...
+   ✓ Gate applied in 79.04s
+   ✓ Norm: 1.000000
+   📊 Memory: CPU=2.63GB, GPU=0.02GB
+
+🔬 [21 qubits]
+   Hilbert dim: 2,097,152
+   Memory required: 0.02 GB (state vector only)
+   Allocating on GPU...
+   ✓ GPU allocation: 0.00s
+   Applying test gates...
+   ✓ Gate applied in 0.01s
+   ✓ Norm: 1.000000
+   📊 Memory: CPU=2.63GB, GPU=0.05GB
+
+🔬 [22 qubits]
+   Hilbert dim: 4,194,304
+   Memory required: 0.03 GB (state vector only)
+   Allocating on GPU...
+   ✓ GPU allocation: 0.01s
+   Applying test gates...
+   ✓ Gate applied in 0.02s
+   ✓ Norm: 1.000000
+   📊 Memory: CPU=2.63GB, GPU=0.09GB
+
+🔬 [23 qubits]
+   Hilbert dim: 8,388,608
+   Memory required: 0.06 GB (state vector only)
+   Allocating on GPU...
+   ✓ GPU allocation: 0.01s
+   Applying test gates...
+   ✓ Gate applied in 0.03s
+   ✓ Norm: 1.000000
+   📊 Memory: CPU=2.63GB, GPU=0.19GB
+
+🔬 [24 qubits]
+   Hilbert dim: 16,777,216
+   Memory required: 0.12 GB (state vector only)
+   Allocating on GPU...
+   ✓ GPU allocation: 0.02s
+   Applying test gates...
+   ✓ Gate applied in 0.06s
+   ✓ Norm: 1.000000
+   📊 Memory: CPU=2.89GB, GPU=0.38GB
+
+🔬 [25 qubits]
+   Hilbert dim: 33,554,432
+   Memory required: 0.25 GB (state vector only)
+   Allocating on GPU...
+   ✓ GPU allocation: 0.05s
+   Applying test gates...
+   ✓ Gate applied in 0.16s
+   ✓ Norm: 1.000000
+   📊 Memory: CPU=3.52GB, GPU=0.75GB
+
+🔬 [26 qubits]
+   Hilbert dim: 67,108,864
+   Memory required: 0.50 GB (state vector only)
+   Allocating on GPU...
+   ✓ GPU allocation: 0.10s
+   Applying test gates...
+   ✓ Gate applied in 0.34s
+   ✓ Norm: 1.000000
+   📊 Memory: CPU=4.77GB, GPU=1.50GB
+
+🔬 [27 qubits]
+   Hilbert dim: 134,217,728
+   Memory required: 1.00 GB (state vector only)
+   Allocating on GPU...
+   ✓ GPU allocation: 0.20s
+   Applying test gates...

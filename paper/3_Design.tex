@@ -1,0 +1,102 @@
+\section{System Design}
+\label{sec:design}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{Figures/fig_architecture.pdf}
+\caption{\EdgeQuantum architecture: three-layer design with state vector engine, circuit compiler, and classical optimizer.}
+\label{fig:architecture}
+\end{figure}
+
+\EdgeQuantum comprises three layers optimized for edge deployment: (1) a GPU-accelerated state vector engine, (2) a memory-efficient circuit compiler, and (3) a classical optimization backend.
+
+\subsection{State Vector Engine}
+
+The core simulation engine maintains the quantum state as a CuPy tensor on GPU memory. For an $n$-qubit system, the state vector $\ket{\psi}$ is represented as a 1D array of $2^n$ complex64 values.
+
+\subsubsection{Tensor-Based Gate Application}
+
+Single-qubit gates are applied via tensor reshaping rather than explicit Kronecker products, avoiding $O(4^n)$ matrix construction:
+
+\begin{enumerate}
+    \item Reshape state vector: $\psi \in \mathbb{C}^{2^n} \rightarrow \Psi \in \mathbb{C}^{2 \times 2 \times \cdots \times 2}$
+    \item Transpose to bring target qubit to first axis
+    \item Apply gate via matrix multiplication: $\Psi' = U \cdot \Psi_{\text{flat}}$
+    \item Transpose back and flatten
+\end{enumerate}
+
+This approach reduces complexity from $O(4^n)$ to $O(2^n)$ for single-qubit gates.
+
+\subsubsection{CNOT Implementation}
+
+Two-qubit CNOT gates use conditional bit-flipping:
+\begin{equation}
+\text{CNOT}_{c,t}: \ket{x_c, x_t} \mapsto \ket{x_c, x_t \oplus x_c}
+\end{equation}
+
+We extract the subspace where control qubit $= 1$ and apply $X$ gate to the target qubit, avoiding full $4 \times 4$ matrix construction.
+
+\subsection{Memory-Efficient QAOA Operators}
+
+For QAOA, the cost Hamiltonian evolution $e^{-i\gamma H_C}$ involves $ZZ$ interactions. Rather than constructing dense matrices, we exploit diagonality:
+
+\begin{equation}
+\left(e^{-i\gamma Z_i Z_j}\right)_{kk} = e^{-i\gamma \cdot (-1)^{b_i(k) \oplus b_j(k)}}
+\end{equation}
+
+where $b_i(k)$ extracts the $i$-th bit of index $k$. The diagonal is computed on-the-fly and applied via element-wise multiplication:
+
+\begin{verbatim}
+diag = cp.exp(-1j * gamma * zz_eigenvalues)
+state_vector *= diag
+\end{verbatim}
+
+This eliminates matrix storage entirely, reducing memory from $O(4^n)$ to $O(2^n)$.
+
+\subsection{Expectation Value Computation}
+
+For VQE, expectation values of Pauli operators are computed efficiently:
+
+\textbf{Z-basis:} Direct probability computation:
+\begin{equation}
+\langle Z_i \rangle = P(q_i = 0) - P(q_i = 1)
+\end{equation}
+
+\textbf{X/Y-basis:} Apply basis rotation before measurement:
+\begin{align}
+\langle X_i \rangle &= \langle H_i Z_i H_i \rangle \\
+\langle Y_i \rangle &= \langle S_i^\dagger H_i Z_i H_i S_i \rangle
+\end{align}
+
+\subsection{Classical Optimizer Integration}
+
+\EdgeQuantum interfaces with SciPy's optimization suite. For VQE/QAOA, we employ:
+
+\begin{itemize}
+    \item \textbf{COBYLA:} Derivative-free constrained optimization
+    \item \textbf{L-BFGS-B:} Gradient-based with bounds (when gradients available)
+\end{itemize}
+
+The cost function evaluates the quantum circuit on GPU and returns a scalar to the CPU-based optimizer, minimizing data transfer overhead.
+
+\subsection{Ansatz Circuits}
+
+\subsubsection{Hardware-Efficient Ansatz}
+
+For VQE, we implement a hardware-efficient ansatz with alternating rotation and entanglement layers:
+
+\begin{equation}
+U(\boldsymbol{\theta}) = \prod_{l=1}^{L} \left[ \prod_{i=1}^{n} R_Y(\theta_{l,i,1}) R_Z(\theta_{l,i,2}) \right] \cdot \text{CNOT}_{\text{chain}}
+\end{equation}
+
+where $\text{CNOT}_{\text{chain}}$ applies CNOT gates between adjacent qubits.
+
+\subsubsection{QAOA Circuit}
+
+The QAOA circuit alternates cost and mixer layers:
+
+\begin{equation}
+U_{\text{QAOA}} = \prod_{p=1}^{P} U_M(\beta_p) U_C(\gamma_p) H^{\otimes n}
+\end{equation}
+
+where $U_C(\gamma) = \prod_{(i,j) \in E} e^{-i\gamma Z_i Z_j / 2}$ and $U_M(\beta) = \prod_i e^{-i\beta X_i}$.

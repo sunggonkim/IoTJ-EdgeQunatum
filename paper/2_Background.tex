@@ -1,0 +1,87 @@
+\section{Background}
+\label{sec:background}
+
+\subsection{Variational Quantum Algorithms}
+
+Variational Quantum Algorithms (VQAs) are hybrid quantum-classical algorithms that leverage parameterized quantum circuits optimized by classical optimizers~\cite{cerezo2021variational}. The general workflow consists of: (1) preparing a parameterized quantum state $\ket{\psi(\boldsymbol{\theta})}$, (2) measuring an observable to compute a cost function, and (3) updating parameters via classical optimization.
+
+\subsubsection{Variational Quantum Eigensolver (VQE)}
+
+VQE seeks the ground state energy $E_0$ of a Hamiltonian $H$:
+\begin{equation}
+E_0 = \min_{\boldsymbol{\theta}} \bra{\psi(\boldsymbol{\theta})} H \ket{\psi(\boldsymbol{\theta})}
+\end{equation}
+where $\ket{\psi(\boldsymbol{\theta})} = U(\boldsymbol{\theta})\ket{0}^{\otimes n}$ is the parameterized quantum state prepared by a unitary ansatz circuit $U(\boldsymbol{\theta})$.
+
+For molecular systems, the Hamiltonian is expressed as a sum of Pauli strings:
+\begin{equation}
+H = \sum_i c_i P_i, \quad P_i \in \{I, X, Y, Z\}^{\otimes n}
+\end{equation}
+
+The expectation value $\langle H \rangle$ is computed by measuring each Pauli term independently and summing the weighted results.
+
+\subsubsection{Quantum Approximate Optimization Algorithm (QAOA)}
+
+QAOA prepares the variational state:
+\begin{equation}
+\ket{\boldsymbol{\gamma}, \boldsymbol{\beta}} = \prod_{p=1}^{P} e^{-i\beta_p H_M} e^{-i\gamma_p H_C} \ket{+}^{\otimes n}
+\end{equation}
+where $H_C$ encodes the optimization objective (cost Hamiltonian) and $H_M = \sum_i X_i$ is the mixer Hamiltonian promoting exploration.
+
+For MaxCut on graph $G=(V,E)$:
+\begin{equation}
+H_C = \sum_{(i,j) \in E} \frac{1}{2}(1 - Z_i Z_j)
+\end{equation}
+
+The algorithm optimizes $(\boldsymbol{\gamma}, \boldsymbol{\beta})$ to maximize $\langle H_C \rangle$, corresponding to the expected cut value.
+
+\subsection{Edge Computing for Quantum Simulation}
+
+\subsubsection{NVIDIA Jetson Platform}
+
+The Jetson Orin Nano represents NVIDIA's edge AI platform featuring:
+\begin{itemize}
+    \item ARM Cortex-A78AE CPU (6 cores, 1.5 GHz)
+    \item NVIDIA Ampere GPU (1024 CUDA cores)
+    \item 8GB unified LPDDR5 memory (shared CPU/GPU)
+    \item 15W--25W configurable power envelope
+\end{itemize}
+
+The unified memory architecture eliminates explicit CPU-GPU data transfers but imposes a strict 8GB limit for all allocations.
+
+\subsubsection{cuQuantum SDK}
+
+NVIDIA's cuQuantum SDK provides GPU-accelerated primitives for quantum circuit simulation:
+\begin{itemize}
+    \item \textbf{cuStateVec:} State vector operations including gate application and measurement
+    \item \textbf{cuTensorNet:} Tensor network contraction for circuit simulation
+\end{itemize}
+
+\EdgeQuantum leverages CuPy with cuBLAS for matrix operations, achieving comparable performance to native cuStateVec while maintaining flexibility for custom gate implementations.
+
+\subsection{Memory Scaling in Quantum Simulation}
+
+The state vector for an $n$-qubit system requires $2^n$ complex amplitudes. Using complex64 representation (8 bytes per amplitude):
+\begin{equation}
+\text{Memory} = 2^n \times 8 \text{ bytes}
+\end{equation}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{cr}
+\toprule
+\textbf{Qubits} & \textbf{Memory} \\
+\midrule
+20 & 8 MB \\
+24 & 128 MB \\
+26 & 512 MB \\
+28 & 2 GB \\
+30 & 8 GB \\
+\bottomrule
+\end{tabular}
+\caption{State vector memory requirements}
+\label{tab:memory_scaling}
+\end{table}
+
+For edge devices with 8GB memory, 26--27 qubits represents the practical limit, as intermediate allocations during gate operations require additional memory.

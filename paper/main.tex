@@ -1,20 +1,40 @@
+%%
+%% IEEE IoTJ 2026 Submission - EdgeQuantum
+%%
 \documentclass[journal]{IEEEtran}
 
-% Packages
+%% Packages
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{algorithm}
-\usepackage{algorithmicx}
-\usepackage{algpseudocode}
 \usepackage{multirow}
-\usepackage{subcaption}
+\usepackage{array}
+\usepackage{xspace}
+\usepackage{pifont}
+\usepackage[caption=false]{subfig}
+\usepackage{float}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{tikz}
+\usetikzlibrary{fit,shapes,arrows,positioning}
 
-% Custom commands
+%% Space-saving adjustments
+\setlength{\tabcolsep}{3pt}
+\setlength{\textfloatsep}{6pt plus 1.0pt minus 2.0pt}
+\setlength{\floatsep}{6pt plus 1.0pt minus 2.0pt}
+\setlength{\intextsep}{6pt plus 1.0pt minus 2.0pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{2pt}
+
+%% Commands
+\newcommand{\EdgeQuantum}{\texttt{EdgeQuantum}\xspace}
 \newcommand{\ket}[1]{|#1\rangle}
 \newcommand{\bra}[1]{\langle#1|}
+\newcommand{\cmark}{{\color{green!70!black}\ding{51}}}
+\newcommand{\xmark}{{\color{red!80!black}\ding{55}}}
+\newcommand{\pmark}{{\color{orange!80!black}$\triangle$}}
 
 \begin{document}
 
@@ -31,187 +51,21 @@ sunggonkim@seoultech.ac.kr}
 \maketitle
 
 \begin{abstract}
-Quantum computing promises exponential speedups for optimization and simulation tasks, yet current quantum hardware remains expensive and centralized. This paper presents EdgeQuantum, a framework enabling variational quantum algorithms (VQE, QAOA) on resource-constrained IoT edge devices. Using NVIDIA Jetson Orin Nano with cuQuantum SDK, we demonstrate that edge devices can efficiently simulate quantum circuits up to 20 qubits, achieving 1,000+ gate operations per second. Our VQE implementation successfully computes ground state energies for Ising model Hamiltonians, while QAOA achieves 100\% approximation ratio on MaxCut problems up to 10 qubits. These results establish the viability of quantum-inspired edge computing for distributed IoT applications in smart grids, logistics optimization, and federated learning.
+Quantum computing promises exponential speedups for optimization and simulation tasks, yet current quantum hardware remains expensive and centralized in cloud data centers. This paper presents \EdgeQuantum, a framework enabling variational quantum algorithms (VQE, QAOA) on resource-constrained IoT edge devices. Using NVIDIA Jetson Orin Nano with cuQuantum SDK, we demonstrate that edge devices can efficiently simulate quantum circuits up to \textbf{26 qubits} (67 million Hilbert space dimensions) using only 0.5GB GPU memory. Our VQE implementation achieves 1,000+ gate operations per second for Ising model Hamiltonians, while QAOA obtains \textbf{100\% approximation ratio} on MaxCut problems up to 10 qubits. These results establish the viability of quantum-inspired edge computing for distributed IoT applications in smart grids, logistics optimization, and federated quantum learning.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Quantum Computing, Variational Quantum Eigensolver, QAOA, Edge Computing, IoT, GPU Acceleration
+Quantum Computing, Variational Quantum Eigensolver, QAOA, Edge Computing, IoT, GPU Acceleration, cuQuantum
 \end{IEEEkeywords}
 
-%-------------------------------------------------------------
-\section{Introduction}
-\label{sec:intro}
-
-The convergence of quantum computing and Internet of Things (IoT) presents a transformative opportunity for next-generation intelligent systems. While cloud-based quantum computers offer unprecedented computational power, latency constraints and data privacy concerns motivate the exploration of edge-based quantum simulation. This paper addresses the fundamental question: \textit{Can resource-constrained IoT edge devices effectively simulate variational quantum algorithms?}
-
-Variational Quantum Algorithms (VQAs) represent a promising class of hybrid quantum-classical algorithms designed for near-term quantum devices. The Variational Quantum Eigensolver (VQE) \cite{peruzzo2014variational} finds ground state energies for molecular Hamiltonians, while the Quantum Approximate Optimization Algorithm (QAOA) \cite{farhi2014quantum} addresses combinatorial optimization problems. Both algorithms employ parameterized quantum circuits optimized through classical feedback loops.
-
-Our contributions are:
-\begin{enumerate}
-    \item \textbf{EdgeQuantum Framework:} A GPU-accelerated quantum circuit simulator optimized for ARM-based edge devices (NVIDIA Jetson platform).
-    \item \textbf{Scalability Analysis:} Comprehensive benchmarks demonstrating VQE/QAOA performance from 4 to 22 qubits on edge hardware.
-    \item \textbf{Memory-Efficient Design:} Novel diagonal operator formulation for QAOA reducing GPU memory requirements by 10$\times$.
-\end{enumerate}
-
-%-------------------------------------------------------------
-\section{Background}
-\label{sec:background}
-
-\subsection{Variational Quantum Eigensolver (VQE)}
-
-VQE seeks the ground state energy $E_0$ of a Hamiltonian $H$:
-\begin{equation}
-E_0 = \min_{\boldsymbol{\theta}} \bra{\psi(\boldsymbol{\theta})} H \ket{\psi(\boldsymbol{\theta})}
-\end{equation}
-where $\ket{\psi(\boldsymbol{\theta})} = U(\boldsymbol{\theta})\ket{0}^{\otimes n}$ is the parameterized quantum state.
-
-\subsection{Quantum Approximate Optimization Algorithm (QAOA)}
-
-QAOA prepares the state:
-\begin{equation}
-\ket{\boldsymbol{\gamma}, \boldsymbol{\beta}} = \prod_{p=1}^{P} e^{-i\beta_p H_M} e^{-i\gamma_p H_C} \ket{+}^{\otimes n}
-\end{equation}
-where $H_C$ encodes the optimization objective and $H_M = \sum_i X_i$ is the mixer Hamiltonian.
-
-\subsection{Edge Computing for Quantum Simulation}
-
-Modern edge devices like NVIDIA Jetson Orin Nano feature:
-\begin{itemize}
-    \item ARM Cortex-A78AE CPU (6 cores)
-    \item NVIDIA Ampere GPU (1024 CUDA cores)
-    \item 8GB unified memory
-    \item 15W power envelope
-\end{itemize}
-
-%-------------------------------------------------------------
-\section{System Design}
-\label{sec:design}
-
-\subsection{Architecture Overview}
-
-EdgeQuantum comprises three layers:
-\begin{enumerate}
-    \item \textbf{State Vector Engine:} CuPy-based GPU tensor operations
-    \item \textbf{Circuit Compiler:} Gate decomposition and scheduling
-    \item \textbf{Classical Optimizer:} COBYLA for parameter optimization
-\end{enumerate}
-
-\subsection{Memory-Efficient Gate Application}
-
-For an $n$-qubit system, we reshape the state vector $\ket{\psi} \in \mathbb{C}^{2^n}$ as a tensor:
-\begin{equation}
-\psi_{i_1 i_2 \cdots i_n} = \psi\left[\sum_{k=1}^{n} i_k 2^{n-k}\right]
-\end{equation}
-
-Single-qubit gate $U$ on qubit $q$ is applied via tensor contraction:
-\begin{equation}
-\psi'_{i_1 \cdots i_q' \cdots i_n} = \sum_{i_q} U_{i_q' i_q} \psi_{i_1 \cdots i_q \cdots i_n}
-\end{equation}
-
-\subsection{Diagonal Operator Optimization}
-
-For QAOA cost Hamiltonians, $e^{-i\gamma Z_i Z_j}$ is diagonal:
-\begin{equation}
-\left(e^{-i\gamma Z_i Z_j}\right)_{kk} = e^{-i\gamma (-1)^{b_i(k) \oplus b_j(k)}}
-\end{equation}
-where $b_i(k)$ is the $i$-th bit of index $k$. This eliminates matrix storage entirely.
-
-%-------------------------------------------------------------
-\section{Evaluation}
-\label{sec:eval}
-
-\subsection{Experimental Setup}
-
-\begin{itemize}
-    \item \textbf{Platform:} NVIDIA Jetson Orin Nano 8GB
-    \item \textbf{Software:} CUDA 11.4, CuPy 12.3, cuQuantum 23.3
-    \item \textbf{Algorithms:} VQE (Ising model), QAOA (MaxCut)
-\end{itemize}
-
-\subsection{VQE Performance}
-
-\begin{table}[htbp]
-\centering
-\caption{VQE Benchmark on Jetson Orin Nano}
-\label{tab:vqe}
-\begin{tabular}{ccccc}
-\toprule
-\textbf{Qubits} & \textbf{Hilbert Dim} & \textbf{Params} & \textbf{Time/iter} & \textbf{GPU} \\
-\midrule
-4 & 16 & 16 & 195 ms & 0.0 MB \\
-8 & 256 & 32 & 398 ms & 0.0 MB \\
-12 & 4,096 & 48 & 870 ms & 0.0 MB \\
-16 & 65,536 & 64 & 1.48 s & 0.5 MB \\
-20 & 1,048,576 & 80 & 9.15 s & 8.0 MB \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{QAOA Performance}
-
-\begin{table}[htbp]
-\centering
-\caption{QAOA MaxCut Results}
-\label{tab:qaoa}
-\begin{tabular}{cccccc}
-\toprule
-\textbf{Qubits} & \textbf{Edges} & \textbf{Best Cut} & \textbf{Exact} & \textbf{Ratio} & \textbf{Time} \\
-\midrule
-4 & 3 & 3 & 3 & 100\% & 5.5 s \\
-6 & 8 & 6 & 6 & 100\% & 2.8 s \\
-8 & 15 & 12 & 12 & 100\% & 14.5 s \\
-10 & 20 & 15 & 15 & 100\% & 81.9 s \\
-12 & 30 & 21 & 23 & 91.3\% & 464 s \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Scalability Analysis}
-
-The simulation time scales as $O(n \cdot 2^n)$ for $n$ qubits, consistent with the tensor contraction complexity. Memory scales as $O(2^n)$ for complex64 state vectors.
-
-%-------------------------------------------------------------
-\section{Discussion}
-\label{sec:discussion}
-
-\subsection{Practical Implications}
-
-Our results demonstrate that:
-\begin{itemize}
-    \item 16-20 qubit VQE is practical on 8GB edge devices
-    \item QAOA achieves optimal solutions for small instances
-    \item Power consumption remains within 15W IoT bounds
-\end{itemize}
-
-\subsection{Comparison with Cloud Quantum}
-
-While IBM/Google quantum processors achieve 50-100+ qubits, edge simulation offers:
-\begin{itemize}
-    \item Zero network latency
-    \item Data locality for privacy-sensitive IoT
-    \item Lower cost per optimization iteration
-\end{itemize}
-
-%-------------------------------------------------------------
-\section{Conclusion}
-\label{sec:conclusion}
-
-EdgeQuantum establishes the viability of variational quantum algorithms on IoT edge devices. Our framework achieves 20-qubit VQE simulation and 100\% QAOA accuracy on Jetson Orin Nano, opening pathways for quantum-inspired edge intelligence in smart cities, autonomous vehicles, and distributed optimization systems.
-
-%-------------------------------------------------------------
-\section*{Acknowledgment}
-This research was supported by the National Research Foundation of Korea.
+\input{1_Introduction.tex}
+\input{2_Background.tex}
+\input{3_Design.tex}
+\input{4_Evaluation.tex}
+\input{5_Related_Works.tex}
+\input{6_Conclusion.tex}
 
 \bibliographystyle{IEEEtran}
-\begin{thebibliography}{10}
-\bibitem{peruzzo2014variational}
-A. Peruzzo et al., ``A variational eigenvalue solver on a photonic quantum processor,'' \textit{Nature Communications}, vol. 5, no. 4213, 2014.
-
-\bibitem{farhi2014quantum}
-E. Farhi, J. Goldstone, and S. Gutmann, ``A Quantum Approximate Optimization Algorithm,'' arXiv:1411.4028, 2014.
-
-\bibitem{scaleqsim}
-S. Kim et al., ``ScaleQsim: Highly Scalable Quantum Circuit Simulation Framework for Exascale HPC Systems,'' \textit{Proc. ACM SIGMETRICS}, 2026.
-\end{thebibliography}
+\bibliography{references}
 
 \end{document}

@@ -71,3 +71,13 @@ Starting QAOA optimization (p=1, 2 params)...
   Exact MaxCut: 32
 Starting QAOA optimization (p=1, 2 params)...
   Iteration 10: avg cut = 23.26
+  Iteration 20: avg cut = 23.22
+  ✓ Best Cut: 30 (exact: 32)
+  ✓ Approximation Ratio: 93.75%
+  ✓ Time: 10436.90s
+  ✓ Memory: CPU=385.5MB, GPU=0.1MB
+
+[16 qubits/nodes]
+  Graph edges: 54
+  Exact MaxCut: 39
+Starting QAOA optimization (p=1, 2 params)...

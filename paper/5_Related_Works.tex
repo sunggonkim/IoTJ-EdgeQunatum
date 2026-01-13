@@ -1,0 +1,24 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Quantum Circuit Simulation}
+
+State vector simulation remains the gold standard for exact quantum circuit execution. Google's Qsim~\cite{qsim} and IBM's Qiskit Aer~\cite{qiskit} provide CPU/GPU backends for circuits up to 30+ qubits on workstations. NVIDIA's cuQuantum SDK~\cite{cuquantum} achieves state-of-the-art performance on datacenter GPUs, enabling 40+ qubit simulation via cuStateVec and tensor network methods via cuTensorNet.
+
+ScaleQsim~\cite{scaleqsim} extends Qsim to exascale HPC systems (Perlmutter@NERSC), achieving 6.15$\times$ speedup over cuStateVec through two-phase state vector partitioning and adaptive kernel tuning. However, these approaches target high-memory server environments, leaving edge deployment unexplored.
+
+\subsection{Variational Quantum Algorithms}
+
+VQE was introduced by Peruzzo et al.~\cite{peruzzo2014variational} for ground state energy estimation on photonic quantum processors. Subsequent work explored ansatz design~\cite{kandala2017hardware}, error mitigation~\cite{temme2017error}, and classical optimizer selection~\cite{lavrijsen2020classical}.
+
+QAOA, proposed by Farhi et al.~\cite{farhi2014quantum}, addresses combinatorial optimization via alternating cost and mixer unitaries. Extensions include Warm-Start QAOA~\cite{egger2021warm} and Recursive QAOA~\cite{bravyi2020obstacles} for improved performance on structured problems.
+
+\subsection{Edge AI and Quantum Computing}
+
+The intersection of edge computing and quantum algorithms remains nascent. Hybrid classical-quantum systems have been proposed for federated learning~\cite{chen2021federated} and IoT anomaly detection~\cite{liu2022quantum}, but these assume cloud quantum backend access.
+
+TensorFlow Quantum~\cite{tfq} and PennyLane~\cite{pennylane} provide differentiable quantum circuit frameworks, but neither optimizes for edge deployment. \EdgeQuantum fills this gap by demonstrating practical VQE/QAOA execution on resource-constrained ARM devices.
+
+\subsection{Energy-Efficient Quantum Simulation}
+
+Power consumption is critical for edge IoT. Prior work on energy-efficient simulation focuses on algorithmic optimizations~\cite{jones2019quest} rather than hardware platform selection. Our evaluation demonstrates that modern edge GPUs (Jetson Orin) achieve competitive qubit counts at 26$\times$ better energy efficiency than datacenter alternatives.
