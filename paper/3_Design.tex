@@ -100,3 +100,22 @@ U_{\text{QAOA}} = \prod_{p=1}^{P} U_M(\beta_p) U_C(\gamma_p) H^{\otimes n}
 \end{equation}
 
 where $U_C(\gamma) = \prod_{(i,j) \in E} e^{-i\gamma Z_i Z_j / 2}$ and $U_M(\beta) = \prod_i e^{-i\beta X_i}$.
+
+\subsection{Tiered Memory Offloading}
+
+To break the GPU memory barrier, we implement an AURORA-Q inspired three-tier memory hierarchy:
+
+\begin{enumerate}
+    \item \textbf{GPU VRAM:} Active computation (single 32MB chunk)
+    \item \textbf{CPU DRAM:} LRU cache (8 chunks = 256MB)
+    \item \textbf{Storage:} Cold storage for all chunks
+\end{enumerate}
+
+The state vector is partitioned into $2^n / 2^{22}$ chunks of 4 million amplitudes each. For local gates (target qubit within chunk), each chunk is processed independently. For global gates (target qubit spans chunks), paired chunks are loaded and transformed:
+
+\begin{equation}
+\begin{pmatrix} \text{chunk}_0' \\ \text{chunk}_1' \end{pmatrix} = U \begin{pmatrix} \text{chunk}_0 \\ \text{chunk}_1 \end{pmatrix}
+\end{equation}
+
+The LRU cache reduces storage I/O by exploiting temporal locality in gate sequences.
+

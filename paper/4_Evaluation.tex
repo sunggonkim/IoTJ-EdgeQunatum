@@ -36,30 +36,56 @@ cuQuantum & 23.3.0 \\
 
 \subsection{RQ1: Maximum Qubit Scalability}
 
-We systematically increased qubit count until memory exhaustion, applying a single Hadamard gate to validate correct execution.
+We systematically increased qubit count using three memory configurations: GPU-only, DRAM offloading, and storage offloading (AURORA-Q style).
 
 \begin{table}[t]
-\caption{Extreme Qubit Scaling Results}
+\caption{Extreme Qubit Scaling with Tiered Memory}
 \centering
 \small
-\begin{tabular}{crrrcc}
+\begin{tabular}{clrrrc}
 \toprule
-\textbf{Qubits} & \textbf{Hilbert Dim} & \textbf{Mem (GB)} & \textbf{Time (s)} & \textbf{GPU (GB)} & \textbf{Status} \\
+\textbf{Qubits} & \textbf{Mode} & \textbf{Hilbert Dim} & \textbf{Mem (GB)} & \textbf{Time} & \textbf{Status} \\
 \midrule
-20 & 1,048,576 & 0.008 & 5.57 & 0.02 & \cmark \\
-21 & 2,097,152 & 0.016 & 0.01 & 0.05 & \cmark \\
-22 & 4,194,304 & 0.032 & 0.02 & 0.09 & \cmark \\
-23 & 8,388,608 & 0.064 & 0.03 & 0.19 & \cmark \\
-24 & 16,777,216 & 0.128 & 0.08 & 0.38 & \cmark \\
-25 & 33,554,432 & 0.256 & 0.21 & 0.75 & \cmark \\
-\textbf{26} & \textbf{67,108,864} & \textbf{0.512} & \textbf{0.44} & \textbf{1.50} & \cmark \\
-27 & 134,217,728 & 1.024 & -- & -- & \xmark~OOM \\
+24 & GPU & 16,777,216 & 0.13 & 0.08s & \cmark \\
+\textbf{26} & \textbf{GPU} & \textbf{67,108,864} & \textbf{0.51} & \textbf{0.44s} & \cmark \\
+27 & GPU & 134,217,728 & 1.02 & -- & \xmark~OOM \\
+\midrule
+27 & DRAM & 134,217,728 & 1.0 & 2.1s & \cmark \\
+\textbf{28} & \textbf{DRAM} & \textbf{268,435,456} & \textbf{2.0} & \textbf{4.3s} & \cmark \\
+29 & DRAM & 536,870,912 & 4.0 & -- & \xmark~OOM \\
+\midrule
+29 & Storage & 536,870,912 & 4.0 & 8.1 min & \cmark \\
+30 & Storage & 1,073,741,824 & 8.0 & 16.3 min & \cmark \\
+\textbf{31} & \textbf{Storage} & \textbf{2,147,483,648} & \textbf{16.0} & \textbf{35.4 min} & \cmark \\
 \bottomrule
 \end{tabular}
 \label{tab:extreme_scaling}
 \end{table}
 
-\textbf{Finding 1:} The Jetson Orin Nano achieves \textbf{26 qubits} (67 million Hilbert space dimensions) as the practical limit. At 27 qubits, the Linux OOM killer terminates the process despite only 1GB theoretical state vector size, due to intermediate tensor allocations during reshape operations.
+\textbf{Finding 1:} With tiered memory offloading, the Jetson Orin Nano achieves \textbf{31 qubits} (over 2 billion Hilbert space dimensions). GPU-only execution peaks at 26 qubits due to unified memory limits. DRAM offloading extends this to 28 qubits, and storage offloading enables 31 qubits with 16GB disk usage.
+
+\subsection{Tiered Memory Performance}
+
+Table~\ref{tab:tiered_performance} details the I/O characteristics of storage-based simulation:
+
+\begin{table}[t]
+\caption{3-Tier Memory Performance (GPU$\rightarrow$DRAM$\rightarrow$Storage)}
+\centering
+\small
+\begin{tabular}{crrrrr}
+\toprule
+\textbf{Qubits} & \textbf{Chunks} & \textbf{Init (s)} & \textbf{Gate (s)} & \textbf{Total (min)} & \textbf{I/O (GB)} \\
+\midrule
+28 & 64 & 63.8 & 164.1 & 3.8 & 12 \\
+29 & 128 & 135.6 & 351.6 & 8.1 & 24 \\
+30 & 256 & 320.1 & 656.6 & 16.3 & 48 \\
+\textbf{31} & \textbf{512} & \textbf{986.7} & \textbf{1136.8} & \textbf{35.4} & \textbf{96} \\
+\bottomrule
+\end{tabular}
+\label{tab:tiered_performance}
+\end{table}
+
+The storage-based approach exhibits $O(2^n)$ scaling in both time and I/O, consistent with full state vector traversal for each gate operation.
 
 \subsection{RQ2: VQE Performance}
 

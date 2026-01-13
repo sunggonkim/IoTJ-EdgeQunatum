@@ -1,19 +1,19 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper presented \EdgeQuantum, a framework enabling variational quantum algorithms on resource-constrained IoT edge devices. Through systematic evaluation on NVIDIA Jetson Orin Nano, we established key findings:
+This paper presented \EdgeQuantum, a framework enabling variational quantum algorithms on resource-constrained IoT edge devices. Through systematic evaluation on NVIDIA Jetson Orin Nano, we established the following key findings:
 
 \begin{enumerate}
-    \item \textbf{Scalability Limit:} Edge devices with 8GB unified memory achieve a practical maximum of \textbf{26 qubits} (67 million Hilbert space dimensions), with 27 qubits exceeding memory capacity due to intermediate tensor allocations.
+    \item \textbf{Scalability Achievement:} Using tiered memory offloading (GPU$\rightarrow$DRAM$\rightarrow$Storage), edge devices achieve \textbf{31-qubit simulation} with over 2 billion Hilbert space dimensions---a 32$\times$ improvement over GPU-only limits.
     
-    \item \textbf{VQE Feasibility:} The transverse-field Ising model is solvable up to 20 qubits with 9.15 seconds per optimization iteration, demonstrating practical ground state estimation on edge hardware.
+    \item \textbf{VQE Feasibility:} The transverse-field Ising model is solvable up to 20 qubits with 9.15 seconds per optimization iteration, demonstrating practical ground state estimation.
     
-    \item \textbf{QAOA Accuracy:} MaxCut QAOA achieves 100\% approximation ratio for graphs up to 10 nodes with a single variational layer, proving optimal solution discovery is possible on edge devices.
+    \item \textbf{QAOA Accuracy:} MaxCut QAOA achieves 100\% approximation ratio for graphs up to 10 nodes with a single variational layer.
     
-    \item \textbf{Energy Efficiency:} Operating at 15W, edge quantum simulation offers 26$\times$ better energy efficiency compared to datacenter GPU alternatives.
+    \item \textbf{Energy Efficiency:} Operating at 15W, edge quantum simulation achieves 26$\times$ better energy efficiency compared to datacenter GPU alternatives.
 \end{enumerate}
 
-These results establish the viability of quantum-inspired edge computing for distributed IoT applications. Future work will explore tensor network methods for scaling beyond 26 qubits and federated quantum learning across edge device clusters.
+These results establish the viability of quantum-inspired edge computing for distributed IoT applications. Our tiered memory approach, inspired by AURORA-Q, demonstrates that storage offloading can extend quantum simulation far beyond physical memory limits. Future work will explore asynchronous I/O pipelines and tensor network methods for further scaling.
 
 \section*{Acknowledgment}
 

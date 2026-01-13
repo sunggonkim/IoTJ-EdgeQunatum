@@ -1,0 +1,8 @@
+nohup: ignoring input
+[32q] 4,294,967,296 amplitudes (4.3 billion)
+[32q] 1024 chunks of 32MB
+[32q] Total: 32.0GB on storage: /tmp/eq32_2l0wixii
+[32q] Expected time: ~60-80 minutes
+  Init: 0/1024 (0%%, ETA 0s)
+  Init: 128/1024 (12%%, ETA 1102s)
+  Init: 256/1024 (25%%, ETA 1001s)
