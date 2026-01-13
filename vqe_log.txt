@@ -1,0 +1,129 @@
+nohup: ignoring input
+
+🚀 EdgeQuantum IoT - VQE Variational Algorithm
+Timestamp: 2026-01-13T15:23:02.427043
+
+======================================================================
+📊 Test 1: H2 Molecule Ground State (2 qubits)
+======================================================================
+Starting VQE optimization with 1 parameters...
+  Iteration 10: E = -1.836736
+  Iteration 20: E = -1.836900
+
+✓ H2 Ground State Energy: -1.836900 Ha
+  Exact value: -1.137000 Ha
+  Error: 0.699900 Ha
+
+
+======================================================================
+🔬 VQE Benchmark on Jetson IoT Edge
+======================================================================
+Testing 10 qubit configurations
+Ansatz layers: 2, Max iterations: 30
+----------------------------------------------------------------------
+
+[4 qubits]
+  Parameters: 16
+  Hilbert dim: 16
+Starting VQE optimization with 16 parameters...
+  Iteration 10: E = 0.042683
+  Iteration 20: E = -1.455333
+  Iteration 30: E = -2.319427
+  ✓ Energy: -2.368598
+  ✓ Time: 5.85s (194.9 ms/iter)
+  ✓ Memory: CPU=1283.0MB, GPU=0.0MB
+
+[6 qubits]
+  Parameters: 24
+  Hilbert dim: 64
+Starting VQE optimization with 24 parameters...
+  Iteration 10: E = -0.410264
+  Iteration 20: E = -0.634456
+  Iteration 30: E = -2.990154
+  ✓ Energy: -2.990154
+  ✓ Time: 6.72s (224.0 ms/iter)
+  ✓ Memory: CPU=1283.2MB, GPU=0.0MB
+
+[8 qubits]
+  Parameters: 32
+  Hilbert dim: 256
+Starting VQE optimization with 32 parameters...
+  Iteration 10: E = -0.064124
+  Iteration 20: E = -0.707497
+  Iteration 30: E = -1.160081
+  ✓ Energy: -1.401768
+  ✓ Time: 11.95s (398.3 ms/iter)
+  ✓ Memory: CPU=1281.2MB, GPU=0.0MB
+
+[10 qubits]
+  Parameters: 40
+  Hilbert dim: 1,024
+Starting VQE optimization with 40 parameters...
+  Iteration 10: E = -1.351504
+  Iteration 20: E = -1.387163
+  Iteration 30: E = -3.310769
+  ✓ Energy: -3.310769
+  ✓ Time: 18.57s (619.1 ms/iter)
+  ✓ Memory: CPU=1281.7MB, GPU=0.0MB
+
+[12 qubits]
+  Parameters: 48
+  Hilbert dim: 4,096
+Starting VQE optimization with 48 parameters...
+  Iteration 10: E = 1.333170
+  Iteration 20: E = -0.113205
+  Iteration 30: E = -0.109255
+  ✓ Energy: -0.187025
+  ✓ Time: 26.11s (870.2 ms/iter)
+  ✓ Memory: CPU=1281.7MB, GPU=0.0MB
+
+[14 qubits]
+  Parameters: 56
+  Hilbert dim: 16,384
+Starting VQE optimization with 56 parameters...
+  Iteration 10: E = -1.942671
+  Iteration 20: E = -2.282028
+  Iteration 30: E = -2.418438
+  ✓ Energy: -2.532998
+  ✓ Time: 35.06s (1168.6 ms/iter)
+  ✓ Memory: CPU=1281.8MB, GPU=0.1MB
+
+[16 qubits]
+  Parameters: 64
+  Hilbert dim: 65,536
+Starting VQE optimization with 64 parameters...
+  Iteration 10: E = -1.355857
+  Iteration 20: E = -2.053721
+  Iteration 30: E = -2.430323
+  ✓ Energy: -2.473312
+  ✓ Time: 44.28s (1476.1 ms/iter)
+  ✓ Memory: CPU=1281.8MB, GPU=0.5MB
+
+[18 qubits]
+  Parameters: 72
+  Hilbert dim: 262,144
+Starting VQE optimization with 72 parameters...
+  Iteration 10: E = -0.535944
+  Iteration 20: E = -0.516487
+  Iteration 30: E = -0.590138
+  ✓ Energy: -0.633585
+  ✓ Time: 72.20s (2406.6 ms/iter)
+  ✓ Memory: CPU=1281.8MB, GPU=2.0MB
+
+[20 qubits]
+  Parameters: 80
+  Hilbert dim: 1,048,576
+Starting VQE optimization with 80 parameters...
+  Iteration 10: E = -1.879742
+  Iteration 20: E = -2.362127
+  Iteration 30: E = -2.744222
+  ✓ Energy: -2.805574
+  ✓ Time: 274.46s (9148.7 ms/iter)
+  ✓ Memory: CPU=1282.3MB, GPU=8.0MB
+
+[22 qubits]
+  Parameters: 88
+  Hilbert dim: 4,194,304
+Starting VQE optimization with 88 parameters...
+  Iteration 10: E = 0.265902
+  Iteration 20: E = -0.231472

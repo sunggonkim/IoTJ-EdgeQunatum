@@ -1,0 +1,72 @@
+nohup: ignoring input
+
+🚀 EdgeQuantum IoT - QAOA Variational Algorithm
+Timestamp: 2026-01-13T15:23:36.171128
+
+======================================================================
+🔬 QAOA MaxCut Benchmark on Jetson IoT Edge
+======================================================================
+Testing 10 qubit configurations
+QAOA layers (p): 1, Max iterations: 30
+----------------------------------------------------------------------
+
+[4 qubits/nodes]
+  Graph edges: 3
+  Exact MaxCut: 3
+Starting QAOA optimization (p=1, 2 params)...
+  Iteration 10: avg cut = 2.32
+  Iteration 20: avg cut = 2.32
+  ✓ Best Cut: 3 (exact: 3)
+  ✓ Approximation Ratio: 100.00%
+  ✓ Time: 5.48s
+  ✓ Memory: CPU=1269.8MB, GPU=0.0MB
+
+[6 qubits/nodes]
+  Graph edges: 8
+  Exact MaxCut: 6
+Starting QAOA optimization (p=1, 2 params)...
+  Iteration 10: avg cut = 4.47
+  Iteration 20: avg cut = 4.61
+  Iteration 30: avg cut = 4.62
+  ✓ Best Cut: 6 (exact: 6)
+  ✓ Approximation Ratio: 100.00%
+  ✓ Time: 2.75s
+  ✓ Memory: CPU=1270.0MB, GPU=0.0MB
+
+[8 qubits/nodes]
+  Graph edges: 15
+  Exact MaxCut: 12
+Starting QAOA optimization (p=1, 2 params)...
+  Iteration 10: avg cut = 7.73
+  Iteration 20: avg cut = 7.60
+  ✓ Best Cut: 12 (exact: 12)
+  ✓ Approximation Ratio: 100.00%
+  ✓ Time: 14.49s
+  ✓ Memory: CPU=1270.0MB, GPU=0.0MB
+
+[10 qubits/nodes]
+  Graph edges: 20
+  Exact MaxCut: 15
+Starting QAOA optimization (p=1, 2 params)...
+  Iteration 10: avg cut = 10.23
+  Iteration 20: avg cut = 10.47
+  ✓ Best Cut: 15 (exact: 15)
+  ✓ Approximation Ratio: 100.00%
+  ✓ Time: 81.85s
+  ✓ Memory: CPU=1270.0MB, GPU=0.0MB
+
+[12 qubits/nodes]
+  Graph edges: 30
+  Exact MaxCut: 23
+Starting QAOA optimization (p=1, 2 params)...
+  Iteration 10: avg cut = 15.17
+  Iteration 20: avg cut = 15.53
+  ✓ Best Cut: 21 (exact: 23)
+  ✓ Approximation Ratio: 91.30%
+  ✓ Time: 464.21s
+  ✓ Memory: CPU=1270.1MB, GPU=0.0MB
+
+[14 qubits/nodes]
+  Graph edges: 45
+  Exact MaxCut: 32
+Starting QAOA optimization (p=1, 2 params)...
