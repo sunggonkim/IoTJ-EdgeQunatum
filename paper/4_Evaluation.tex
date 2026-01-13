@@ -153,6 +153,29 @@ Operating at 15W, the Jetson Orin Nano achieves:
 
 Compared to cloud GPU instances (e.g., A100 at 400W), edge execution offers 26$\times$ better energy efficiency for equivalent qubit counts.
 
+\subsection{Compressed Simulation Performance}
+
+We evaluated the impact of LZ4 compression on storage-based simulation. For sparse states (e.g., initialization and early circuit layers), compression reduces storage requirements by over 100$\times$.
+
+\begin{table}[t]
+\caption{Compressed vs. Uncompressed Performance (32 Qubits)}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Metric} & \textbf{Uncompressed} & \textbf{Compressed} & \textbf{Speedup} \\
+\midrule
+Storage & 32.0 GB & 0.26 GB & \textbf{121$\times$} \\
+Init Time & 1,416 s & 21.3 s & \textbf{66$\times$} \\
+Gate Time & 2,105 s & 163.2 s & \textbf{13$\times$} \\
+Total Time & 58.7 min & 3.1 min & \textbf{19$\times$} \\
+\bottomrule
+\end{tabular}
+\label{tab:compression}
+\end{table}
+
+\textbf{Finding 4:} Compression enables \textbf{33-qubit simulation} (8.6 billion amplitudes) on the 8GB Jetson device, which would otherwise require 64GB of storage. The initialization time is reduced from predicted ~48 minutes (uncompressed) to 42 seconds.
+
 \subsection{Comparison with Cloud Quantum}
 
 \begin{table}[t]
@@ -163,7 +186,7 @@ Compared to cloud GPU instances (e.g., A100 at 400W), edge execution offers 26$\
 \toprule
 \textbf{Metric} & \textbf{EdgeQuantum} & \textbf{IBM Quantum} \\
 \midrule
-Max Qubits & 26 (simulated) & 127 (physical) \\
+Max Qubits & 33 (simulated) & 127 (physical) \\
 Latency & 0--10 ms & 100 ms--10 s \\
 Cost & \$0 (on-device) & \$1.60/min \\
 Noise & None (exact) & NISQ errors \\

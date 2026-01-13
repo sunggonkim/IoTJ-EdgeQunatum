@@ -119,3 +119,15 @@ The state vector is partitioned into $2^n / 2^{22}$ chunks of 4 million amplitud
 
 The LRU cache reduces storage I/O by exploiting temporal locality in gate sequences.
 
+\subsection{Compressed Tiered Memory}
+
+To further extend scalability, we integrate LZ4 compression into the storage tier. Quantum states in early circuit stages often exhibit sparsity or low entropy (e.g., $|0\rangle^{\otimes n}$), allowing significant compression. 
+
+We employ a chunk-based compression strategy:
+\begin{enumerate}
+    \item \textbf{Write:} Chunks evicted from DRAM are compressed via LZ4 before disk write.
+    \item \textbf{Read:} Compressed chunks are read and decompressed into DRAM.
+\end{enumerate}
+
+This approach reduces disk I/O bandwidth requirements and storage footprint, enabling simulation of larger systems (e.g., 33+ qubits) on devices with limited disk capacity.
+

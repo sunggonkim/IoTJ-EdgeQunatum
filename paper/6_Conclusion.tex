@@ -4,7 +4,7 @@
 This paper presented \EdgeQuantum, a framework enabling variational quantum algorithms on resource-constrained IoT edge devices. Through systematic evaluation on NVIDIA Jetson Orin Nano, we established the following key findings:
 
 \begin{enumerate}
-    \item \textbf{Scalability Achievement:} Using tiered memory offloading (GPU$\rightarrow$DRAM$\rightarrow$Storage), edge devices achieve \textbf{31-qubit simulation} with over 2 billion Hilbert space dimensions---a 32$\times$ improvement over GPU-only limits.
+    \item \textbf{Scalability Achievement:} Using tiered memory offloading (GPU$\rightarrow$DRAM$\rightarrow$Storage), edge devices achieve \textbf{33-qubit simulation} (8.6 billion Hilbert space dimensions) with LZ4 compression, extending the limit far beyond the uncompressed 31-qubit boundary.
     
     \item \textbf{VQE Feasibility:} The transverse-field Ising model is solvable up to 20 qubits with 9.15 seconds per optimization iteration, demonstrating practical ground state estimation.
     
@@ -13,7 +13,7 @@ This paper presented \EdgeQuantum, a framework enabling variational quantum algo
     \item \textbf{Energy Efficiency:} Operating at 15W, edge quantum simulation achieves 26$\times$ better energy efficiency compared to datacenter GPU alternatives.
 \end{enumerate}
 
-These results establish the viability of quantum-inspired edge computing for distributed IoT applications. Our tiered memory approach, inspired by AURORA-Q, demonstrates that storage offloading can extend quantum simulation far beyond physical memory limits. Future work will explore asynchronous I/O pipelines and tensor network methods for further scaling.
+These results establish the viability of quantum-inspired edge computing for distributed IoT applications. Our tiered memory approach, inspired by AURORA-Q, demonstrates that storage offloading with compression can extend quantum simulation far beyond physical memory limits. Future work will explore asynchronous I/O pipelines and tensor network methods for further scaling.
 
 \section*{Acknowledgment}
 
