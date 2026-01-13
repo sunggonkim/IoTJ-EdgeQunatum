@@ -51,7 +51,7 @@ class CuQuantumTieredSim:
         n_controls = len(controls)
         
         # Need to cast matrix to complex64 (cuFloatComplex)
-        matrix = matrix.astype(np.complex64)
+        matrix = gate_matrix.astype(np.complex64)
         
         # Workspace allocation (lazy)
         if self.workspace is None:
@@ -60,21 +60,20 @@ class CuQuantumTieredSim:
 
         # Apply gate
         cusv.apply_matrix(
-            self.handle,
-            vector_ptr,
-            self.chunk_size, # This is 'nIndexBits' for apply_matrix? No, it's cudaDataType
-            cq.cudaDataType.CUDA_C_32F, 
-            self.gpu_n, # nIndexBits (local)
-            matrix.data.ptr, 
-            cq.cudaDataType.CUDA_C_32F,
-            cusv.MatrixLayout.ROW,
-            0, # adjoint
-            targets.ctypes.data, 
-            len(targets),
-            controls.ctypes.data, 
-            0, # controlTypes
-            n_controls,
-            compute_type=cusv.ComputeType.COMPUTE_32F,
+            handle=self.handle,
+            sv=vector_ptr,
+            sv_data_type=cq.cudaDataType.CUDA_C_32F,
+            n_index_bits=self.gpu_n,
+            matrix=matrix.data.ptr,
+            matrix_data_type=cq.cudaDataType.CUDA_C_32F,
+            layout=cusv.MatrixLayout.ROW,
+            adjoint=0,
+            targets=targets.ctypes.data,
+            n_targets=len(targets),
+            controls=controls.ctypes.data,
+            control_bit_values=0,
+            n_controls=n_controls,
+            compute_type=cq.ComputeType.COMPUTE_32F,
             workspace=self.workspace.ptr, 
             workspace_size=self.workspace_size
         )

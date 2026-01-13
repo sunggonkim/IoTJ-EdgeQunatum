@@ -1,0 +1,46 @@
+nohup: ignoring input
+⚡ [cuQuantum] 34 qubits (custatevec enabled)
+⚡ [cuQuantum] Tiered Memory: 4096 chunks, Compression: ON
+  Running Init...
+  Init: 0/4096 (0%)
+  Init: 128/4096 (3%)
+  Init: 256/4096 (6%)
+  Init: 384/4096 (9%)
+  Init: 512/4096 (12%)
+  Init: 640/4096 (15%)
+  Init: 768/4096 (18%)
+  Init: 896/4096 (21%)
+  Init: 1024/4096 (25%)
+  Init: 1152/4096 (28%)
+  Init: 1280/4096 (31%)
+  Init: 1408/4096 (34%)
+  Init: 1536/4096 (37%)
+  Init: 1664/4096 (40%)
+  Init: 1792/4096 (43%)
+  Init: 1920/4096 (46%)
+  Init: 2048/4096 (50%)
+  Init: 2176/4096 (53%)
+  Init: 2304/4096 (56%)
+  Init: 2432/4096 (59%)
+  Init: 2560/4096 (62%)
+  Init: 2688/4096 (65%)
+  Init: 2816/4096 (68%)
+  Init: 2944/4096 (71%)
+  Init: 3072/4096 (75%)
+  Init: 3200/4096 (78%)
+  Init: 3328/4096 (81%)
+  Init: 3456/4096 (84%)
+  Init: 3584/4096 (87%)
+  Init: 3712/4096 (90%)
+  Init: 3840/4096 (93%)
+  Init: 3968/4096 (96%)
+  Init Done: 4.53s
+  Applying H(q0) with custatevec...
+Traceback (most recent call last):
+  File "/home/jetson/skim/edgeQuantum-iotj/code/cuquantum_sim.py", line 160, in <module>
+    t_gate = sim.apply_hadamard_q0()
+  File "/home/jetson/skim/edgeQuantum-iotj/code/cuquantum_sim.py", line 126, in apply_hadamard_q0
+    self._apply_gate_custatevec(chunk_gpu.data.ptr, H_gpu, [0])
+  File "/home/jetson/skim/edgeQuantum-iotj/code/cuquantum_sim.py", line 77, in _apply_gate_custatevec
+    compute_type=cusv.ComputeType.COMPUTE_32F,
+AttributeError: module 'cuquantum.custatevec' has no attribute 'ComputeType'

@@ -12,7 +12,7 @@
 
 \subsection{State Vector Engine}
 
-The core simulation engine maintains the quantum state as a CuPy tensor on GPU memory. For an $n$-qubit system, the state vector $\ket{\psi}$ is represented as a 1D array of $2^n$ complex64 values.
+The core simulation engine maintains the quantum state as a CuPy tensor on GPU memory, accelerated by NVIDIA cuQuantum SDK (\texttt{custatevec}). For an $n$-qubit system, the state vector $\ket{\psi}$ is represented as a 1D array of $2^n$ complex64 values. We utilize \texttt{custatevecApplyMatrix} for optimized gate execution on Tensor Cores.
 
 \subsubsection{Tensor-Based Gate Application}
 

@@ -1,0 +1,16 @@
+nohup: ignoring input
+⚡ [cuQuantum] 30 qubits (custatevec enabled)
+⚡ [cuQuantum] Tiered Memory: 256 chunks, Compression: ON
+  Running Init...
+  Init: 0/256 (0%)
+  Init: 128/256 (50%)
+  Init Done: 0.18s
+  Applying H(q0) with custatevec...
+Traceback (most recent call last):
+  File "/home/jetson/skim/edgeQuantum-iotj/code/cuquantum_sim.py", line 160, in <module>
+    t_gate = sim.apply_hadamard_q0()
+  File "/home/jetson/skim/edgeQuantum-iotj/code/cuquantum_sim.py", line 126, in apply_hadamard_q0
+    self._apply_gate_custatevec(chunk_gpu.data.ptr, H_gpu, [0])
+  File "/home/jetson/skim/edgeQuantum-iotj/code/cuquantum_sim.py", line 54, in _apply_gate_custatevec
+    matrix = matrix.astype(np.complex64)
+UnboundLocalError: local variable 'matrix' referenced before assignment
