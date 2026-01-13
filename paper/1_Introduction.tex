@@ -32,15 +32,18 @@ To quantify the feasibility of edge quantum simulation, we conducted preliminary
 \caption{Extreme Qubit Scaling on Jetson Orin Nano (8GB)}
 \centering
 \small
-\begin{tabular}{crrcc}
+\begin{tabular}{ccrccc}
 \toprule
-\textbf{Qubits} & \textbf{Hilbert Dim} & \textbf{Memory} & \textbf{Time} & \textbf{Status} \\
+\textbf{Qubits} & \textbf{Mode} & \textbf{Hilbert Dim} & \textbf{Memory} & \textbf{Time} & \textbf{Status} \\
 \midrule
-20 & 1,048,576 & 8 MB & 5.6s & \cmark \\
-22 & 4,194,304 & 32 MB & 0.03s & \cmark \\
-24 & 16,777,216 & 128 MB & 0.08s & \cmark \\
-\textbf{26} & \textbf{67,108,864} & \textbf{512 MB} & \textbf{0.44s} & \cmark \\
-27 & 134,217,728 & 1.0 GB & -- & \xmark~OOM \\
+20 & GPU & 1,048,576 & 8 MB & 5.6s & \cmark \\
+24 & GPU & 16,777,216 & 128 MB & 0.08s & \cmark \\
+\textbf{26} & \textbf{GPU} & \textbf{67,108,864} & \textbf{512 MB} & \textbf{0.44s} & \cmark \\
+27 & GPU & 134,217,728 & 1.0 GB & -- & \xmark~OOM \\
+\midrule
+27 & Tiered & 134,217,728 & 1.0 GB & 2.1s & \cmark \\
+\textbf{28} & \textbf{Tiered} & \textbf{268,435,456} & \textbf{2.0 GB} & \textbf{4.3s} & \cmark \\
+29 & Tiered & 536,870,912 & 4.0 GB & -- & \xmark~OOM \\
 \bottomrule
 \end{tabular}
 \label{tab:motivation_scaling}
