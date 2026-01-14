@@ -183,6 +183,26 @@ We deployed a fully native simulation engine using NVIDIA cuQuantum SDK (\texttt
 
 \textbf{Finding 4:} The native cuQuantum engine achieves \textbf{35-qubit simulation} (34.3 billion amplitudes) in \textbf{13.4 minutes}. This scale (256GB raw state) is successfully simulated on an 8GB RAM device using only 1GB of disk space thanks to LZ4 compression and efficient tiered memory management.
 
+\subsection{Resource Utilization Analysis}
+
+We further analyzed the resource efficiency of our framework. Fig. \ref{fig:storage} and Fig. \ref{fig:runtime} illustrate the storage consumption and runtime scaling, respectively.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/fig_storage_efficiency.pdf}
+    \caption{Storage Efficiency: Comparison between raw quantum state size (red) and actual compressed disk usage (green) by \EdgeQuantum. The LZ4 compression achieves $\sim 240\times$ reduction, enabling 35-qubit (256GB) simulation on limited storage.}
+    \label{fig:storage}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/fig_runtime_scaling.pdf}
+    \caption{Runtime Scaling: Total simulation time (Initialization + Gate) vs. Qubits. The log-linear scaling demonstrates the efficiency of the tiered memory system up to 35 qubits.}
+    \label{fig:runtime}
+\end{figure}
+
+\textbf{Finding 5:} The combination of tiered memory and compression effectively decouples simulation scale from physical RAM limitations. The storage overhead remains negligible ($<1.1$ GB for 35 qubits), and the runtime scales predictably, limited primarily by disk I/O throughput rather than compute capability.
+
 \subsection{Comparison with Cloud Quantum}
 
 \begin{table}[t]
