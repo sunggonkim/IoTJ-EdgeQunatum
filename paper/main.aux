@@ -1,0 +1,155 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ibmq}
+\citation{arute2019quantum}
+\citation{aws-braket}
+\citation{cerezo2021variational}
+\citation{peruzzo2014variational}
+\citation{farhi2014quantum}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{I}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-A}}Motivation: The Edge Quantum Gap}{1}{subsection.1.1}\protected@file@percent }
+\newlabel{fig:motivation_a}{{1a}{1}{Subfigure 1a}{subfigure.1.1}{}}
+\newlabel{sub@fig:motivation_a}{{(a)}{a}{Subfigure 1a\relax }{subfigure.1.1}{}}
+\newlabel{fig:motivation_b}{{1b}{1}{Subfigure 1b}{subfigure.1.2}{}}
+\newlabel{sub@fig:motivation_b}{{(b)}{b}{Subfigure 1b\relax }{subfigure.1.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Motivation: (a) Increasing size of quantum circuits exceeding GPU memory. (b) Latency overhead of hybrid quantum-classical loops.}}{1}{figure.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{1}{subfigure.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{1}{subfigure.1.2}\protected@file@percent }
+\newlabel{fig:motivation}{{1}{1}{Motivation: (a) Increasing size of quantum circuits exceeding GPU memory. (b) Latency overhead of hybrid quantum-classical loops}{figure.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Extreme Qubit Scaling on Jetson Orin Nano (8GB)}}{1}{table.1}\protected@file@percent }
+\newlabel{tab:motivation_scaling}{{I}{1}{Extreme Qubit Scaling on Jetson Orin Nano (8GB)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-B}}Motivational Evaluation}{1}{subsection.1.2}\protected@file@percent }
+\citation{qiskit}
+\citation{cirq}
+\citation{cuquantum}
+\citation{pennylane}
+\citation{cerezo2021variational}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces VQE Benchmark: Ising Model on Jetson Orin Nano}}{2}{table.2}\protected@file@percent }
+\newlabel{tab:vqe_motivation}{{II}{2}{VQE Benchmark: Ising Model on Jetson Orin Nano}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces QAOA MaxCut Approximation Ratio (p=1 layer)}}{2}{table.3}\protected@file@percent }
+\newlabel{tab:qaoa_motivation}{{III}{2}{QAOA MaxCut Approximation Ratio (p=1 layer)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-C}}Comparison with Prior Work}{2}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-D}}Contributions}{2}{subsection.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II}Background}{2}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{II}{2}{Background}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Variational Quantum Algorithms}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Comparison with Quantum Simulation Frameworks}}{2}{table.4}\protected@file@percent }
+\newlabel{tab:comparison}{{IV}{2}{Comparison with Quantum Simulation Frameworks}{table.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-A}1}Variational Quantum Eigensolver (VQE)}{2}{subsubsection.2.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-A}2}Quantum Approximate Optimization Algorithm (QAOA)}{2}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Edge Computing for Quantum Simulation}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}1}NVIDIA Jetson Platform}{2}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \texttt  {EdgeQuantum}\xspace  System Architecture. The framework orchestrates quantum tasks across tiered memory (GPU, DRAM, Storage) and manages VQE/QAOA optimization loops locally.}}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:arch}{{2}{3}{\EdgeQuantum System Architecture. The framework orchestrates quantum tasks across tiered memory (GPU, DRAM, Storage) and manages VQE/QAOA optimization loops locally}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}2}cuQuantum SDK}{3}{subsubsection.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Memory Scaling in Quantum Simulation}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces State vector memory requirements}}{3}{table.5}\protected@file@percent }
+\newlabel{tab:memory_scaling}{{V}{3}{State vector memory requirements}{table.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}System Design}{3}{section.3}\protected@file@percent }
+\newlabel{sec:design}{{III}{3}{System Design}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}State Vector Engine}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}1}Tensor-Based Gate Application}{3}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}2}CNOT Implementation}{3}{subsubsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Memory-Efficient QAOA Operators}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Expectation Value Computation}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Classical Optimizer Integration}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Ansatz Circuits}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-E}1}Hardware-Efficient Ansatz}{4}{subsubsection.3.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-E}2}QAOA Circuit}{4}{subsubsection.3.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-F}}Tiered Memory Offloading}{4}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-G}}Compressed Tiered Memory}{4}{subsection.3.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Experimental Platform Specifications}}{4}{table.6}\protected@file@percent }
+\newlabel{tab:setup}{{VI}{4}{Experimental Platform Specifications}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Extreme Qubit Scaling with Tiered Memory}}{4}{table.7}\protected@file@percent }
+\newlabel{tab:extreme_scaling}{{VII}{4}{Extreme Qubit Scaling with Tiered Memory}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Evaluation}{4}{section.4}\protected@file@percent }
+\newlabel{sec:eval}{{IV}{4}{Evaluation}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Experimental Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}RQ1: Maximum Qubit Scalability}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Tiered Memory Performance}{4}{subsection.4.3}\protected@file@percent }
+\citation{qsim}
+\citation{qiskit}
+\citation{cuquantum}
+\citation{scaleqsim}
+\citation{peruzzo2014variational}
+\citation{kandala2017hardware}
+\citation{temme2017error}
+\citation{lavrijsen2020classical}
+\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces 3-Tier Memory Performance (GPU$\rightarrow $DRAM$\rightarrow $Storage)}}{5}{table.8}\protected@file@percent }
+\newlabel{tab:tiered_performance}{{VIII}{5}{3-Tier Memory Performance (GPU$\rightarrow $DRAM$\rightarrow $Storage)}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces VQE Benchmark: Ising Model}}{5}{table.9}\protected@file@percent }
+\newlabel{tab:vqe_benchmark}{{IX}{5}{VQE Benchmark: Ising Model}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}RQ2: VQE Performance}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}RQ3: QAOA MaxCut Accuracy}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}Energy Efficiency}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-G}}Compressed Simulation Performance}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {X}{\ignorespaces QAOA MaxCut Results (p=1 layer)}}{5}{table.10}\protected@file@percent }
+\newlabel{tab:qaoa_benchmark}{{X}{5}{QAOA MaxCut Results (p=1 layer)}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {XI}{\ignorespaces Native cuQuantum Benchmark (Jetson Orin Nano)}}{5}{table.11}\protected@file@percent }
+\newlabel{tab:native_benchmark}{{XI}{5}{Native cuQuantum Benchmark (Jetson Orin Nano)}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-H}}Native cuQuantum Simulation Performance}{5}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-I}}Resource Utilization Analysis}{5}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-J}}Comparison with Cloud Quantum}{5}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {V}Related Work}{5}{section.5}\protected@file@percent }
+\newlabel{sec:related}{{V}{5}{Related Work}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Quantum Circuit Simulation}{5}{subsection.5.1}\protected@file@percent }
+\citation{farhi2014quantum}
+\citation{egger2021warm}
+\citation{bravyi2020obstacles}
+\citation{chen2021federated}
+\citation{liu2022quantum}
+\citation{tfq}
+\citation{pennylane}
+\citation{jones2019quest}
+\bibstyle{IEEEtran}
+\bibdata{references}
+\bibcite{ibmq}{1}
+\bibcite{arute2019quantum}{2}
+\bibcite{aws-braket}{3}
+\bibcite{cerezo2021variational}{4}
+\bibcite{peruzzo2014variational}{5}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Storage Efficiency: Comparison between raw quantum state size (red) and actual compressed disk usage (green) by \texttt  {EdgeQuantum}\xspace  . The LZ4 compression achieves $\sim 240\times $ reduction, enabling 35-qubit (256GB) simulation on limited storage.}}{6}{figure.3}\protected@file@percent }
+\newlabel{fig:storage}{{3}{6}{Storage Efficiency: Comparison between raw quantum state size (red) and actual compressed disk usage (green) by \EdgeQuantum . The LZ4 compression achieves $\sim 240\times $ reduction, enabling 35-qubit (256GB) simulation on limited storage}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Runtime Scaling: Total simulation time (Initialization + Gate) vs. Qubits. The log-linear scaling demonstrates the efficiency of the tiered memory system up to 35 qubits.}}{6}{figure.4}\protected@file@percent }
+\newlabel{fig:runtime}{{4}{6}{Runtime Scaling: Total simulation time (Initialization + Gate) vs. Qubits. The log-linear scaling demonstrates the efficiency of the tiered memory system up to 35 qubits}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Variational Quantum Algorithms}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Edge AI and Quantum Computing}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {XII}{\ignorespaces Edge vs. Cloud Quantum Trade-offs}}{6}{table.12}\protected@file@percent }
+\newlabel{tab:comparison_cloud}{{XII}{6}{Edge vs. Cloud Quantum Trade-offs}{table.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Energy-Efficient Quantum Simulation}{6}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{6}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{VI}{6}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{References}{6}{section*.2}\protected@file@percent }
+\bibcite{farhi2014quantum}{6}
+\bibcite{qiskit}{7}
+\bibcite{cirq}{8}
+\bibcite{cuquantum}{9}
+\bibcite{pennylane}{10}
+\bibcite{qsim}{11}
+\bibcite{scaleqsim}{12}
+\bibcite{kandala2017hardware}{13}
+\bibcite{temme2017error}{14}
+\bibcite{lavrijsen2020classical}{15}
+\bibcite{egger2021warm}{16}
+\bibcite{bravyi2020obstacles}{17}
+\bibcite{chen2021federated}{18}
+\bibcite{liu2022quantum}{19}
+\bibcite{tfq}{20}
+\bibcite{jones2019quest}{21}

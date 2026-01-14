@@ -10,16 +10,14 @@ Modern IoT deployments span smart grids, autonomous vehicles, and industrial aut
 Variational Quantum Algorithms (VQAs) represent a promising class of hybrid quantum-classical algorithms designed for near-term quantum devices~\cite{cerezo2021variational}. The Variational Quantum Eigensolver (VQE)~\cite{peruzzo2014variational} finds ground state energies for molecular Hamiltonians, while QAOA~\cite{farhi2014quantum} addresses combinatorial optimization. Both employ parameterized quantum circuits optimized through classical feedback loops, making them amenable to GPU-accelerated classical simulation.
 
 \begin{figure}[t]
-\centering
-\subfloat[Qubit Scaling]{
-    \includegraphics[width=0.47\columnwidth]{Figures/fig_motivation_a.pdf}
-}
-\hfill
-\subfloat[Memory Efficiency]{
-    \includegraphics[width=0.47\columnwidth]{Figures/fig_motivation_b.pdf}
-}
-\caption{\EdgeQuantum scalability on Jetson Orin Nano. (a) Gate throughput remains above 1,000 gates/sec up to 26 qubits. (b) Memory consumption scales exponentially but remains within edge device limits (8GB unified memory).}
-\label{fig:motivation}
+    \centering
+    \subfloat[]{\includegraphics[width=0.48\columnwidth]{figures/fig_motivation_a.pdf}
+    \label{fig:motivation_a}}
+    \hfill
+    \subfloat[]{\includegraphics[width=0.48\columnwidth]{figures/fig_motivation_b.pdf}
+    \label{fig:motivation_b}}
+    \caption{Motivation: (a) Increasing size of quantum circuits exceeding GPU memory. (b) Latency overhead of hybrid quantum-classical loops.}
+    \label{fig:motivation}
 \end{figure}
 
 \subsection{Motivational Evaluation}
