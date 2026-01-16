@@ -1,0 +1,24 @@
+nohup: ignoring input
+================================================================================
+   EDGEQUANTUM UNIFIED BENCHMARK SUITE
+   Device: NVIDIA Jetson Orin Nano (8GB, 15W)
+================================================================================
+
+==================================================
+  Testing 28 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.04s (22 gates)
+    cuQuantum (UVM)... ✅ 0.62s (22 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 28Q: 4 chunks × 536.9MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 179.06s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 1.60s (220 gates)
+    cuQuantum (UVM)... ✅ 0.12s (220 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 28Q: 4 chunks × 536.9MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10

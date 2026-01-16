@@ -1,20 +1,19 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper presented \EdgeQuantum, a framework enabling variational quantum algorithms on resource-constrained IoT edge devices. Through systematic evaluation on NVIDIA Jetson Orin Nano, we established the following key findings:
+We presented \EdgeQuantum, the first GPU-accelerated quantum simulation framework optimized for resource-constrained IoT edge devices. By integrating a tiered memory hierarchy (GPU VRAM $\to$ CPU DRAM $\to$ NVMe SSD) with LZ4 compression achieving 242.7$\times$ storage reduction, \EdgeQuantum enables simulation scales previously limited to HPC clusters with hundreds of GPUs.
 
-\begin{enumerate}
-    \item \textbf{Scalability Achievement:} Using tiered memory offloading (GPU$\rightarrow$DRAM$\rightarrow$Storage), edge devices achieve \textbf{35-qubit simulation} (34.3 billion amplitudes). Native cuQuantum acceleration coupled with LZ4 compression enables this scale on 15W hardware (8GB RAM), verifying systems requiring 256GB of raw memory.
-    
-    \item \textbf{VQE Feasibility:} The transverse-field Ising model is solvable up to 20 qubits with 9.15 seconds per optimization iteration, demonstrating practical ground state estimation.
-    
-    \item \textbf{QAOA Accuracy:} MaxCut QAOA achieves 100\% approximation ratio for graphs up to 10 nodes with a single variational layer.
-    
-    \item \textbf{Energy Efficiency:} Operating at 15W, edge quantum simulation achieves 26$\times$ better energy efficiency compared to datacenter GPU alternatives.
-\end{enumerate}
+\textbf{Key Results}:
+\begin{itemize}
+    \item \textbf{37-qubit simulation} (1TB raw state vector) on an 8GB Jetson Orin Nano (\$200, 15W)---a \textbf{128$\times$ capacity expansion} through tiered memory.
+    \item Multi-circuit benchmarks from 20 to 30 qubits across Hadamard, GHZ, QFT, Random, and VQE ansätze, demonstrating consistent 242.7$\times$ compression across diverse circuit structures.
+    \item \textbf{100\% QAOA approximation ratio} on MaxCut problems up to 10 nodes with p=1 variational layer.
+\end{itemize}
 
-These results establish the viability of quantum-inspired edge computing for distributed IoT applications. Our tiered memory approach, inspired by AURORA-Q, demonstrates that storage offloading with compression can extend quantum simulation far beyond physical memory limits. Future work will explore asynchronous I/O pipelines and tensor network methods for further scaling.
+\textbf{Honest Performance Comparison}: HPC simulators like ScaleQsim achieve 42 qubits in seconds using 512 GPUs. In contrast, \EdgeQuantum requires 3.3 hours for 37-qubit single-gate simulation. This dramatic speed difference is expected---our contribution is demonstrating that \textit{HPC-scale qubit counts are achievable on edge hardware at all}, not that edge devices match HPC performance.
 
-\section*{Acknowledgment}
+\textbf{Limitations}: (1) Execution time scales super-linearly due to I/O overhead; (2) LZ4 compression ratio degrades for complex circuits with high entanglement; (3) Single-device execution limits parallelism.
 
-This research was supported by the National Research Foundation of Korea (NRF) grant funded by the Korea government (MSIT).
+\textbf{Future Work}: Multi-device Jetson clusters for distributed simulation; hardware-aware circuit compilation; hybrid edge-cloud execution.
+
+\textbf{Availability}: \EdgeQuantum is open-source at \url{https://github.com/sunggonkim/IoTJ-EdgeQuantum}.

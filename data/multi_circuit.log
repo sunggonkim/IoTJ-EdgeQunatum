@@ -1,0 +1,74 @@
+nohup: ignoring input
+============================================================
+   MULTI-CIRCUIT BENCHMARK FOR EDGEQUANTUM
+============================================================
+
+🔬 Benchmarking: Hadamard on 20 qubits...
+   Gates: 20, Time: 1.97s, Storage: 0.000GB, Ratio: 242.6x
+
+🔬 Benchmarking: GHZ on 20 qubits...
+   Gates: 20, Time: 1.66s, Storage: 0.000GB, Ratio: 242.6x
+
+🔬 Benchmarking: QFT on 20 qubits...
+   Gates: 57, Time: 5.39s, Storage: 0.000GB, Ratio: 242.6x
+
+🔬 Benchmarking: Random-5 on 20 qubits...
+   Gates: 100, Time: 8.79s, Storage: 0.000GB, Ratio: 242.6x
+
+🔬 Benchmarking: VQE-2L on 20 qubits...
+   Gates: 118, Time: 11.34s, Storage: 0.000GB, Ratio: 242.6x
+
+🔬 Benchmarking: Hadamard on 22 qubits...
+   Gates: 22, Time: 3.11s, Storage: 0.000GB, Ratio: 242.7x
+
+🔬 Benchmarking: GHZ on 22 qubits...
+   Gates: 22, Time: 3.84s, Storage: 0.000GB, Ratio: 242.7x
+
+🔬 Benchmarking: QFT on 22 qubits...
+   Gates: 63, Time: 9.33s, Storage: 0.000GB, Ratio: 242.7x
+
+🔬 Benchmarking: Random-5 on 22 qubits...
+   Gates: 110, Time: 15.20s, Storage: 0.000GB, Ratio: 242.7x
+
+🔬 Benchmarking: VQE-2L on 22 qubits...
+   Gates: 130, Time: 19.31s, Storage: 0.000GB, Ratio: 242.7x
+
+🔬 Benchmarking: Hadamard on 24 qubits...
+   Gates: 22, Time: 10.77s, Storage: 0.001GB, Ratio: 242.7x
+
+🔬 Benchmarking: GHZ on 24 qubits...
+   Gates: 22, Time: 12.22s, Storage: 0.001GB, Ratio: 242.7x
+
+🔬 Benchmarking: QFT on 24 qubits...
+   Gates: 63, Time: 38.08s, Storage: 0.001GB, Ratio: 242.7x
+
+🔬 Benchmarking: Random-5 on 24 qubits...
+   Gates: 110, Time: 59.31s, Storage: 0.001GB, Ratio: 242.7x
+
+🔬 Benchmarking: VQE-2L on 24 qubits...
+   Gates: 130, Time: 60.27s, Storage: 0.001GB, Ratio: 242.7x
+
+============================================================
+   BENCHMARK COMPLETE!
+============================================================
+
+📊 Summary:
+Circuit         Qubits   Gates    Time(s)    Ratio     
+-------------------------------------------------------
+Hadamard        20       20       1.98       242.6     x
+GHZ             20       20       1.66       242.6     x
+QFT             20       57       5.40       242.6     x
+Random-5        20       100      8.80       242.6     x
+VQE-2L          20       118      11.34      242.6     x
+Hadamard        22       22       3.15       242.7     x
+GHZ             22       22       3.86       242.7     x
+QFT             22       63       9.35       242.7     x
+Random-5        22       110      15.22      242.7     x
+VQE-2L          22       130      19.33      242.7     x
+Hadamard        24       22       10.85      242.7     x
+GHZ             24       22       12.30      242.7     x
+QFT             24       63       38.16      242.7     x
+Random-5        24       110      59.39      242.7     x
+VQE-2L          24       130      60.35      242.7     x
+
+💾 Results saved to: data/multi_circuit_bench.json

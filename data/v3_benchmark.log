@@ -1,0 +1,34 @@
+nohup: ignoring input
+======================================================================
+   EdgeQuantum V1 vs V2 vs V3 PERFORMANCE COMPARISON
+======================================================================
+
+🔴 V1 (Original) - 26 qubits, 50 gates...
+   Init: 0.29s, Gates: 153.54s
+
+🟡 V2 (Gate Fusion) - 26 qubits, 50 gates...
+[EdgeQuantum V2] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum V2] Optimizations: Zero-Copy, Gate Fusion (threshold=10), Double Buffering
+   Init: 0.60s, Gates: 13.18s
+
+🟢 V3 (Async + Zero-Copy) - 26 qubits, 50 gates...
+[EdgeQuantum V3] ⚠️ Mapped memory not available, using pinned
+[EdgeQuantum V3] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum V3] Memory: Mapped (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+   Init: 0.29s, Gates: 4.27s
+   I/O Wait: 2.36s, Compute: 0.78s
+   I/O-Compute Overlap: 0.0%
+
+======================================================================
+   RESULTS SUMMARY
+======================================================================
+Version      Init(s)    Gates(s)   Total(s)   Storage   
+----------------------------------------------------------------------
+V1           0.29       153.54     153.82     0.002GB
+V2           0.60       13.18      13.78      0.002GB
+V3           0.29       4.27       4.56       0.002GB
+
+🚀 V3 vs V2 Gate Speedup: 3.09x
+🚀 V3 vs V1 Gate Speedup: 35.93x
+
+💾 Results saved to: data/v3_benchmark_20260115_234118.json

@@ -1,0 +1,171 @@
+================================================================================
+   EDGEQUANTUM UNIFIED BENCHMARK SUITE
+   Device: NVIDIA Jetson Orin Nano (8GB, 15W)
+================================================================================
+
+==================================================
+  Testing 20 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.00s (20 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 20Q: 1 chunks × 8.4MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 20Q: 1 chunks × 8.4MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 0.16s (20 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.07s (200 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 20Q: 1 chunks × 8.4MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 20Q: 1 chunks × 8.4MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 0.85s (200 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.01s (74 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 20Q: 1 chunks × 8.4MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 20Q: 1 chunks × 8.4MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 0.37s (74 gates)
+
+==================================================
+  Testing 22 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.00s (22 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 22Q: 1 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 22Q: 1 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 0.52s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.03s (220 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 22Q: 1 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 22Q: 1 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 4.26s (220 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.05s (82 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 22Q: 1 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 22Q: 1 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 1.56s (82 gates)
+
+==================================================
+  Testing 24 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.00s (22 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 1.11s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.04s (220 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 8.93s (220 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.01s (82 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 2.23s (82 gates)
+
+==================================================
+  Testing 26 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.01s (22 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 4.49s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.04s (220 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 35.34s (220 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.16s (82 gates)
+    cuQuantum (UVM)... ❌ 'CuQuantumUVM' object has no attribute 'gpu_n'
+    Qiskit Aer (GPU)... ❌ 'QiskitAerGPU' object has no attribute 'gpu_n'
+    BMQSim-like (Swap)... [EdgeQuantum] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+❌ name 'lz4' is not defined
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 7.91s (82 gates)
+
+==================================================
+  Testing 28 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... 

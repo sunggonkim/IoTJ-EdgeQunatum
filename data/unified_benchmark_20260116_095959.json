@@ -1,0 +1,38 @@
+[
+  {
+    "simulator": "Google Cirq",
+    "circuit": "Hadamard",
+    "qubits": 20,
+    "success": true,
+    "error": null,
+    "init_time": 2.1696090698242188e-05,
+    "circuit_time": 0.016985177993774414,
+    "gates": 20,
+    "total_time": 0.017006874084472656,
+    "storage_gb": 0.015625
+  },
+  {
+    "simulator": "Google Cirq",
+    "circuit": "Random-10",
+    "qubits": 20,
+    "success": true,
+    "error": null,
+    "init_time": 1.5020370483398438e-05,
+    "circuit_time": 0.33059239387512207,
+    "gates": 200,
+    "total_time": 0.33060741424560547,
+    "storage_gb": 0.015625
+  },
+  {
+    "simulator": "Google Cirq",
+    "circuit": "QFT",
+    "qubits": 20,
+    "success": true,
+    "error": null,
+    "init_time": 1.3113021850585938e-05,
+    "circuit_time": 0.030983686447143555,
+    "gates": 74,
+    "total_time": 0.03099679946899414,
+    "storage_gb": 0.015625
+  }
+]

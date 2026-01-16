@@ -1,0 +1,23 @@
+nohup: ignoring input
+================================================================================
+   EDGEQUANTUM UNIFIED BENCHMARK SUITE
+   Device: NVIDIA Jetson Orin Nano (8GB, 15W)
+================================================================================
+
+==================================================
+  Testing 28 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.01s (22 gates)
+    cuQuantum (UVM)... ✅ 0.95s (22 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+❌ SKIPPED (>26Q CPU Limit)
+    BMQSim-like (Swap)... [EdgeQuantum] 28Q: 4 chunks × 536.9MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 10
+❌ local variable 'data' referenced before assignment
+    Google Cirq... ❌ SKIPPED (>26Q CPU Limit)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+❌ SKIPPED (>26Q CPU Limit)
+    Intel-QS (MPI)... 

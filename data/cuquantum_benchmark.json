@@ -68,5 +68,15 @@
     "raw_gb": 512.0,
     "compression_ratio": 242.69081397909238,
     "success": true
+  },
+  {
+    "qubits": 37,
+    "init_time_s": 454.5345616340637,
+    "gate_time_s": 11576.873483896255,
+    "total_time_s": 12031.40804553032,
+    "storage_gb": 4.21936035528779,
+    "raw_gb": 1024.0,
+    "compression_ratio": 242.69081419336507,
+    "success": true
   }
 ]

@@ -1,0 +1,25 @@
+{
+  "benchmark_date": "2026-01-16",
+  "device": "NVIDIA Jetson Orin Nano (8GB, 15W)",
+  "simulators": ["cuQuantum (Native)", "cuQuantum (UVM)", "BMQSim-like", "EdgeQuantum"],
+  "results": [
+    {"qubits": 20, "circuit": "Hadamard", "cuQuantum_Native": 0.00, "cuQuantum_UVM": 0.01, "BMQSim": 1.11, "EdgeQuantum": 0.17},
+    {"qubits": 20, "circuit": "Random-10", "cuQuantum_Native": 0.10, "cuQuantum_UVM": 0.09, "BMQSim": 8.56, "EdgeQuantum": 1.02},
+    {"qubits": 20, "circuit": "QFT", "cuQuantum_Native": 0.01, "cuQuantum_UVM": 0.04, "BMQSim": 2.59, "EdgeQuantum": 0.28},
+    {"qubits": 22, "circuit": "Hadamard", "cuQuantum_Native": 0.01, "cuQuantum_UVM": 0.01, "BMQSim": 2.71, "EdgeQuantum": 0.25},
+    {"qubits": 22, "circuit": "Random-10", "cuQuantum_Native": 0.04, "cuQuantum_UVM": 0.09, "BMQSim": 25.22, "EdgeQuantum": 2.15},
+    {"qubits": 22, "circuit": "QFT", "cuQuantum_Native": 0.02, "cuQuantum_UVM": 0.04, "BMQSim": 9.21, "EdgeQuantum": 0.95},
+    {"qubits": 24, "circuit": "Hadamard", "cuQuantum_Native": 0.00, "cuQuantum_UVM": 0.01, "BMQSim": 7.24, "EdgeQuantum": 0.80},
+    {"qubits": 24, "circuit": "Random-10", "cuQuantum_Native": 0.03, "cuQuantum_UVM": 0.09, "BMQSim": 62.66, "EdgeQuantum": 4.77},
+    {"qubits": 24, "circuit": "QFT", "cuQuantum_Native": 0.01, "cuQuantum_UVM": 0.03, "BMQSim": 38.37, "EdgeQuantum": 3.72},
+    {"qubits": 26, "circuit": "Hadamard", "cuQuantum_Native": 0.01, "cuQuantum_UVM": 0.01, "BMQSim": 24.64, "EdgeQuantum": 1.89},
+    {"qubits": 26, "circuit": "Random-10", "cuQuantum_Native": 0.04, "cuQuantum_UVM": 0.07, "BMQSim": 223.92, "EdgeQuantum": 14.81},
+    {"qubits": 26, "circuit": "QFT", "cuQuantum_Native": 0.02, "cuQuantum_UVM": 0.04, "BMQSim": "N/A", "EdgeQuantum": "N/A"}
+  ],
+  "speedups": {
+    "20Q_Random": 8.4,
+    "22Q_Random": 11.7,
+    "24Q_Random": 13.1,
+    "26Q_Random": 15.1
+  }
+}

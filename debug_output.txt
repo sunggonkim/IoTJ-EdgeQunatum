@@ -1,0 +1,38 @@
+================================================================================
+   EDGEQUANTUM UNIFIED BENCHMARK SUITE
+   Device: NVIDIA Jetson Orin Nano (8GB, 15W)
+================================================================================
+
+==================================================
+  Testing 20 Qubits
+==================================================
+
+  Circuit: Hadamard
+    Google Cirq... ✅ 0.02s (20 gates)
+
+  Circuit: Random-10
+    Google Cirq... ✅ 0.33s (200 gates)
+
+  Circuit: QFT
+    Google Cirq... ✅ 0.03s (74 gates)
+
+======================================================================
+   RESULTS SUMMARY
+======================================================================
+
+📊 Hadamard:
+Qubits   Native      UVM         BMQSim      Aer(CPU)    Cirq        PennyL      IntelQS     EdgeQ      
+------------------------------------------------------------------------------------------------------------------------
+20      FAIL       FAIL       FAIL       FAIL       0.02s      FAIL       FAIL       FAIL       
+
+📊 Random-10:
+Qubits   Native      UVM         BMQSim      Aer(CPU)    Cirq        PennyL      IntelQS     EdgeQ      
+------------------------------------------------------------------------------------------------------------------------
+20      FAIL       FAIL       FAIL       FAIL       0.33s      FAIL       FAIL       FAIL       
+
+📊 QFT:
+Qubits   Native      UVM         BMQSim      Aer(CPU)    Cirq        PennyL      IntelQS     EdgeQ      
+------------------------------------------------------------------------------------------------------------------------
+20      FAIL       FAIL       FAIL       FAIL       0.03s      FAIL       FAIL       FAIL       
+
+💾 Results saved to: data/unified_benchmark_20260116_095959.json

@@ -1,0 +1,209 @@
+nohup: ignoring input
+================================================================================
+   EDGEQUANTUM UNIFIED BENCHMARK SUITE
+   Device: NVIDIA Jetson Orin Nano (8GB, 15W)
+================================================================================
+
+==================================================
+  Testing 20 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.00s (20 gates)
+    cuQuantum (UVM)... ✅ 0.01s (20 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.01s (20 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (20 gates)
+    Google Cirq... ✅ 0.00s (20 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (20 gates)
+    Intel-QS (MPI)... ✅ 0.16s (20 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (20 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.03s (200 gates)
+    cuQuantum (UVM)... ✅ 0.05s (200 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.05s (200 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (200 gates)
+    Google Cirq... ✅ 0.03s (200 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (200 gates)
+    Intel-QS (MPI)... ✅ 1.00s (200 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.02s (200 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.01s (74 gates)
+    cuQuantum (UVM)... ✅ 0.03s (74 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.02s (74 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (74 gates)
+    Google Cirq... ✅ 0.02s (74 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (74 gates)
+    Intel-QS (MPI)... ✅ 0.49s (74 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (74 gates)
+
+==================================================
+  Testing 22 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.00s (22 gates)
+    cuQuantum (UVM)... ✅ 0.00s (22 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.01s (22 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+    Google Cirq... ✅ 0.00s (22 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (22 gates)
+    Intel-QS (MPI)... ✅ 0.30s (22 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.03s (220 gates)
+    cuQuantum (UVM)... ✅ 0.04s (220 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.05s (220 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (220 gates)
+    Google Cirq... ✅ 0.03s (220 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (220 gates)
+    Intel-QS (MPI)... ✅ 3.10s (220 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (220 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.01s (82 gates)
+    cuQuantum (UVM)... ✅ 0.03s (82 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.02s (82 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (82 gates)
+    Google Cirq... ✅ 0.01s (82 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (82 gates)
+    Intel-QS (MPI)... ✅ 1.27s (82 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (82 gates)
+
+==================================================
+  Testing 24 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.00s (22 gates)
+    cuQuantum (UVM)... ✅ 0.01s (22 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.01s (22 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (22 gates)
+    Google Cirq... ✅ 0.00s (22 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (22 gates)
+    Intel-QS (MPI)... ✅ 0.42s (22 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.03s (220 gates)
+    cuQuantum (UVM)... ✅ 0.05s (220 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.05s (220 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (220 gates)
+    Google Cirq... ✅ 0.03s (220 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (220 gates)
+    Intel-QS (MPI)... ✅ 4.37s (220 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (220 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.01s (82 gates)
+    cuQuantum (UVM)... ✅ 0.02s (82 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.02s (82 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (82 gates)
+    Google Cirq... ✅ 0.01s (82 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (82 gates)
+    Intel-QS (MPI)... ✅ 1.57s (82 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (82 gates)
+
+==================================================
+  Testing 26 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.01s (22 gates)
+    cuQuantum (UVM)... ✅ 0.00s (22 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.01s (22 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+    Google Cirq... ✅ 0.00s (22 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (22 gates)
+    Intel-QS (MPI)... ✅ 1.72s (22 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.03s (220 gates)
+    cuQuantum (UVM)... ✅ 0.04s (220 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.05s (220 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (220 gates)
+    Google Cirq... ✅ 0.04s (220 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (220 gates)
+    Intel-QS (MPI)... ✅ 16.51s (220 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (220 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.01s (82 gates)
+    cuQuantum (UVM)... ✅ 0.01s (82 gates)
+    Qiskit Aer (GPU)... Warning: Qiskit GPU failed (Simulation device "GPU" is not supported on this system), falling back to CPU
+✅ 0.02s (82 gates)
+    BMQSim-like (Swap)... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (82 gates)
+    Google Cirq... ✅ 0.01s (82 gates)
+    PennyLane (Ltn)... /home/jetson/.local/lib/python3.8/site-packages/pennylane_lightning/lightning_qubit/lightning_qubit.py:822: UserWarning: Pre-compiled binaries for lightning.qubit are not available. Falling back to using the Python-based default.qubit implementation. To manually compile from source, follow the instructions at https://pennylane-lightning.readthedocs.io/en/latest/installation.html.
+  warn(
+✅ 0.00s (82 gates)
+    Intel-QS (MPI)... ✅ 6.41s (82 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (82 gates)
+
+==================================================
+  Testing 28 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.27s (22 gates)
+    cuQuantum (UVM)... 

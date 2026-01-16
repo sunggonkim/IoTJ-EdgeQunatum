@@ -1,24 +1,58 @@
 \section{Related Work}
 \label{sec:related}
 
-\subsection{Quantum Circuit Simulation}
+\subsection{GPU-Accelerated Quantum Simulation}
 
-State vector simulation remains the gold standard for exact quantum circuit execution. Google's Qsim~\cite{qsim} and IBM's Qiskit Aer~\cite{qiskit} provide CPU/GPU backends for circuits up to 30+ qubits on workstations. NVIDIA's cuQuantum SDK~\cite{cuquantum} achieves state-of-the-art performance on datacenter GPUs, enabling 40+ qubit simulation via cuStateVec and tensor network methods via cuTensorNet.
+\textbf{cuQuantum}~\cite{cuquantum} provides NVIDIA's official GPU-accelerated quantum simulation primitives. cuStateVec achieves high throughput via $O(2^n)$ parallel gate operations but assumes in-memory state vectors, limiting scalability to GPU VRAM capacity (typically 30-33 qubits on 80GB A100).
 
-ScaleQsim~\cite{scaleqsim} extends Qsim to exascale HPC systems (Perlmutter@NERSC), achieving 6.15$\times$ speedup over cuStateVec through two-phase state vector partitioning and adaptive kernel tuning. However, these approaches target high-memory server environments, leaving edge deployment unexplored.
+\textbf{ScaleQsim}~\cite{10.1145/3771577} extends cuQuantum with distributed multi-GPU execution using bitwise index partitioning. Evaluated on 512 A100 GPUs, it achieves 42-qubit simulation with 77.4$\times$ speedup over single-GPU baselines. However, it requires HPC infrastructure costing millions of dollars.
 
-\subsection{Variational Quantum Algorithms}
+\textbf{HyQuas}~\cite{zhang2021hyquas} employs precompiled gate kernels for reduced overhead. However, kernel compilation assumes fixed qubit configurations, limiting flexibility when memory constraints prevent the planned configuration.
 
-VQE was introduced by Peruzzo et al.~\cite{peruzzo2014variational} for ground state energy estimation on photonic quantum processors. Subsequent work explored ansatz design~\cite{kandala2017hardware}, error mitigation~\cite{temme2017error}, and classical optimizer selection~\cite{lavrijsen2020classical}.
+\textbf{Atlas}~\cite{xu2024atlas} uses static execution planning with gate fusion optimization. Its reliance on fixed qubit-GPU mappings limits flexibility when memory constraints prevent the planned configuration.
 
-QAOA, proposed by Farhi et al.~\cite{farhi2014quantum}, addresses combinatorial optimization via alternating cost and mixer unitaries. Extensions include Warm-Start QAOA~\cite{egger2021warm} and Recursive QAOA~\cite{bravyi2020obstacles} for improved performance on structured problems.
+\subsection{Storage-Extended Simulation}
 
-\subsection{Edge AI and Quantum Computing}
+\textbf{SnuQS}~\cite{park2022snuqs} extends simulation capacity via SSD offloading, demonstrating 42-qubit execution on CPU clusters. However, its CPU-centric design achieves 16+ hours for 42 qubits, compared to seconds on GPU-accelerated systems.
 
-The intersection of edge computing and quantum algorithms remains nascent. Hybrid classical-quantum systems have been proposed for federated learning~\cite{chen2021federated} and IoT anomaly detection~\cite{liu2022quantum}, but these assume cloud quantum backend access.
+\textbf{BMQSim}~\cite{zhang2025bmqsim} employs GPU-side compression to reduce memory footprint. While effective, compression kernels compete with gate execution for GPU resources, potentially reducing throughput.
 
-TensorFlow Quantum~\cite{tfq} and PennyLane~\cite{pennylane} provide differentiable quantum circuit frameworks, but neither optimizes for edge deployment. \EdgeQuantum fills this gap by demonstrating practical VQE/QAOA execution on resource-constrained ARM devices.
+\subsection{Tensor Network Methods}
 
-\subsection{Energy-Efficient Quantum Simulation}
+Tensor network simulators like \textbf{quimb}~\cite{gray2018quimb} decompose quantum states using tensor factorization. While memory-efficient for shallow circuits, deep circuits with high entanglement require exponential bond dimensions, negating the advantage.
 
-Power consumption is critical for edge IoT. Prior work on energy-efficient simulation focuses on algorithmic optimizations~\cite{jones2019quest} rather than hardware platform selection. Our evaluation demonstrates that modern edge GPUs (Jetson Orin) achieve competitive qubit counts at 26$\times$ better energy efficiency than datacenter alternatives.
+\subsection{Edge and IoT Quantum}
+
+Prior work on edge quantum computing has focused on:
+\begin{itemize}
+    \item \textbf{Quantum Key Distribution (QKD)}: Hardware protocols for secure communication
+    \item \textbf{Post-Quantum Cryptography (PQC)}: Algorithm implementations resistant to quantum attacks
+    \item \textbf{Hybrid Quantum-Classical}: Cloud-based quantum with edge preprocessing
+\end{itemize}
+
+PennyLane~\cite{pennylane} supports hybrid quantum-classical workflows but lacks edge-specific optimizations. To our knowledge, \EdgeQuantum is the first framework enabling large-scale (37-qubit) quantum simulation on sub-10W ARM-based edge devices.
+
+\subsection{Positioning of EdgeQuantum}
+
+Table~\ref{tab:positioning} compares \EdgeQuantum with key prior work.
+
+\begin{table}[H]
+\centering
+\caption{Comparison with Prior Quantum Simulators}
+\small
+\begin{tabular}{lcccr}
+\toprule
+\textbf{System} & \textbf{Edge} & \textbf{Compress} & \textbf{Tiered} & \textbf{Max Q} \\
+\midrule
+cuQuantum & \xmark & \xmark & \xmark & 33 \\
+ScaleQsim & \xmark & \xmark & \cmark & 42 \\
+SnuQS & \xmark & \xmark & \cmark & 42 \\
+BMQSim & \xmark & \cmark & \xmark & 36 \\
+\midrule
+\textbf{EdgeQuantum} & \cmark & \cmark & \cmark & \textbf{37} \\
+\bottomrule
+\end{tabular}
+\label{tab:positioning}
+\end{table}
+
+\EdgeQuantum combines GPU acceleration (cuQuantum), storage offloading (SnuQS), and compression (BMQSim) into a unified framework optimized for resource-constrained edge devices.

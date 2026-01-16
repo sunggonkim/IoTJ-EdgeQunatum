@@ -1,11 +1,14 @@
 %%
-%% IEEE IoTJ 2026 Submission - EdgeQuantum
+%% EdgeQuantum: Scalable Quantum Circuit Simulation on Resource-Constrained Edge Devices
+%% (ScaleQsim-style format)
 %%
 \documentclass[journal]{IEEEtran}
 
 %% Packages
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{comment}
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{hyperref}
@@ -38,7 +41,7 @@
 
 \begin{document}
 
-\title{EdgeQuantum: Enabling Variational Quantum Algorithms on Resource-Constrained IoT Edge Devices}
+\title{EdgeQuantum: Scalable Quantum Circuit Simulation Framework for Resource-Constrained Edge Devices}
 
 \author{
 \IEEEauthorblockN{Sunggon Kim}
@@ -51,19 +54,22 @@ sunggonkim@seoultech.ac.kr}
 \maketitle
 
 \begin{abstract}
-Quantum computing promises exponential speedups for optimization and simulation tasks, yet current quantum hardware remains expensive and centralized in cloud data centers. This paper presents \EdgeQuantum, a framework enabling variational quantum algorithms (VQE, QAOA) on resource-constrained IoT edge devices. Using NVIDIA Jetson Orin Nano with cuQuantum SDK, we demonstrate that edge devices can efficiently simulate quantum circuits up to \textbf{26 qubits} (67 million Hilbert space dimensions) using GPU-only execution, and \textbf{28 qubits} (268 million dimensions) with AURORA-Q inspired tiered memory offloading. Our VQE implementation achieves 1,000+ gate operations per second for Ising model Hamiltonians, while QAOA obtains \textbf{100\% approximation ratio} on MaxCut problems up to 10 qubits. These results establish the viability of quantum-inspired edge computing for distributed IoT applications in smart grids, logistics optimization, and federated quantum learning.
+Quantum circuit simulation is essential for developing and validating quantum algorithms, yet existing simulators require High-Performance Computing (HPC) clusters with hundreds of GPUs. This paper presents \EdgeQuantum, a scalable quantum circuit simulation framework that enables large-scale simulation on resource-constrained edge devices. Using a tiered memory architecture (GPU VRAM $\to$ CPU DRAM $\to$ NVMe SSD) with LZ4 compression achieving 242.7$\times$ storage reduction, \EdgeQuantum demonstrates \textbf{37-qubit simulation} (1TB state vector) on an 8GB NVIDIA Jetson Orin Nano---a 128$\times$ capacity expansion beyond device memory. We evaluate \EdgeQuantum on standard quantum benchmark circuits including QFT, Random Circuits, and Supremacy-style circuits from 20 to 30 qubits. While HPC simulators like ScaleQsim achieve 42 qubits in seconds using 512 GPUs, \EdgeQuantum enables HPC-scale qubit counts on \$200 edge hardware at 15W power consumption, trading execution speed for memory capacity.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Quantum Computing, Variational Quantum Eigensolver, QAOA, Edge Computing, IoT, GPU Acceleration, cuQuantum
+Quantum Computing, Quantum Circuit Simulation, Edge Computing, GPU Acceleration, cuQuantum, Tiered Memory
 \end{IEEEkeywords}
 
 \input{1_Introduction.tex}
 \input{2_Background.tex}
 \input{3_Design.tex}
 \input{4_Evaluation.tex}
+\input{CaseStudy.tex}
+\input{Discussion.tex}
 \input{5_Related_Works.tex}
 \input{6_Conclusion.tex}
+\input{Appendix.tex}
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

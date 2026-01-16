@@ -1,0 +1,194 @@
+[
+  {
+    "qubits": 20,
+    "circuit": "Hadamard",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.0,
+    "gates": 20,
+    "success": true
+  },
+  {
+    "qubits": 20,
+    "circuit": "Hadamard",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.01,
+    "gates": 20,
+    "success": true
+  },
+  {
+    "qubits": 20,
+    "circuit": "Random-10",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.1,
+    "gates": 200,
+    "success": true
+  },
+  {
+    "qubits": 20,
+    "circuit": "Random-10",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.09,
+    "gates": 200,
+    "success": true
+  },
+  {
+    "qubits": 20,
+    "circuit": "QFT",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.01,
+    "gates": 74,
+    "success": true
+  },
+  {
+    "qubits": 20,
+    "circuit": "QFT",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.04,
+    "gates": 74,
+    "success": true
+  },
+  {
+    "qubits": 22,
+    "circuit": "Hadamard",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.01,
+    "gates": 22,
+    "success": true
+  },
+  {
+    "qubits": 22,
+    "circuit": "Hadamard",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.01,
+    "gates": 22,
+    "success": true
+  },
+  {
+    "qubits": 22,
+    "circuit": "Random-10",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.04,
+    "gates": 220,
+    "success": true
+  },
+  {
+    "qubits": 22,
+    "circuit": "Random-10",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.09,
+    "gates": 220,
+    "success": true
+  },
+  {
+    "qubits": 22,
+    "circuit": "QFT",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.02,
+    "gates": 82,
+    "success": true
+  },
+  {
+    "qubits": 22,
+    "circuit": "QFT",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.04,
+    "gates": 82,
+    "success": true
+  },
+  {
+    "qubits": 24,
+    "circuit": "Hadamard",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.0,
+    "gates": 22,
+    "success": true
+  },
+  {
+    "qubits": 24,
+    "circuit": "Hadamard",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.01,
+    "gates": 22,
+    "success": true
+  },
+  {
+    "qubits": 24,
+    "circuit": "Random-10",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.03,
+    "gates": 220,
+    "success": true
+  },
+  {
+    "qubits": 24,
+    "circuit": "Random-10",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.09,
+    "gates": 220,
+    "success": true
+  },
+  {
+    "qubits": 24,
+    "circuit": "QFT",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.01,
+    "gates": 82,
+    "success": true
+  },
+  {
+    "qubits": 24,
+    "circuit": "QFT",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.03,
+    "gates": 82,
+    "success": true
+  },
+  {
+    "qubits": 26,
+    "circuit": "Hadamard",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.01,
+    "gates": 22,
+    "success": true
+  },
+  {
+    "qubits": 26,
+    "circuit": "Hadamard",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.01,
+    "gates": 22,
+    "success": true
+  },
+  {
+    "qubits": 26,
+    "circuit": "Random-10",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.04,
+    "gates": 220,
+    "success": true
+  },
+  {
+    "qubits": 26,
+    "circuit": "Random-10",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.07,
+    "gates": 220,
+    "success": true
+  },
+  {
+    "qubits": 26,
+    "circuit": "QFT",
+    "simulator": "cuQuantum (Native)",
+    "time": 0.02,
+    "gates": 82,
+    "success": true
+  },
+  {
+    "qubits": 26,
+    "circuit": "QFT",
+    "simulator": "cuQuantum (UVM)",
+    "time": 0.04,
+    "gates": 82,
+    "success": true
+  }
+]

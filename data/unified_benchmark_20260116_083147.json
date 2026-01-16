@@ -1,0 +1,482 @@
+[
+  {
+    "simulator": "cuQuantum (Native)",
+    "circuit": "Hadamard",
+    "qubits": 12,
+    "success": true,
+    "error": null,
+    "init_time": 2.9921889305114746,
+    "circuit_time": 0.002789020538330078,
+    "gates": 12,
+    "total_time": 2.9949779510498047,
+    "storage_gb": 3.0517578125e-05
+  },
+  {
+    "simulator": "cuQuantum (UVM)",
+    "circuit": "Hadamard",
+    "qubits": 12,
+    "success": true,
+    "error": null,
+    "init_time": 0.0009829998016357422,
+    "circuit_time": 0.0024499893188476562,
+    "gates": 12,
+    "total_time": 0.0034329891204833984,
+    "storage_gb": 3.0517578125e-05
+  },
+  {
+    "simulator": "Qiskit Aer (GPU)",
+    "circuit": "Hadamard",
+    "qubits": 12,
+    "success": false,
+    "error": "Simulation device \"GPU\" is not supported on this system",
+    "init_time": 0.0009558200836181641
+  },
+  {
+    "simulator": "BMQSim-like (Swap)",
+    "circuit": "Hadamard",
+    "qubits": 12,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.0005161762237548828,
+    "circuit_time": 0.002429485321044922,
+    "gates": 12,
+    "total_time": 0.0029456615447998047,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "Google Cirq",
+    "circuit": "Hadamard",
+    "qubits": 12,
+    "success": false,
+    "error": "'CirqSimulator' object has no attribute 'gate_count'",
+    "init_time": 2.002716064453125e-05
+  },
+  {
+    "simulator": "PennyLane (Ltn)",
+    "circuit": "Hadamard",
+    "qubits": 12,
+    "success": false,
+    "error": "'PennyLaneSimulator' object has no attribute 'gate_count'",
+    "init_time": 3.5762786865234375e-06
+  },
+  {
+    "simulator": "Intel-QS (MPI)",
+    "circuit": "Hadamard",
+    "qubits": 12,
+    "success": false,
+    "error": "'IntelQSSimulator' object has no attribute 'gate_count'",
+    "init_time": 0.0010387897491455078
+  },
+  {
+    "simulator": "EdgeQuantum (Ours)",
+    "circuit": "Hadamard",
+    "qubits": 12,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.00030541419982910156,
+    "circuit_time": 0.004436969757080078,
+    "gates": 12,
+    "total_time": 0.00474238395690918,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "cuQuantum (Native)",
+    "circuit": "Random-10",
+    "qubits": 12,
+    "success": true,
+    "error": null,
+    "init_time": 0.00031757354736328125,
+    "circuit_time": 0.017757177352905273,
+    "gates": 120,
+    "total_time": 0.018074750900268555,
+    "storage_gb": 3.0517578125e-05
+  },
+  {
+    "simulator": "cuQuantum (UVM)",
+    "circuit": "Random-10",
+    "qubits": 12,
+    "success": true,
+    "error": null,
+    "init_time": 0.0009109973907470703,
+    "circuit_time": 0.04485583305358887,
+    "gates": 120,
+    "total_time": 0.04576683044433594,
+    "storage_gb": 3.0517578125e-05
+  },
+  {
+    "simulator": "Qiskit Aer (GPU)",
+    "circuit": "Random-10",
+    "qubits": 12,
+    "success": false,
+    "error": "Simulation device \"GPU\" is not supported on this system",
+    "init_time": 0.00028896331787109375
+  },
+  {
+    "simulator": "BMQSim-like (Swap)",
+    "circuit": "Random-10",
+    "qubits": 12,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.0004994869232177734,
+    "circuit_time": 0.014658451080322266,
+    "gates": 120,
+    "total_time": 0.015157938003540039,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "Google Cirq",
+    "circuit": "Random-10",
+    "qubits": 12,
+    "success": false,
+    "error": "'CirqSimulator' object has no attribute 'gate_count'",
+    "init_time": 2.1219253540039062e-05
+  },
+  {
+    "simulator": "PennyLane (Ltn)",
+    "circuit": "Random-10",
+    "qubits": 12,
+    "success": false,
+    "error": "'PennyLaneSimulator' object has no attribute 'gate_count'",
+    "init_time": 3.337860107421875e-06
+  },
+  {
+    "simulator": "Intel-QS (MPI)",
+    "circuit": "Random-10",
+    "qubits": 12,
+    "success": false,
+    "error": "'IntelQSSimulator' object has no attribute 'gate_count'",
+    "init_time": 0.004582643508911133
+  },
+  {
+    "simulator": "EdgeQuantum (Ours)",
+    "circuit": "Random-10",
+    "qubits": 12,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.0005106925964355469,
+    "circuit_time": 0.014552593231201172,
+    "gates": 120,
+    "total_time": 0.015063285827636719,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "cuQuantum (Native)",
+    "circuit": "QFT",
+    "qubits": 12,
+    "success": true,
+    "error": null,
+    "init_time": 0.000186920166015625,
+    "circuit_time": 0.0055615901947021484,
+    "gates": 42,
+    "total_time": 0.0057485103607177734,
+    "storage_gb": 3.0517578125e-05
+  },
+  {
+    "simulator": "cuQuantum (UVM)",
+    "circuit": "QFT",
+    "qubits": 12,
+    "success": true,
+    "error": null,
+    "init_time": 0.0024309158325195312,
+    "circuit_time": 0.020493030548095703,
+    "gates": 42,
+    "total_time": 0.022923946380615234,
+    "storage_gb": 3.0517578125e-05
+  },
+  {
+    "simulator": "Qiskit Aer (GPU)",
+    "circuit": "QFT",
+    "qubits": 12,
+    "success": false,
+    "error": "Simulation device \"GPU\" is not supported on this system",
+    "init_time": 0.0002799034118652344
+  },
+  {
+    "simulator": "BMQSim-like (Swap)",
+    "circuit": "QFT",
+    "qubits": 12,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.0007677078247070312,
+    "circuit_time": 0.00808858871459961,
+    "gates": 42,
+    "total_time": 0.00885629653930664,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "Google Cirq",
+    "circuit": "QFT",
+    "qubits": 12,
+    "success": false,
+    "error": "'CirqSimulator' object has no attribute 'gate_count'",
+    "init_time": 1.3828277587890625e-05
+  },
+  {
+    "simulator": "PennyLane (Ltn)",
+    "circuit": "QFT",
+    "qubits": 12,
+    "success": false,
+    "error": "'PennyLaneSimulator' object has no attribute 'gate_count'",
+    "init_time": 3.337860107421875e-06
+  },
+  {
+    "simulator": "Intel-QS (MPI)",
+    "circuit": "QFT",
+    "qubits": 12,
+    "success": false,
+    "error": "'IntelQSSimulator' object has no attribute 'gate_count'",
+    "init_time": 0.0010824203491210938
+  },
+  {
+    "simulator": "EdgeQuantum (Ours)",
+    "circuit": "QFT",
+    "qubits": 12,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.000522613525390625,
+    "circuit_time": 0.00609898567199707,
+    "gates": 42,
+    "total_time": 0.006621599197387695,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "cuQuantum (Native)",
+    "circuit": "Hadamard",
+    "qubits": 14,
+    "success": true,
+    "error": null,
+    "init_time": 0.0002720355987548828,
+    "circuit_time": 0.003228902816772461,
+    "gates": 14,
+    "total_time": 0.0035009384155273438,
+    "storage_gb": 0.0001220703125
+  },
+  {
+    "simulator": "cuQuantum (UVM)",
+    "circuit": "Hadamard",
+    "qubits": 14,
+    "success": true,
+    "error": null,
+    "init_time": 0.0008740425109863281,
+    "circuit_time": 0.01331019401550293,
+    "gates": 14,
+    "total_time": 0.014184236526489258,
+    "storage_gb": 0.0001220703125
+  },
+  {
+    "simulator": "Qiskit Aer (GPU)",
+    "circuit": "Hadamard",
+    "qubits": 14,
+    "success": false,
+    "error": "Simulation device \"GPU\" is not supported on this system",
+    "init_time": 0.0002903938293457031
+  },
+  {
+    "simulator": "BMQSim-like (Swap)",
+    "circuit": "Hadamard",
+    "qubits": 14,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.0002491474151611328,
+    "circuit_time": 0.0038042068481445312,
+    "gates": 14,
+    "total_time": 0.004053354263305664,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "Google Cirq",
+    "circuit": "Hadamard",
+    "qubits": 14,
+    "success": false,
+    "error": "'CirqSimulator' object has no attribute 'gate_count'",
+    "init_time": 0.0003402233123779297
+  },
+  {
+    "simulator": "PennyLane (Ltn)",
+    "circuit": "Hadamard",
+    "qubits": 14,
+    "success": false,
+    "error": "'PennyLaneSimulator' object has no attribute 'gate_count'",
+    "init_time": 3.337860107421875e-06
+  },
+  {
+    "simulator": "Intel-QS (MPI)",
+    "circuit": "Hadamard",
+    "qubits": 14,
+    "success": false,
+    "error": "'IntelQSSimulator' object has no attribute 'gate_count'",
+    "init_time": 0.0015048980712890625
+  },
+  {
+    "simulator": "EdgeQuantum (Ours)",
+    "circuit": "Hadamard",
+    "qubits": 14,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.0002810955047607422,
+    "circuit_time": 0.0035555362701416016,
+    "gates": 14,
+    "total_time": 0.0038366317749023438,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "cuQuantum (Native)",
+    "circuit": "Random-10",
+    "qubits": 14,
+    "success": true,
+    "error": null,
+    "init_time": 0.00020074844360351562,
+    "circuit_time": 0.01866769790649414,
+    "gates": 140,
+    "total_time": 0.018868446350097656,
+    "storage_gb": 0.0001220703125
+  },
+  {
+    "simulator": "cuQuantum (UVM)",
+    "circuit": "Random-10",
+    "qubits": 14,
+    "success": true,
+    "error": null,
+    "init_time": 0.0033578872680664062,
+    "circuit_time": 0.045116424560546875,
+    "gates": 140,
+    "total_time": 0.04847431182861328,
+    "storage_gb": 0.0001220703125
+  },
+  {
+    "simulator": "Qiskit Aer (GPU)",
+    "circuit": "Random-10",
+    "qubits": 14,
+    "success": false,
+    "error": "Simulation device \"GPU\" is not supported on this system",
+    "init_time": 0.0002903938293457031
+  },
+  {
+    "simulator": "BMQSim-like (Swap)",
+    "circuit": "Random-10",
+    "qubits": 14,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.00026798248291015625,
+    "circuit_time": 0.022245407104492188,
+    "gates": 140,
+    "total_time": 0.022513389587402344,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "Google Cirq",
+    "circuit": "Random-10",
+    "qubits": 14,
+    "success": false,
+    "error": "'CirqSimulator' object has no attribute 'gate_count'",
+    "init_time": 1.4066696166992188e-05
+  },
+  {
+    "simulator": "PennyLane (Ltn)",
+    "circuit": "Random-10",
+    "qubits": 14,
+    "success": false,
+    "error": "'PennyLaneSimulator' object has no attribute 'gate_count'",
+    "init_time": 3.337860107421875e-06
+  },
+  {
+    "simulator": "Intel-QS (MPI)",
+    "circuit": "Random-10",
+    "qubits": 14,
+    "success": false,
+    "error": "'IntelQSSimulator' object has no attribute 'gate_count'",
+    "init_time": 0.003400564193725586
+  },
+  {
+    "simulator": "EdgeQuantum (Ours)",
+    "circuit": "Random-10",
+    "qubits": 14,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.0002906322479248047,
+    "circuit_time": 0.02012348175048828,
+    "gates": 140,
+    "total_time": 0.020414113998413086,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "cuQuantum (Native)",
+    "circuit": "QFT",
+    "qubits": 14,
+    "success": true,
+    "error": null,
+    "init_time": 0.00027441978454589844,
+    "circuit_time": 0.007760047912597656,
+    "gates": 50,
+    "total_time": 0.008034467697143555,
+    "storage_gb": 0.0001220703125
+  },
+  {
+    "simulator": "cuQuantum (UVM)",
+    "circuit": "QFT",
+    "qubits": 14,
+    "success": true,
+    "error": null,
+    "init_time": 0.0012264251708984375,
+    "circuit_time": 0.019685983657836914,
+    "gates": 50,
+    "total_time": 0.02091240882873535,
+    "storage_gb": 0.0001220703125
+  },
+  {
+    "simulator": "Qiskit Aer (GPU)",
+    "circuit": "QFT",
+    "qubits": 14,
+    "success": false,
+    "error": "Simulation device \"GPU\" is not supported on this system",
+    "init_time": 0.0003147125244140625
+  },
+  {
+    "simulator": "BMQSim-like (Swap)",
+    "circuit": "QFT",
+    "qubits": 14,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.00026035308837890625,
+    "circuit_time": 0.007321596145629883,
+    "gates": 50,
+    "total_time": 0.007581949234008789,
+    "storage_gb": 0.0
+  },
+  {
+    "simulator": "Google Cirq",
+    "circuit": "QFT",
+    "qubits": 14,
+    "success": false,
+    "error": "'CirqSimulator' object has no attribute 'gate_count'",
+    "init_time": 1.5497207641601562e-05
+  },
+  {
+    "simulator": "PennyLane (Ltn)",
+    "circuit": "QFT",
+    "qubits": 14,
+    "success": false,
+    "error": "'PennyLaneSimulator' object has no attribute 'gate_count'",
+    "init_time": 3.5762786865234375e-06
+  },
+  {
+    "simulator": "Intel-QS (MPI)",
+    "circuit": "QFT",
+    "qubits": 14,
+    "success": false,
+    "error": "'IntelQSSimulator' object has no attribute 'gate_count'",
+    "init_time": 0.002086639404296875
+  },
+  {
+    "simulator": "EdgeQuantum (Ours)",
+    "circuit": "QFT",
+    "qubits": 14,
+    "success": true,
+    "error": "'NoneType' object has no attribute 'shutdown'",
+    "init_time": 0.0005011558532714844,
+    "circuit_time": 0.007165670394897461,
+    "gates": 50,
+    "total_time": 0.007666826248168945,
+    "storage_gb": 0.0
+  }
+]

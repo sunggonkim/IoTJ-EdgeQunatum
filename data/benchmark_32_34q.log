@@ -1,0 +1,12 @@
+nohup: ignoring input
+============================================================
+   MULTI-CIRCUIT BENCHMARK FOR EDGEQUANTUM
+============================================================
+
+🔬 Benchmarking: Hadamard on 32 qubits...
+   Gates: 22, Time: 2297.52s, Storage: 0.132GB, Ratio: 242.7x
+
+🔬 Benchmarking: GHZ on 32 qubits...
+   Gates: 22, Time: 2407.45s, Storage: 0.132GB, Ratio: 242.7x
+
+🔬 Benchmarking: QFT on 32 qubits...

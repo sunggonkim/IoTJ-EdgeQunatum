@@ -1,0 +1,295 @@
+nohup: ignoring input
+============================================================
+  EDGEQUANTUM SCALEQSIM-STYLE BENCHMARK SUITE
+  Device: NVIDIA Jetson Orin Nano (8GB, 15W)
+============================================================
+
+==================================================
+  QFT @ 20 qubits
+==================================================
+[EdgeQuantum] 20Q: 1 chunks × 8.4MB
+  Gates: 74
+  Init Time: 0.01s
+  Circuit Time: 5.57s
+  Total Time: 5.58s
+  Storage: 0.0000 GB (Ratio: 242.6x)
+  Throughput: 13.29 gates/s
+
+==================================================
+  Random-20 @ 20 qubits
+==================================================
+[EdgeQuantum] 20Q: 1 chunks × 8.4MB
+  Gates: 400
+  Init Time: 0.00s
+  Circuit Time: 29.97s
+  Total Time: 29.98s
+  Storage: 0.0000 GB (Ratio: 242.6x)
+  Throughput: 13.34 gates/s
+
+==================================================
+  Supremacy-10 @ 20 qubits
+==================================================
+[EdgeQuantum] 20Q: 1 chunks × 8.4MB
+  Gates: 600
+  Init Time: 0.00s
+  Circuit Time: 44.39s
+  Total Time: 44.39s
+  Storage: 0.0000 GB (Ratio: 242.6x)
+  Throughput: 13.52 gates/s
+
+==================================================
+  GHZ @ 20 qubits
+==================================================
+[EdgeQuantum] 20Q: 1 chunks × 8.4MB
+  Gates: 20
+  Init Time: 0.00s
+  Circuit Time: 1.40s
+  Total Time: 1.41s
+  Storage: 0.0000 GB (Ratio: 242.6x)
+  Throughput: 14.26 gates/s
+
+==================================================
+  QuantumVolume @ 20 qubits
+==================================================
+[EdgeQuantum] 20Q: 1 chunks × 8.4MB
+  Gates: 800
+  Init Time: 0.00s
+  Circuit Time: 62.40s
+  Total Time: 62.40s
+  Storage: 0.0000 GB (Ratio: 242.6x)
+  Throughput: 12.82 gates/s
+
+==================================================
+  QFT @ 22 qubits
+==================================================
+[EdgeQuantum] 22Q: 1 chunks × 33.6MB
+  Gates: 82
+  Init Time: 0.05s
+  Circuit Time: 20.18s
+  Total Time: 20.22s
+  Storage: 0.0001 GB (Ratio: 242.7x)
+  Throughput: 4.06 gates/s
+
+==================================================
+  Random-20 @ 22 qubits
+==================================================
+[EdgeQuantum] 22Q: 1 chunks × 33.6MB
+  Gates: 440
+  Init Time: 0.04s
+  Circuit Time: 110.38s
+  Total Time: 110.42s
+  Storage: 0.0001 GB (Ratio: 242.7x)
+  Throughput: 3.99 gates/s
+
+==================================================
+  Supremacy-10 @ 22 qubits
+==================================================
+[EdgeQuantum] 22Q: 1 chunks × 33.6MB
+  Gates: 660
+  Init Time: 0.04s
+  Circuit Time: 144.37s
+  Total Time: 144.41s
+  Storage: 0.0001 GB (Ratio: 242.7x)
+  Throughput: 4.57 gates/s
+
+==================================================
+  GHZ @ 22 qubits
+==================================================
+[EdgeQuantum] 22Q: 1 chunks × 33.6MB
+  Gates: 22
+  Init Time: 0.04s
+  Circuit Time: 4.69s
+  Total Time: 4.73s
+  Storage: 0.0001 GB (Ratio: 242.7x)
+  Throughput: 4.69 gates/s
+
+==================================================
+  QuantumVolume @ 22 qubits
+==================================================
+[EdgeQuantum] 22Q: 1 chunks × 33.6MB
+  Gates: 968
+  Init Time: 0.05s
+  Circuit Time: 190.38s
+  Total Time: 190.43s
+  Storage: 0.0001 GB (Ratio: 242.7x)
+  Throughput: 5.08 gates/s
+
+==================================================
+  QFT @ 24 qubits
+==================================================
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+  Gates: 82
+  Init Time: 0.12s
+  Circuit Time: 64.49s
+  Total Time: 64.61s
+  Storage: 0.0006 GB (Ratio: 242.7x)
+  Throughput: 1.27 gates/s
+
+==================================================
+  Random-20 @ 24 qubits
+==================================================
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+  Gates: 440
+  Init Time: 0.13s
+  Circuit Time: 422.08s
+  Total Time: 422.21s
+  Storage: 0.0006 GB (Ratio: 242.7x)
+  Throughput: 1.04 gates/s
+
+==================================================
+  Supremacy-10 @ 24 qubits
+==================================================
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+  Gates: 660
+  Init Time: 0.15s
+  Circuit Time: 674.03s
+  Total Time: 674.18s
+  Storage: 0.0006 GB (Ratio: 242.7x)
+  Throughput: 0.98 gates/s
+
+==================================================
+  GHZ @ 24 qubits
+==================================================
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+  Gates: 22
+  Init Time: 0.16s
+  Circuit Time: 22.42s
+  Total Time: 22.58s
+  Storage: 0.0006 GB (Ratio: 242.7x)
+  Throughput: 0.98 gates/s
+
+==================================================
+  QuantumVolume @ 24 qubits
+==================================================
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+  Gates: 968
+  Init Time: 0.15s
+  Circuit Time: 1031.25s
+  Total Time: 1031.40s
+  Storage: 0.0006 GB (Ratio: 242.7x)
+  Throughput: 0.94 gates/s
+
+==================================================
+  QFT @ 26 qubits
+==================================================
+[EdgeQuantum] 26Q: 16 chunks × 33.6MB
+  Gates: 82
+  Init Time: 0.65s
+  Circuit Time: 350.64s
+  Total Time: 351.29s
+  Storage: 0.0022 GB (Ratio: 242.7x)
+  Throughput: 0.23 gates/s
+
+==================================================
+  Random-20 @ 26 qubits
+==================================================
+[EdgeQuantum] 26Q: 16 chunks × 33.6MB
+  Gates: 440
+  Init Time: 0.66s
+  Circuit Time: 1895.15s
+  Total Time: 1895.81s
+  Storage: 0.0022 GB (Ratio: 242.7x)
+  Throughput: 0.23 gates/s
+
+==================================================
+  Supremacy-10 @ 26 qubits
+==================================================
+[EdgeQuantum] 26Q: 16 chunks × 33.6MB
+  Gates: 660
+  Init Time: 0.67s
+  Circuit Time: 2016.40s
+  Total Time: 2017.07s
+  Storage: 0.0022 GB (Ratio: 242.7x)
+  Throughput: 0.33 gates/s
+
+==================================================
+  GHZ @ 26 qubits
+==================================================
+[EdgeQuantum] 26Q: 16 chunks × 33.6MB
+  Gates: 22
+  Init Time: 0.45s
+  Circuit Time: 34.40s
+  Total Time: 34.84s
+  Storage: 0.0022 GB (Ratio: 242.7x)
+  Throughput: 0.64 gates/s
+
+==================================================
+  QuantumVolume @ 26 qubits
+==================================================
+[EdgeQuantum] 26Q: 16 chunks × 33.6MB
+  Gates: 968
+  Init Time: 0.47s
+  Circuit Time: 1523.34s
+  Total Time: 1523.81s
+  Storage: 0.0022 GB (Ratio: 242.7x)
+  Throughput: 0.64 gates/s
+
+==================================================
+  QFT @ 28 qubits
+==================================================
+[EdgeQuantum] 28Q: 64 chunks × 33.6MB
+  Gates: 82
+  Init Time: 1.44s
+  Circuit Time: 515.32s
+  Total Time: 516.76s
+  Storage: 0.0088 GB (Ratio: 242.7x)
+  Throughput: 0.16 gates/s
+
+==================================================
+  Random-20 @ 28 qubits
+==================================================
+[EdgeQuantum] 28Q: 64 chunks × 33.6MB
+  Gates: 440
+  Init Time: 1.30s
+  Circuit Time: 2778.40s
+  Total Time: 2779.70s
+  Storage: 0.0088 GB (Ratio: 242.7x)
+  Throughput: 0.16 gates/s
+
+==================================================
+  Supremacy-10 @ 28 qubits
+==================================================
+[EdgeQuantum] 28Q: 64 chunks × 33.6MB
+  Gates: 660
+  Init Time: 1.29s
+  Circuit Time: 4185.46s
+  Total Time: 4186.75s
+  Storage: 0.0088 GB (Ratio: 242.7x)
+  Throughput: 0.16 gates/s
+
+==================================================
+  GHZ @ 28 qubits
+==================================================
+[EdgeQuantum] 28Q: 64 chunks × 33.6MB
+  Gates: 22
+  Init Time: 1.30s
+  Circuit Time: 139.15s
+  Total Time: 140.45s
+  Storage: 0.0088 GB (Ratio: 242.7x)
+  Throughput: 0.16 gates/s
+
+==================================================
+  QuantumVolume @ 28 qubits
+==================================================
+[EdgeQuantum] 28Q: 64 chunks × 33.6MB
+  Gates: 968
+  Init Time: 1.29s
+  Circuit Time: 6140.35s
+  Total Time: 6141.64s
+  Storage: 0.0088 GB (Ratio: 242.7x)
+  Throughput: 0.16 gates/s
+
+============================================================
+  BENCHMARK COMPLETE!
+============================================================
+
+📊 Summary Table:
+Circuit         20Q          22Q          24Q          26Q          28Q         
+---------------------------------------------------------------------------
+QFT            5.6s        20.2s       64.6s       351.3s      516.8s      
+Random-20      30.0s       110.4s      422.2s      1895.8s     2779.7s     
+Supremacy-10   44.4s       144.4s      674.2s      2017.1s     4186.8s     
+GHZ            1.4s        4.7s        22.6s       34.8s       140.4s      
+QuantumVolume  62.4s       190.4s      1031.4s     1523.8s     6141.6s     
+
+💾 Results saved to: data/scaleqsim_style_bench.json

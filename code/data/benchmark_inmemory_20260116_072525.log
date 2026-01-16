@@ -1,0 +1,129 @@
+================================================================================
+   EDGEQUANTUM UNIFIED BENCHMARK SUITE
+   Device: NVIDIA Jetson Orin Nano (8GB, 15W)
+================================================================================
+
+==================================================
+  Testing 20 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.00s (20 gates)
+    cuQuantum (UVM)... ✅ 0.00s (20 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (20 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (20 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.17s (200 gates)
+    cuQuantum (UVM)... ✅ 0.07s (200 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.10s (200 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (200 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.01s (74 gates)
+    cuQuantum (UVM)... ✅ 0.02s (74 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (74 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (74 gates)
+
+==================================================
+  Testing 22 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.00s (22 gates)
+    cuQuantum (UVM)... ✅ 0.01s (22 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (22 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.03s (220 gates)
+    cuQuantum (UVM)... ✅ 0.08s (220 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.10s (220 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.03s (220 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.01s (82 gates)
+    cuQuantum (UVM)... ✅ 0.03s (82 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.04s (82 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (82 gates)
+
+==================================================
+  Testing 24 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.00s (22 gates)
+    cuQuantum (UVM)... ✅ 0.01s (22 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+✅ 10.04s (22 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 0.92s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.03s (220 gates)
+    cuQuantum (UVM)... ✅ 0.06s (220 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+✅ 81.92s (220 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 6.49s (220 gates)
+
+  Circuit: QFT
+    cuQuantum (Native)... ✅ 0.01s (82 gates)
+    cuQuantum (UVM)... ✅ 0.02s (82 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+✅ 32.07s (82 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 24Q: 4 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 2.21s (82 gates)
+
+==================================================
+  Testing 26 Qubits
+==================================================
+
+  Circuit: Hadamard
+    cuQuantum (Native)... ✅ 0.01s (22 gates)
+    cuQuantum (UVM)... ✅ 0.00s (22 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1
+✅ 41.08s (22 gates)
+    EdgeQuantum (Ours)... [EdgeQuantum] ✅ TRUE ZERO-COPY: Managed Memory (custatevec compatible)
+[EdgeQuantum] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum] Memory: Managed (Zero-Copy), Async Prefetch: ON, Gate Fusion: 10
+✅ 4.31s (22 gates)
+
+  Circuit: Random-10
+    cuQuantum (Native)... ✅ 0.03s (220 gates)
+    cuQuantum (UVM)... ✅ 0.07s (220 gates)
+    Qiskit Aer (GPU)... ❌ Simulation device "GPU" is not supported on this system
+    BMQSim-like (Swap)... [EdgeQuantum] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum] Memory: Pinned, Async Prefetch: ON, Gate Fusion: 1

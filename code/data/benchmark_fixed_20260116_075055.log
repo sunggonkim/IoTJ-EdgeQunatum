@@ -1,0 +1,190 @@
+nohup: ignoring input
+================================================================================
+   EDGEQUANTUM COMPREHENSIVE BENCHMARK SUITE
+   Device: NVIDIA Jetson Orin Nano (8GB, 15W)
+   Date: 2026-01-16 07:51:09
+================================================================================
+
+============================================================
+  Testing 20 Qubits (0.01 GB state vector)
+============================================================
+
+  📊 Circuit: Hadamard
+    cuQuantum (Native)  ... ✅ 0.00s (20 gates)
+    cuQuantum (UVM)     ... ✅ 0.00s (20 gates)
+    BMQSim-like         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (20 gates)
+    EdgeQuantum         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (20 gates)
+
+  📊 Circuit: QFT
+    cuQuantum (Native)  ... ✅ 0.01s (74 gates)
+    cuQuantum (UVM)     ... ✅ 0.02s (74 gates)
+    BMQSim-like         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (74 gates)
+    EdgeQuantum         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (74 gates)
+
+  📊 Circuit: Random-20
+    cuQuantum (Native)  ... ✅ 0.05s (400 gates)
+    cuQuantum (UVM)     ... ✅ 0.12s (400 gates)
+    BMQSim-like         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.05s (400 gates)
+    EdgeQuantum         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.05s (400 gates)
+
+  📊 Circuit: GHZ
+    cuQuantum (Native)  ... ✅ 0.00s (20 gates)
+    cuQuantum (UVM)     ... ✅ 0.00s (20 gates)
+    BMQSim-like         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (20 gates)
+    EdgeQuantum         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (20 gates)
+
+  📊 Circuit: QuantumVolume
+    cuQuantum (Native)  ... ✅ 0.11s (800 gates)
+    cuQuantum (UVM)     ... ✅ 0.32s (800 gates)
+    BMQSim-like         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.10s (800 gates)
+    EdgeQuantum         ... [EdgeQuantum] 20Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.10s (800 gates)
+
+============================================================
+  Testing 22 Qubits (0.03 GB state vector)
+============================================================
+
+  📊 Circuit: Hadamard
+    cuQuantum (Native)  ... ✅ 0.00s (22 gates)
+    cuQuantum (UVM)     ... ✅ 0.00s (22 gates)
+    BMQSim-like         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+    EdgeQuantum         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+
+  📊 Circuit: QFT
+    cuQuantum (Native)  ... ✅ 0.01s (82 gates)
+    cuQuantum (UVM)     ... ✅ 0.02s (82 gates)
+    BMQSim-like         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (82 gates)
+    EdgeQuantum         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (82 gates)
+
+  📊 Circuit: Random-20
+    cuQuantum (Native)  ... ✅ 0.06s (440 gates)
+    cuQuantum (UVM)     ... ✅ 0.13s (440 gates)
+    BMQSim-like         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.05s (440 gates)
+    EdgeQuantum         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.05s (440 gates)
+
+  📊 Circuit: GHZ
+    cuQuantum (Native)  ... ✅ 0.00s (22 gates)
+    cuQuantum (UVM)     ... ✅ 0.00s (22 gates)
+    BMQSim-like         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+    EdgeQuantum         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (22 gates)
+
+  📊 Circuit: QuantumVolume
+    cuQuantum (Native)  ... ✅ 0.11s (800 gates)
+    cuQuantum (UVM)     ... ✅ 0.31s (800 gates)
+    BMQSim-like         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.11s (800 gates)
+    EdgeQuantum         ... [EdgeQuantum] 22Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.10s (800 gates)
+
+============================================================
+  Testing 24 Qubits (0.13 GB state vector)
+============================================================
+
+  📊 Circuit: Hadamard
+    cuQuantum (Native)  ... ✅ 0.00s (24 gates)
+    cuQuantum (UVM)     ... ✅ 0.00s (24 gates)
+    BMQSim-like         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (24 gates)
+    EdgeQuantum         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (24 gates)
+
+  📊 Circuit: QFT
+    cuQuantum (Native)  ... ✅ 0.01s (90 gates)
+    cuQuantum (UVM)     ... ✅ 0.03s (90 gates)
+    BMQSim-like         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (90 gates)
+    EdgeQuantum         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (90 gates)
+
+  📊 Circuit: Random-20
+    cuQuantum (Native)  ... ✅ 0.06s (480 gates)
+    cuQuantum (UVM)     ... ✅ 0.13s (480 gates)
+    BMQSim-like         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.06s (480 gates)
+    EdgeQuantum         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.06s (480 gates)
+
+  📊 Circuit: GHZ
+    cuQuantum (Native)  ... ✅ 0.00s (24 gates)
+    cuQuantum (UVM)     ... ✅ 0.00s (24 gates)
+    BMQSim-like         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (24 gates)
+    EdgeQuantum         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (24 gates)
+
+  📊 Circuit: QuantumVolume
+    cuQuantum (Native)  ... ✅ 0.11s (800 gates)
+    cuQuantum (UVM)     ... ✅ 0.29s (800 gates)
+    BMQSim-like         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.11s (800 gates)
+    EdgeQuantum         ... [EdgeQuantum] 24Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.10s (800 gates)
+
+============================================================
+  Testing 26 Qubits (0.54 GB state vector)
+============================================================
+
+  📊 Circuit: Hadamard
+    cuQuantum (Native)  ... ✅ 0.01s (26 gates)
+    cuQuantum (UVM)     ... ✅ 0.00s (26 gates)
+    BMQSim-like         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (26 gates)
+    EdgeQuantum         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (26 gates)
+
+  📊 Circuit: QFT
+    cuQuantum (Native)  ... ✅ 0.01s (98 gates)
+    cuQuantum (UVM)     ... ✅ 0.03s (98 gates)
+    BMQSim-like         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (98 gates)
+    EdgeQuantum         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.01s (98 gates)
+
+  📊 Circuit: Random-20
+    cuQuantum (Native)  ... ✅ 0.07s (520 gates)
+    cuQuantum (UVM)     ... ✅ 0.12s (520 gates)
+    BMQSim-like         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.07s (520 gates)
+    EdgeQuantum         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.06s (520 gates)
+
+  📊 Circuit: GHZ
+    cuQuantum (Native)  ... ✅ 0.01s (26 gates)
+    cuQuantum (UVM)     ... ✅ 0.01s (26 gates)
+    BMQSim-like         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (26 gates)
+    EdgeQuantum         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.00s (26 gates)
+
+  📊 Circuit: QuantumVolume
+    cuQuantum (Native)  ... ✅ 0.11s (800 gates)
+    cuQuantum (UVM)     ... ✅ 0.29s (800 gates)
+    BMQSim-like         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.11s (800 gates)
+    EdgeQuantum         ... [EdgeQuantum] 26Q: IN-MEMORY MODE (cuQuantum-speed)
+✅ 0.10s (800 gates)
+
+============================================================
+  Testing 28 Qubits (2.15 GB state vector)
+============================================================
+
+  📊 Circuit: Hadamard
+    cuQuantum (Native)  ... ✅ 0.56s (28 gates)
+    cuQuantum (UVM)     ... 

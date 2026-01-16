@@ -1,0 +1,25 @@
+============================================================
+   V1 vs V2 PERFORMANCE COMPARISON
+============================================================
+
+🔴 V1 (Original) - 26 qubits, 50 gates...
+   Init: 0.45s, Gates: 79.10s, Total: 79.55s
+
+🟢 V2 (Optimized) - 26 qubits, 50 gates...
+[EdgeQuantum V2] 26Q: 16 chunks × 33.6MB
+[EdgeQuantum V2] Optimizations: Zero-Copy, Gate Fusion (threshold=10), Double Buffering
+   Init: 0.33s, Gates: 8.65s, Total: 8.98s
+
+============================================================
+   RESULTS SUMMARY
+============================================================
+Metric               V1 (Original)   V2 (Optimized)  Speedup   
+------------------------------------------------------------
+Init Time            0.45s           0.33s            -
+Gate Time            79.10s           8.65s            9.15x
+Total Time           79.55s           8.98s
+Storage              0.002GB         0.002GB
+============================================================
+
+🚀 Gate Execution Speedup: 9.15x
+💾 Results saved to: data/v1_v2_comparison.json
