@@ -1,9 +1,0 @@
-nohup: ignoring input
-Traceback (most recent call last):
-  File "/home/jetson/skim/edgeQuantum-iotj/code/cuquantum_sim.py", line 10, in <module>
-    import cuquantum as cq
-  File "/home/jetson/.local/lib/python3.8/site-packages/cuquantum/__init__.py", line 6, in <module>
-    from cuquantum import cutensornet
-  File "/home/jetson/.local/lib/python3.8/site-packages/cuquantum/cutensornet/__init__.py", line 5, in <module>
-    from cuquantum.cutensornet.cutensornet import *
-ImportError: libcutensor.so.1: cannot open shared object file: No such file or directory

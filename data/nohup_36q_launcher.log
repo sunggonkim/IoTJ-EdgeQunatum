@@ -1,8 +1,0 @@
-nohup: ignoring input
-🔎 Locating cuQuantum libraries...
-dirname: missing operand
-Try 'dirname --help' for more information.
-✅ LD_LIBRARY_PATH set to:Str/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64::/home/jetson/.local/lib/python3.8/site-packages/cutensor/lib:/home/jetson/.local/lib/python3.8/site-packages/cuquantum/lib
-🚀 Starting Native cuQuantum Benchmark (28, 30, 32, 33, 34 qubits)...
-✅ Benchmark running in background. PID: 2854011
-📄 Logs: data/cuquantum_36q.log

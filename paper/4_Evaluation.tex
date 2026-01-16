@@ -83,17 +83,26 @@ Qiskit Aer & CPU & General & High-Performance (CPU Fallback) \\
 \toprule
 \textbf{Qubits} & \textbf{Native} & \textbf{UVM} & \textbf{BMQSim} & \textbf{Ours} \\
 \midrule
-20 & 0.10 & 0.09 & 8.56 & \textbf{1.02} \\
-22 & 0.04 & 0.09 & 25.22 & \textbf{2.15} \\
-24 & 0.03 & 0.09 & 62.66 & \textbf{4.77} \\
-26 & 0.04 & 0.07 & 223.92 & \textbf{14.81} \\
-28 & OOM & OOM & --- & \textbf{45.2} \\
+20 & 0.06 & 0.15 & 0.03 & \textbf{0.03} \\
+22 & 0.03 & 0.05 & 0.03 & \textbf{0.03} \\
+24 & 0.03 & 0.04 & 0.03 & \textbf{0.03} \\
+26 & 0.31 & 0.05 & 0.03 & \textbf{0.03} \\
+28 & 0.01 & 4.51 & $\sim$180 & \textbf{$\sim$180} \\
 \bottomrule
 \end{tabular}
 \label{tab:baselines}
 \end{table}
 
-\textbf{Speedup}: \EdgeQuantum achieves 8.4$\times$--15.1$\times$ speedup over BMQSim-like baseline by eliminating I/O wait through async prefetching and gate fusion.
+Figure~\ref{fig:benchmark} shows simulation time comparison across all evaluated baselines for Hadamard, Random-10, and QFT circuits from 20 to 26 qubits.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/benchmark_comparison.pdf}
+\caption{Performance comparison of EdgeQuantum against seven baseline simulators on Jetson Orin Nano (8GB, 15W). EdgeQuantum achieves cuQuantum-level performance for in-memory states (20--26Q) while CPU-based simulators (PennyLane, Intel-QS) show exponential scaling. Note: PennyLane uses Python fallback due to missing ARM64 binaries.}
+\label{fig:benchmark}
+\end{figure}
+
+\textbf{Key Observations}: (1) EdgeQuantum matches cuQuantum Native performance at 20--26Q (in-memory mode); (2) PennyLane shows 200$\times$ overhead due to ARM64 CPU fallback; (3) Intel-QS exhibits expected exponential scaling with qubits.
 
 
 \subsection{Extreme Qubit Scaling}
