@@ -45,3 +45,7 @@ The bandwidth bottleneck of a single SSD (1 GB/s) can be overcome by distributin
 \end{enumerate}
 
 This "Cluster-on-Desk" approach would bridge the gap between single-device prototyping and HPC-scale production runs.
+
+\subsection{Software Portability and CUDA Compatibility}
+
+A significant challenge during the development of \EdgeQuantum was navigating the evolving NVIDIA software ecosystem. While modern HPC environments track CUDA 12.x and 13.x, many edge platforms such as the Jetson Orin series remain optimized for CUDA 11.4 (JetPack 5.x). We discovered a critical compatibility threshold at cuQuantum v24.03, beyond which CUDA 11 support was discontinued. Consequently, the optimal and most stable configuration for \EdgeQuantum on Current-generation Jetson devices is cuQuantum Python 23.3.0 using cuStateVec 1.9.0. Furthermore, we implemented custom wrapper layers for \texttt{apply\_matrix} calls to bridge specific API differences in target bit management found in the ARM64-specific Python bindings of these library versions.

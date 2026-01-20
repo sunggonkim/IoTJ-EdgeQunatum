@@ -1,0 +1,4 @@
+=== 30Q Verification (NVMe Zero-Copy) ===
+[EdgeQuantum Jetson SOTA] 30Q. Size: 8.59GB
+  -> Strategy: [96mZero-Copy Pipeline (NVMe O_DIRECT)[0m
+  -> Formatting NVMe storage...
