@@ -1,0 +1,40 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Background}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Quantum State Vector Simulation Challenges}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Hardware Constraints on the Edge}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Design of EdgeQuantum}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Unified Memory State Layout}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Zero-Copy Async Pipeline}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Gate Fusion Strategy}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.4}{Safe Double Buffering}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Evaluation}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Experimental Setup}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Comparison with ScaleQsim}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.3}{Baseline Comparison}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.4}{Extreme Qubit Scaling}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.5}{Multi-Circuit Benchmark}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.6}{Throughput Analysis}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.7}{Time Breakdown}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.8}{Compression Effectiveness}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.9}{Power Efficiency}{section.4}% 19
+\BOOKMARK [1][-]{section.5}{Case Study: VQE for Smart Grid}{}% 20
+\BOOKMARK [2][-]{subsection.5.1}{Problem Formulation}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.2}{Implementation}{section.5}% 22
+\BOOKMARK [2][-]{subsection.5.3}{Results}{section.5}% 23
+\BOOKMARK [2][-]{subsection.5.4}{Edge vs. Cloud}{section.5}% 24
+\BOOKMARK [1][-]{section.6}{Discussion}{}% 25
+\BOOKMARK [2][-]{subsection.6.1}{The Capacity-Speed Trade-off}{section.6}% 26
+\BOOKMARK [2][-]{subsection.6.2}{Energy Efficiency at the Edge}{section.6}% 27
+\BOOKMARK [2][-]{subsection.6.3}{Future Roadmap: Distributed Edge Quantum}{section.6}% 28
+\BOOKMARK [1][-]{section.7}{Related Work}{}% 29
+\BOOKMARK [2][-]{subsection.7.1}{GPU-Accelerated Quantum Simulation}{section.7}% 30
+\BOOKMARK [2][-]{subsection.7.2}{Storage-Extended Simulation}{section.7}% 31
+\BOOKMARK [2][-]{subsection.7.3}{Tensor Network Methods}{section.7}% 32
+\BOOKMARK [2][-]{subsection.7.4}{Edge and IoT Quantum}{section.7}% 33
+\BOOKMARK [2][-]{subsection.7.5}{Positioning of EdgeQuantum}{section.7}% 34
+\BOOKMARK [1][-]{section.8}{Conclusion}{}% 35
+\BOOKMARK [1][-]{section*.1}{Appendix A: Compression Effectiveness Analysis}{}% 36
+\BOOKMARK [2][-]{subsection.Appendix.A.1}{Theoretical Basis}{section*.1}% 37
+\BOOKMARK [2][-]{subsection.Appendix.A.2}{Impact of Entanglement}{section*.1}% 38
+\BOOKMARK [2][-]{subsection.Appendix.A.3}{Memory Traffic Model}{section*.1}% 39
+\BOOKMARK [1][-]{section*.2}{References}{}% 40

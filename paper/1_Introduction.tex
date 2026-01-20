@@ -1,0 +1,57 @@
+\section{Introduction}
+\label{sec:intro}
+
+Quantum computing offers a computational model distinct from classical computing by operating on qubits rather than binary bits. Each qubit is represented as a quantum state with probability amplitudes (e.g., $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$), where superposition allows multiple states and entanglement creates correlated interactions between qubits. These properties enable parallelism beyond classical computation~\cite{miguel2023enhancing, renner2022computational}. Despite these advantages, current quantum computers remain limited to Noisy Intermediate-Scale Quantum (NISQ) devices with high error rates and short coherence times~\cite{suzuki2022quantum, preskill2019quantum}.
+
+To overcome these limitations, GPU-accelerated simulation has become essential for quantum algorithm development and validation. State-of-the-art simulators like ScaleQsim~\cite{10.1145/3771577} achieve 42-qubit simulation using 512 GPUs on leadership-class supercomputers. However, such HPC resources are inaccessible to most researchers and entirely impractical for edge computing scenarios requiring local quantum algorithm execution.
+
+This paper addresses a different challenge: \textit{Can resource-constrained edge devices, costing under \$500 and consuming only 15W, simulate large-scale quantum circuits for algorithm development?} We present \EdgeQuantum, a framework that trades execution speed for memory capacity, enabling \textbf{37-qubit simulation} (1TB state vector) on an 8GB NVIDIA Jetson Orin Nano---a 128$\times$ capacity expansion through tiered memory with LZ4 compression.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Memory Wall]{\includegraphics[width=0.48\columnwidth]{fig_motivation_a.pdf}\label{fig:motivation_a}}
+    \hfill
+    \subfloat[Edge Advantage]{\includegraphics[width=0.48\columnwidth]{fig_motivation_b.pdf}\label{fig:motivation_b}}
+    \caption{(a) State vector size grows exponentially, exceeding GPU memory at 27+ qubits. (b) EdgeQuantum achieves 164$\times$ lower latency than cloud quantum services.}
+    \label{fig:motivation}
+\end{figure}
+
+Figure~\ref{fig:motivation} illustrates the scalability challenge. As shown in Figure~\ref{fig:motivation_a}, the memory requirement for quantum state vectors grows exponentially with qubit count, quickly exceeding both edge device (8GB) and datacenter GPU (80GB) capacities. Figure~\ref{fig:motivation_b} demonstrates the latency advantage of edge-based simulation: \EdgeQuantum achieves 164$\times$ lower latency than cloud quantum services for VQE iterations, enabling real-time optimization for IoT applications.
+
+These results highlight a key limitation: GPU VRAM alone cannot support large-scale simulation on resource-constrained devices. To overcome this, the system must utilize the entire memory hierarchy, where DRAM serves as a higher-capacity intermediate tier and storage retains the full state vector. This tiered-memory hierarchy extends memory capacity and enables scalable execution.
+
+\begin{table}[H]
+\caption{Comparison with prior work across key capabilities.}
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Framework} & \textbf{Edge} & \textbf{GPU} & \textbf{Tiered} & \textbf{Compress} & \textbf{Max Q} \\
+\midrule
+Qiskit Aer~\cite{qiskit} & \xmark & \cmark & \xmark & \xmark & 30+ \\
+cuQuantum~\cite{cuquantum} & \xmark & \cmark & \pmark & \xmark & 40+ \\
+PennyLane~\cite{pennylane} & \pmark & \cmark & \xmark & \xmark & 25+ \\
+ScaleQsim~\cite{10.1145/3771577} & \xmark & \cmark & \pmark & \xmark & 42 \\
+SnuQS~\cite{park2022snuqs} & \xmark & \xmark & \cmark & \xmark & 42 \\
+BMQSim~\cite{zhang2025bmqsim} & \xmark & \cmark & \xmark & \cmark & 36 \\
+\midrule
+\textbf{\EdgeQuantum} & \cmark & \cmark & \cmark & \cmark & \textbf{37} \\
+\bottomrule
+\end{tabular}
+\label{tab:comparison}
+\end{table}
+
+Table~\ref{tab:comparison} summarizes the comparison with existing quantum simulation frameworks. Most prior works target datacenter-class GPUs with abundant memory and lack edge device optimization. \EdgeQuantum distinguishes itself by adopting a unified tiered-memory architecture that separates logical state vector management from physical memory residency. By exploiting locality and compression, \EdgeQuantum orchestrates overlapped data movement and computation, ensuring data is resident in GPU cache on demand while hiding I/O latency.
+
+In this paper, we present \EdgeQuantum, a scalable quantum circuit simulation framework designed for resource-constrained IoT edge devices. Specifically, \EdgeQuantum (1) partitions the state vector to manage residency across the memory hierarchy beyond GPU VRAM limits, (2) employs an asynchronous execution pipeline that overlaps computation with data movement to hide latency, and (3) integrates LZ4 compression achieving 242.7$\times$ storage reduction. Our results demonstrate scalable \textbf{37-qubit simulation} (1TB raw state) on an 8GB Jetson Orin Nano---a 128$\times$ capacity expansion---trading execution speed for memory capacity at 15W power consumption.
+
+\textbf{Contributions.}
+\begin{enumerate}
+    \item \textbf{EdgeQuantum Framework}: First GPU-accelerated quantum simulator optimized for ARM-based edge devices with tiered memory offloading (VRAM$\to$DRAM$\to$SSD).
+    
+    \item \textbf{Extreme Scalability}: 37-qubit simulation (1TB state vector) on 8GB device using native cuQuantum and LZ4 compression (242.7$\times$ ratio).
+    
+    \item \textbf{VQE/QAOA Implementation}: Complete variational algorithms with sub-second iteration latency and 100\% QAOA approximation ratio on MaxCut.
+    
+    \item \textbf{Open-source release} at \url{https://github.com/sunggonkim/IoTJ-EdgeQuantum}.
+\end{enumerate}

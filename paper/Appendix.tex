@@ -1,0 +1,33 @@
+\appendices
+
+\section{Compression Effectiveness Analysis}
+\label{sec:appendix_compression}
+
+The effectiveness of LZ4 compression in \EdgeQuantum relies on the sparsity of quantum state vectors during intermediate execution steps.
+
+\subsection{Theoretical Basis}
+For an $n$-qubit system initialized to $|0\rangle^{\otimes n}$, the state vector has exactly one non-zero amplitude:
+\begin{equation}
+\alpha_i = \begin{cases} 1 & \text{if } i = 0 \\ 0 & \text{otherwise} \end{cases}
+\end{equation}
+This represents minimum entropy and maximum compressibility. The raw size is $16 \cdot 2^n$ bytes (complex128) or $8 \cdot 2^n$ bytes (complex64). LZ4 collapses runs of zeros, reducing the size to effectively metadata overhead, achieving ratios $>200\times$.
+
+\subsection{Impact of Entanglement}
+Applying a Hadamard gate on qubit $k$ creates superposition:
+\begin{equation}
+H_k |0\rangle^{\otimes n} = |0\rangle^{\dots} \otimes \frac{|0\rangle + |1\rangle}{\sqrt{2}} \otimes |0\rangle^{\dots}
+\end{equation}
+This doubles the number of non-zero amplitudes. A full layer of Hadamard gates ($H^{\otimes n}$) creates a uniform superposition where all $2^n$ amplitudes are non-zero ($1/\sqrt{2^n}$), maximizing entropy and reducing compression ratio to $1\times$ (uncompressible).
+
+However, many practical circuits (e.g., QFT, VQE) maintain structured sparsity or local correlations for significant depth. \EdgeQuantum exploits this dynamic sparsity. As observed in Table~\ref{tab:circuits}, circuits like GHZ (highly entangled but simple correlation) maintain high compression, whereas Random circuits rapidly approach the uncompressible limit.
+
+\subsection{Memory Traffic Model}
+The total data transferred $D_{total}$ for a circuit with $G$ gates and effective compression ratio $r$ is:
+\begin{equation}
+D_{total} = \sum_{g=1}^{G} \left( \frac{S_{state}}{r_g} \right) \times 2
+\end{equation}
+where $S_{state}$ is the raw state size and factor 2 accounts for read/write. When $r_g$ drops below the threshold determined by SSD bandwidth ($B_{ssd}$) vs Gate Compute Time ($T_{gate}$):
+\begin{equation}
+\frac{S_{state}}{r_g \cdot B_{ssd}} > T_{gate}
+\end{equation}
+the system becomes I/O bound. Our experiments confirm this transition occurs around 26-28 qubits for random circuits on the Jetson Orin Nano.

@@ -1,0 +1,68 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib
+Warning--I didn't find a database entry for "miguel2023enhancing"
+Warning--I didn't find a database entry for "renner2022computational"
+Warning--I didn't find a database entry for "suzuki2022quantum"
+Warning--I didn't find a database entry for "preskill2019quantum"
+Warning--I didn't find a database entry for "10.1145/3771577"
+Warning--I didn't find a database entry for "park2022snuqs"
+Warning--I didn't find a database entry for "zhang2025bmqsim"
+Warning--I didn't find a database entry for "svsim"
+Warning--I didn't find a database entry for "zhang2021hyquas"
+Warning--I didn't find a database entry for "xu2024atlas"
+Warning--I didn't find a database entry for "gray2018quimb"
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+You've used 4 entries,
+            4087 wiz_defined-function locations,
+            846 strings with 7836 characters,
+and the built_in function-call counts, 1350 in all, are:
+= -- 94
+> -- 7
+< -- 0
++ -- 5
+- -- 1
+* -- 53
+:= -- 238
+add.period$ -- 8
+call.type$ -- 4
+change.case$ -- 4
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 118
+empty$ -- 143
+format.name$ -- 1
+if$ -- 289
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 25
+newline$ -- 35
+num.names$ -- 1
+pop$ -- 76
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 108
+stack$ -- 0
+substring$ -- 4
+swap$ -- 59
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 4
+warning$ -- 0
+while$ -- 1
+width$ -- 5
+write$ -- 51
+(There were 11 warnings)

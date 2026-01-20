@@ -1,0 +1,2319 @@
+{
+  "timestamp": "20260119_123451",
+  "device": "Jetson Orin Nano 8GB (Recovered)",
+  "results": [
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QV",
+      "qubits": 20,
+      "success": true,
+      "time": null,
+      "gates": null,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QV",
+      "qubits": 20,
+      "success": true,
+      "time": 0.3599,
+      "gates": 400,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QV",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2682,
+      "gates": 400,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QV",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2501,
+      "gates": 400,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QV",
+      "qubits": 20,
+      "success": true,
+      "time": 8.1011,
+      "gates": 400,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QV",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2355,
+      "gates": 400,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQC",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2879,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQC",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2915,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQC",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2131,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQC",
+      "qubits": 20,
+      "success": true,
+      "time": 0.1065,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQC",
+      "qubits": 20,
+      "success": true,
+      "time": 3.6909,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQC",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2094,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QSVM",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2592,
+      "gates": 80,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QSVM",
+      "qubits": 20,
+      "success": true,
+      "time": 0.271,
+      "gates": 80,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QSVM",
+      "qubits": 20,
+      "success": true,
+      "time": 0.1917,
+      "gates": 80,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QSVM",
+      "qubits": 20,
+      "success": true,
+      "time": 0.0454,
+      "gates": 80,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QSVM",
+      "qubits": 20,
+      "success": true,
+      "time": 1.5428,
+      "gates": 80,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QSVM",
+      "qubits": 20,
+      "success": true,
+      "time": 0.1907,
+      "gates": 80,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "Random",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2795,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "Random",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2823,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "Random",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2113,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "Random",
+      "qubits": 20,
+      "success": true,
+      "time": 0.1293,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "Random",
+      "qubits": 20,
+      "success": true,
+      "time": 3.7657,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "Random",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2025,
+      "gates": 200,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "GHZ",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2606,
+      "gates": 20,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "GHZ",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2597,
+      "gates": 20,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "GHZ",
+      "qubits": 20,
+      "success": true,
+      "time": 0.1842,
+      "gates": 20,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "GHZ",
+      "qubits": 20,
+      "success": true,
+      "time": 0.0159,
+      "gates": 20,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "GHZ",
+      "qubits": 20,
+      "success": true,
+      "time": 0.3721,
+      "gates": 20,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "GHZ",
+      "qubits": 20,
+      "success": true,
+      "time": 0.1868,
+      "gates": 20,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQE",
+      "qubits": 20,
+      "success": true,
+      "time": 0.2857,
+      "gates": 120,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQE",
+      "qubits": 20,
+      "success": true,
+      "time": 0.281,
+      "gates": 120,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQE",
+      "qubits": 20,
+      "success": true,
+      "time": 0.1952,
+      "gates": 120,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQE",
+      "qubits": 20,
+      "success": true,
+      "time": 0.0662,
+      "gates": 120,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQE",
+      "qubits": 20,
+      "success": true,
+      "time": 2.3388,
+      "gates": 120,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQE",
+      "qubits": 20,
+      "success": true,
+      "time": 0.206,
+      "gates": 120,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QV",
+      "qubits": 22,
+      "success": true,
+      "time": 0.3273,
+      "gates": 484,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QV",
+      "qubits": 22,
+      "success": true,
+      "time": 0.3265,
+      "gates": 484,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QV",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2624,
+      "gates": 484,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QV",
+      "qubits": 22,
+      "success": true,
+      "time": 0.3407,
+      "gates": 484,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QV",
+      "qubits": 22,
+      "success": true,
+      "time": 38.6799,
+      "gates": 484,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QV",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2754,
+      "gates": 484,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQC",
+      "qubits": 22,
+      "success": true,
+      "time": 0.294,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQC",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2885,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQC",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2132,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQC",
+      "qubits": 22,
+      "success": true,
+      "time": 0.1161,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQC",
+      "qubits": 22,
+      "success": true,
+      "time": 16.6409,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQC",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2145,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QSVM",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2681,
+      "gates": 88,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QSVM",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2669,
+      "gates": 88,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QSVM",
+      "qubits": 22,
+      "success": true,
+      "time": 0.1994,
+      "gates": 88,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QSVM",
+      "qubits": 22,
+      "success": true,
+      "time": 0.0499,
+      "gates": 88,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QSVM",
+      "qubits": 22,
+      "success": true,
+      "time": 6.7001,
+      "gates": 88,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QSVM",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2038,
+      "gates": 88,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "Random",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2942,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "Random",
+      "qubits": 22,
+      "success": true,
+      "time": 0.3162,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "Random",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2266,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "Random",
+      "qubits": 22,
+      "success": true,
+      "time": 0.143,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "Random",
+      "qubits": 22,
+      "success": true,
+      "time": 16.5244,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "Random",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2226,
+      "gates": 220,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "GHZ",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2777,
+      "gates": 22,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "GHZ",
+      "qubits": 22,
+      "success": true,
+      "time": 0.274,
+      "gates": 22,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "GHZ",
+      "qubits": 22,
+      "success": true,
+      "time": 0.1851,
+      "gates": 22,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "GHZ",
+      "qubits": 22,
+      "success": true,
+      "time": 0.0173,
+      "gates": 22,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "GHZ",
+      "qubits": 22,
+      "success": true,
+      "time": 1.6173,
+      "gates": 22,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "GHZ",
+      "qubits": 22,
+      "success": true,
+      "time": 0.1829,
+      "gates": 22,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQE",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2807,
+      "gates": 132,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQE",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2865,
+      "gates": 132,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQE",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2032,
+      "gates": 132,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQE",
+      "qubits": 22,
+      "success": true,
+      "time": 0.0715,
+      "gates": 132,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQE",
+      "qubits": 22,
+      "success": true,
+      "time": 9.9843,
+      "gates": 132,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQE",
+      "qubits": 22,
+      "success": true,
+      "time": 0.2008,
+      "gates": 132,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QV",
+      "qubits": 24,
+      "success": true,
+      "time": 0.3722,
+      "gates": 576,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QV",
+      "qubits": 24,
+      "success": true,
+      "time": 0.3829,
+      "gates": 576,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QV",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2892,
+      "gates": 576,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QV",
+      "qubits": 24,
+      "success": true,
+      "time": 0.3722,
+      "gates": 576,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QV",
+      "qubits": 24,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QV",
+      "qubits": 24,
+      "success": true,
+      "time": 1.9659,
+      "gates": 576,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQC",
+      "qubits": 24,
+      "success": true,
+      "time": 0.3105,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQC",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2938,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQC",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2117,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQC",
+      "qubits": 24,
+      "success": true,
+      "time": 0.1244,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQC",
+      "qubits": 24,
+      "success": true,
+      "time": 66.3075,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQC",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2115,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QSVM",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2797,
+      "gates": 96,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QSVM",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2782,
+      "gates": 96,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QSVM",
+      "qubits": 24,
+      "success": true,
+      "time": 0.1999,
+      "gates": 96,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QSVM",
+      "qubits": 24,
+      "success": true,
+      "time": 0.053,
+      "gates": 96,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QSVM",
+      "qubits": 24,
+      "success": true,
+      "time": 27.217,
+      "gates": 96,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QSVM",
+      "qubits": 24,
+      "success": true,
+      "time": 0.1967,
+      "gates": 96,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "Random",
+      "qubits": 24,
+      "success": true,
+      "time": 0.3253,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "Random",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2985,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "Random",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2216,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "Random",
+      "qubits": 24,
+      "success": true,
+      "time": 0.1528,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "Random",
+      "qubits": 24,
+      "success": true,
+      "time": 73.8472,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "Random",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2147,
+      "gates": 240,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "GHZ",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2659,
+      "gates": 24,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "GHZ",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2624,
+      "gates": 24,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "GHZ",
+      "qubits": 24,
+      "success": true,
+      "time": 0.1927,
+      "gates": 24,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "GHZ",
+      "qubits": 24,
+      "success": true,
+      "time": 0.0187,
+      "gates": 24,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "GHZ",
+      "qubits": 24,
+      "success": true,
+      "time": 6.696,
+      "gates": 24,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "GHZ",
+      "qubits": 24,
+      "success": true,
+      "time": 0.1852,
+      "gates": 24,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQE",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2848,
+      "gates": 144,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQE",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2917,
+      "gates": 144,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQE",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2096,
+      "gates": 144,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQE",
+      "qubits": 24,
+      "success": true,
+      "time": 0.0776,
+      "gates": 144,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQE",
+      "qubits": 24,
+      "success": true,
+      "time": 40.3425,
+      "gates": 144,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQE",
+      "qubits": 24,
+      "success": true,
+      "time": 0.2057,
+      "gates": 144,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QV",
+      "qubits": 26,
+      "success": true,
+      "time": 0.4916,
+      "gates": 676,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QV",
+      "qubits": 26,
+      "success": true,
+      "time": 0.4665,
+      "gates": 676,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QV",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3011,
+      "gates": 676,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QV",
+      "qubits": 26,
+      "success": true,
+      "time": 0.4131,
+      "gates": 676,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QV",
+      "qubits": 26,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QV",
+      "qubits": 26,
+      "success": true,
+      "time": 1.78,
+      "gates": 676,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQC",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3446,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQC",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3705,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQC",
+      "qubits": 26,
+      "success": true,
+      "time": 0.2174,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQC",
+      "qubits": 26,
+      "success": true,
+      "time": 0.1344,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQC",
+      "qubits": 26,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQC",
+      "qubits": 26,
+      "success": true,
+      "time": 1.7453,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3317,
+      "gates": 104,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "success": true,
+      "time": 0.346,
+      "gates": 104,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "success": true,
+      "time": 0.1982,
+      "gates": 104,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "success": true,
+      "time": 0.0573,
+      "gates": 104,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "success": true,
+      "time": 126.8288,
+      "gates": 104,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "success": true,
+      "time": 0.205,
+      "gates": 104,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "Random",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3563,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "Random",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3925,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "Random",
+      "qubits": 26,
+      "success": true,
+      "time": 0.2306,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "Random",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3465,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "Random",
+      "qubits": 26,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "Random",
+      "qubits": 26,
+      "success": true,
+      "time": 1.7715,
+      "gates": 260,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "success": true,
+      "time": 0.4139,
+      "gates": 26,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3307,
+      "gates": 26,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "success": true,
+      "time": 0.1956,
+      "gates": 26,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "success": true,
+      "time": 0.02,
+      "gates": 26,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "success": true,
+      "time": 32.4024,
+      "gates": 26,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "success": true,
+      "time": 0.1914,
+      "gates": 26,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQE",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3472,
+      "gates": 156,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQE",
+      "qubits": 26,
+      "success": true,
+      "time": 0.3591,
+      "gates": 156,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQE",
+      "qubits": 26,
+      "success": true,
+      "time": 0.206,
+      "gates": 156,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQE",
+      "qubits": 26,
+      "success": true,
+      "time": 0.0848,
+      "gates": 156,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQE",
+      "qubits": 26,
+      "success": true,
+      "time": 191.1139,
+      "gates": 156,
+      "error": null
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQE",
+      "qubits": 26,
+      "success": true,
+      "time": 3.677,
+      "gates": 156,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QV",
+      "qubits": 28,
+      "success": true,
+      "time": 1.1432,
+      "gates": 784,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QV",
+      "qubits": 28,
+      "success": true,
+      "time": 0.9316,
+      "gates": 784,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QV",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QV",
+      "qubits": 28,
+      "success": true,
+      "time": 0.4867,
+      "gates": 784,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QV",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QV",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQC",
+      "qubits": 28,
+      "success": true,
+      "time": 7.2717,
+      "gates": 280,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQC",
+      "qubits": 28,
+      "success": true,
+      "time": 1.0181,
+      "gates": 280,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQC",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQC",
+      "qubits": 28,
+      "success": true,
+      "time": 0.1495,
+      "gates": 280,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQC",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQC",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "success": true,
+      "time": 7.756,
+      "gates": 112,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "success": true,
+      "time": 2.1921,
+      "gates": 112,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "success": true,
+      "time": 0.0607,
+      "gates": 112,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "Random",
+      "qubits": 28,
+      "success": true,
+      "time": 7.6214,
+      "gates": 280,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "Random",
+      "qubits": 28,
+      "success": true,
+      "time": 2.2137,
+      "gates": 280,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "Random",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "Random",
+      "qubits": 28,
+      "success": true,
+      "time": 0.2038,
+      "gates": 280,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "Random",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "Random",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "success": true,
+      "time": 7.0237,
+      "gates": 28,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "success": true,
+      "time": 0.8883,
+      "gates": 28,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "success": true,
+      "time": 0.02,
+      "gates": 28,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQE",
+      "qubits": 28,
+      "success": true,
+      "time": 7.6389,
+      "gates": 168,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQE",
+      "qubits": 28,
+      "success": true,
+      "time": 0.913,
+      "gates": 168,
+      "error": null
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQE",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQE",
+      "qubits": 28,
+      "success": true,
+      "time": 0.089,
+      "gates": 168,
+      "error": null
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQE",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQE",
+      "qubits": 28,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QV",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QV",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QV",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QV",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": 900,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QV",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QV",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQC",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQC",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQC",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQC",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": 300,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQC",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQC",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QSVM",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QSVM",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QSVM",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QSVM",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": 120,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QSVM",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QSVM",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "Random",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "Random",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "Random",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "Random",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": 300,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "Random",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "Random",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "GHZ",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "GHZ",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "GHZ",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "GHZ",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": 30,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "GHZ",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "GHZ",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQE",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQE",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQE",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQE",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": 180,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQE",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQE",
+      "qubits": 30,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QV",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QV",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QV",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QV",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": 1024,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QV",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QV",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQC",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQC",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQC",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQC",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": 320,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQC",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQC",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QSVM",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QSVM",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QSVM",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QSVM",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": 128,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QSVM",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "QSVM",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "Random",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "Random",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "Random",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM KILLED (Memory Limit Exceeded)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "Random",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": 320,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "Random",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "Random",
+      "qubits": 32,
+      "success": true,
+      "time": 16894.5712,
+      "gates": 320,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "GHZ",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "GHZ",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "GHZ",
+      "qubits": 32,
+      "success": true,
+      "time": 1824.2906,
+      "gates": 32,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "GHZ",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": 32,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "GHZ",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "GHZ",
+      "qubits": 32,
+      "success": true,
+      "time": 1456.9809,
+      "gates": 32,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "VQE",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "VQE",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "VQE",
+      "qubits": 32,
+      "success": true,
+      "time": 10031.1924,
+      "gates": 192,
+      "error": null
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "VQE",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": 192,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "VQE",
+      "qubits": 32,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "EdgeQuantum (Ours)",
+      "circuit": "VQE",
+      "qubits": 32,
+      "success": true,
+      "time": 8431.4074,
+      "gates": 192,
+      "error": null
+    },
+    {
+      "simulator": "cuQuantum (Native)",
+      "circuit": "QV",
+      "qubits": 34,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    },
+    {
+      "simulator": "cuQuantum (UVM)",
+      "circuit": "QV",
+      "qubits": 34,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "ERROR: cudaErrorMemoryAllocation: out of memory"
+    },
+    {
+      "simulator": "BMQSim-like (Swap)",
+      "circuit": "QV",
+      "qubits": 34,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "TIMEOUT (99999s)"
+    },
+    {
+      "simulator": "Google Cirq",
+      "circuit": "QV",
+      "qubits": 34,
+      "success": false,
+      "time": null,
+      "gates": 1156,
+      "error": "OOM (Verified Invalid)"
+    },
+    {
+      "simulator": "PennyLane (Ltn)",
+      "circuit": "QV",
+      "qubits": 34,
+      "success": false,
+      "time": null,
+      "gates": null,
+      "error": "OOM"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+\section{Background}
+
+\subsection{Quantum State Vector Simulation Challenges}\label{2.1}
+Full state vector simulation is essential for verifying quantum algorithms as it provides exact probability amplitudes. However, it suffers from performance bottlenecks due to exponential data growth and the irregular nature of quantum gate operations, making performance highly dependent on memory hierarchy efficiency~\cite{qsim, svsim}. For an $N$-qubit system, the state vector requires $2^N$ complex amplitudes, leading to memory requirements that double with each additional qubit. For instance, simulating 30 qubits requires 16 GB, which fits within the VRAM of a modern GPU. However, 40 qubits require 16 TB, far exceeding the capacity of any single GPU or even a dense GPU node, necessitating the use of system DRAM and storage.
+
+The access patterns of quantum gates exacerbate this memory pressure. A single-qubit gate on the $k$-th qubit accesses amplitude pairs separated by a stride of $2^k$. As $k$ increases, this stride grows, resulting in non-contiguous memory accesses that degrade cache locality. Furthermore, widely used algorithms such as the Quantum Fourier Transform (QFT) or Variational Quantum Eigensolver (VQE) exhibit skewed access patterns. Operations often concentrate on specific subsets of the state vector while leaving others idle for extended periods.
+
+In a simulated 30-qubit QFT circuit, certain memory pages (chunks) are accessed orders of magnitude more frequently than others. This ``hotspot'' behavior resembles the locality challenges found in graph processing. While GPU-centric simulators attempt to mitigate this by keeping the entire state in VRAM, this approach hits a hard wall once the state vector size exceeds physical VRAM. In tiered memory scenarios, naively swapping pages based on demand leads to severe I/O thrashing, where the latency of fetching data from storage dominates the execution time, leaving the high-performance GPU compute cores idle.
+
+% Figure removed for Overleaf submission - see original data
+% \begin{figure}[!t]
+%     \centering
+%     \hspace*{0.09\linewidth}
+%     \includegraphics[width=0.85\linewidth]{Figures/legend_patt.png}
+%     \subfloat[16 Subsets.]{\includegraphics[width=0.48\linewidth]{Figures/16_patt.png}\label{16_subset}}
+%     \subfloat[64 Subsets.]{\includegraphics[width=0.48\linewidth]{Figures/64_patt.png}\label{64_subset}}
+%     \caption{Skewed subset access pattern in 30-qubit QFT circuits.}
+%     \label{back_fsv}
+% \end{figure}
+
+% \begin{figure}[!t]
+% \centering
+% \begin{subfigure}{0.48\linewidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{Figures/back_1.png}
+%     \caption{I/O Latency Gap.}
+%     \label{back_1}
+% \end{subfigure}
+% \begin{subfigure}{0.49\linewidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{Figures/back_2.png}
+%     \caption{GPU Utilization vs. Memory Tier.}
+%     \label{back_2}
+% \end{subfigure}
+% \caption{Hardware constraints on Edge IoT devices.}
+% \label{back2}
+% \end{figure}
+
+\subsection{Hardware Constraints on the Edge}
+
+The scalability of quantum simulation on edge devices is fundamentally bounded by the memory hierarchy of embedded systems. Unlike HPC clusters with terabytes of DRAM and high-speed interconnects, edge devices like the NVIDIA Jetson Orin Nano operate under strict power and capacity constraints. The Unified Memory Architecture (UMA) of these devices presents both a limitation and an opportunity. While the CPU and GPU share the same physical RAM, the total capacity (e.g., 8 GB or 16 GB) is insufficient to store state vectors for large qubit counts (e.g., 30+ qubits), necessitating the use of slower storage media like SD cards or NVMe SSDs as a backing store.
+
+\noindent\textbf{Bandwidth Gap and I/O Bottleneck.} Hierarchical storage introduces a massive bandwidth gap. Figure~\ref{back_1} contrasts the throughput of the memory tiers on a Jetson Orin Nano. The internal DRAM offers approximately 68 GB/s bandwidth shared between CPU and GPU. In contrast, an external NVMe SSD provides only about 3 GB/s, and a high-end SD card drops to roughly 90 MB/s. When the simulation working set exceeds DRAM capacity, the system falls back to these slower tiers. This disparity causes the GPU to spend the vast majority of its time waiting for data to be swapped in from storage. For a 30-qubit simulation that spills to disk, we observe that without optimization, I/O wait time can account for over 90\% of the total execution time, rendering the simulation impractically slow.
+
+\noindent\textbf{Unified Memory and Copy Overhead.}
+Performance is further degraded by redundant data movement. In standard tiered memory implementations, data is often copied from storage to a CPU buffer, then to a driver buffer, and finally to GPU memory. On unified memory architectures, these copies are theoretically unnecessary since the pointers physical reside in the same RAM. However, standard libraries and OS paging mechanisms often fail to exploit this, incurring implicit copy overheads and synchronization stalls. Figure~\ref{back_2} shows the impact of memory placement on GPU utilization. When data resides in UMA (DRAM), GPU utilization is high. However, as reliance shifts to storage-backed demand paging, utilization plummets. This motivates the design of \EdgeQuantum, which leverages a managed memory zero-copy architecture and an asynchronous prefetching pipeline to hide the latency of the storage tier and maintain high compute utilization on resource-constrained edge devices.
