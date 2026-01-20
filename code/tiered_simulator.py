@@ -18,7 +18,12 @@ import shutil
 from collections import deque
 from concurrent.futures import ThreadPoolExecutor
 
-# --- Dependencies ---
+try:
+    import lz4.frame as lz4f
+    HAS_LZ4 = True
+except ImportError:
+    HAS_LZ4 = False
+
 try:
     import cupy as cp
     import cupy.cuda.runtime as cuda_rt
@@ -114,8 +119,9 @@ class DirectIO:
 
 
 class TieredSimulator:
-    def __init__(self, n_qubits, use_compression=False, fusion_threshold=5000):
+    def __init__(self, n_qubits, use_compression=True, fusion_threshold=5000):
         self.n = n_qubits
+        self.use_compression = use_compression and HAS_LZ4
         self.fusion_threshold = fusion_threshold
         self.gate_queue = []
         self.gate_count = 0
@@ -135,6 +141,31 @@ class TieredSimulator:
 
         print(f"[EdgeQuantum Jetson Ultimate] {n_qubits}Q. Size: {self.state_size/1e9:.2f}GB")
 
+        # --- Resource Pre-allocation (Must be done before _init_nvme_mode) ---
+        self.gate_cache = {} 
+        self.target_buf = cp.cuda.alloc_pinned_memory(4)
+        self.target_ptr = self.target_buf.ptr
+        
+        self.ws_size = 64 * 1024 * 1024
+        self.ws_mem = cp.cuda.alloc(self.ws_size)
+        self.ws_ptr = self.ws_mem.ptr
+
+        # Determine chunking and allocation
+        target_chunk = 512 * 1024 * 1024
+        if self.usable_mem < 4 * 1024**3:
+            target_chunk = 256 * 1024 * 1024
+        max_chunk_q = int(np.log2(target_chunk / 8))
+        self.gpu_n = min(max_chunk_q, n_qubits - 1)
+        self.chunk_size = 2**self.gpu_n
+        self.chunk_bytes = self.chunk_size * 8
+
+        # Buffer for Compressed Data (Must be aligned for O_DIRECT)
+        if self.use_compression:
+            self.comp_buf_size = self.chunk_bytes + 4096 
+            self.comp_buf_raw = cp.cuda.alloc_pinned_memory(self.comp_buf_size)
+            self.comp_buf_ptr = self.comp_buf_raw.ptr
+            print(f"  -> LZ4 Compression: \033[92mEnabled\033[0m")
+
         if self.state_size < self.usable_mem:
             self.in_memory_state = cp.zeros(2**n_qubits, dtype=COMPLEX64)
             self.in_memory_state[0] = 1.0
@@ -144,30 +175,10 @@ class TieredSimulator:
         else:
             self._init_nvme_mode(n_qubits)
 
-        # --- Resource Pre-allocation (Optimize micro-overhead) ---
-        self.gate_cache = {} 
-        # Pre-allocate pinned memory for target index (Fast update via ctypes)
-        self.target_buf = cp.cuda.alloc_pinned_memory(4) # 1 * int32
-        self.target_ptr = self.target_buf.ptr
-        
-        # Pre-allocate Workspace for cuStateVec (Stability & Performance)
-        self.ws_size = 64 * 1024 * 1024 # 64MB
-        self.ws_mem = cp.cuda.alloc(self.ws_size)
-        self.ws_ptr = self.ws_mem.ptr
-
     def _init_nvme_mode(self, n_qubits):
         print(f"  -> Strategy: \033[96mNVMe O_DIRECT Pipeline\033[0m")
         
-        target_chunk = 512 * 1024 * 1024
-        if self.usable_mem < 4 * 1024**3:
-            target_chunk = 256 * 1024 * 1024
-            
-        max_chunk_q = int(np.log2(target_chunk / 8))
-        self.gpu_n = min(max_chunk_q, n_qubits - 1)
-        self.chunk_size = 2**self.gpu_n
-        self.chunk_bytes = self.chunk_size * 8
         self.n_chunks = 2**(n_qubits - self.gpu_n)
-        
         self.storage_dir = tempfile.mkdtemp(prefix='eq_jetson_', dir=NVME_PATH)
         
         try:
@@ -185,15 +196,42 @@ class TieredSimulator:
         
         # Init Zero State
         print(f"  -> Formatting NVMe ({self.n_chunks} chunks)...")
-        zeros = self.buf_a.get_numpy_view(COMPLEX64)
-        zeros[:] = 0
-        zeros[0] = 1.0
-        self.io.write(0, self.buf_a.ptr, self.chunk_bytes)
+        zeros_view = self.buf_a.get_numpy_view(COMPLEX64)
+        zeros_view[:] = 0
+        zeros_view[0] = 1.0 # Initial State |0...0>
         
-        zeros[0] = 0.0
+        # Use the class-level wrapped writer
+        self._io_write_wrapped(0, self.buf_a.ptr)
+        
+        zeros_view[0] = 0.0
         for i in range(1, self.n_chunks):
-            self.io.write(i, self.buf_a.ptr, self.chunk_bytes)
+            self._io_write_wrapped(i, self.buf_a.ptr)
         print("  -> NVMe formatting complete.")
+
+    def _io_read_wrapped(self, idx, ptr):
+        """Helper for Optional Compressed I/O"""
+        if not self.use_compression:
+            self.io.read(idx, ptr, self.chunk_bytes)
+        else:
+            # Read aligned block, then decompress
+            self.io.read(idx, self.comp_buf_ptr, self.comp_buf_size)
+            data = lz4f.decompress(ctypes.string_at(self.comp_buf_ptr, self.comp_buf_size))
+            ctypes.memmove(ptr, data, self.chunk_bytes)
+
+    def _io_write_wrapped(self, idx, ptr):
+        """Helper for Optional Compressed I/O"""
+        if not self.use_compression:
+            self.io.write(idx, ptr, self.chunk_bytes)
+        else:
+            # Compress, then pad to ALIGN_SIZE for O_DIRECT
+            c_data = lz4f.compress(ctypes.string_at(ptr, self.chunk_bytes))
+            c_len = len(c_data)
+            ctypes.memmove(self.comp_buf_ptr, c_data, c_len)
+            # Zero out padding to maintain alignment for O_DIRECT
+            pad_len = self.comp_buf_size - c_len
+            if pad_len > 0:
+                LIBC.memset(ctypes.c_void_p(self.comp_buf_ptr + c_len), 0, pad_len)
+            self.io.write(idx, self.comp_buf_ptr, self.comp_buf_size)
 
     def init_zero_state(self):
         pass
@@ -242,7 +280,8 @@ class TieredSimulator:
     def _pipeline_nvme(self, gates):
         bufs = [self.buf_a, self.buf_b]
         curr = 0
-        self.io.read(0, bufs[0].ptr, self.chunk_bytes)
+        
+        self._io_read_wrapped(0, bufs[0].ptr)
         
         read_fut = None
         write_fut = None
@@ -252,7 +291,7 @@ class TieredSimulator:
             if i + 1 < self.n_chunks:
                 nxt = 1 - curr
                 if write_fut: write_fut.result()
-                read_fut = self.io_executor.submit(self.io.read, i+1, bufs[nxt].ptr, self.chunk_bytes)
+                read_fut = self.io_executor.submit(self._io_read_wrapped, i+1, bufs[nxt].ptr)
             
             # 2. Compute Segment
             # Explicit copy for cuStateVec stability on 30Q+
@@ -277,7 +316,7 @@ class TieredSimulator:
             cuda_rt.memcpy(bufs[curr].ptr, self.gpu_chunk_ptr, self.chunk_bytes, 2)
             
             # 3. Background Write Current
-            write_fut = self.io_executor.submit(self.io.write, i, bufs[curr].ptr, self.chunk_bytes)
+            write_fut = self.io_executor.submit(self._io_write_wrapped, i, bufs[curr].ptr)
             
             if i + 1 < self.n_chunks: read_fut.result()
             curr = 1 - curr
@@ -293,17 +332,17 @@ class TieredSimulator:
             for i in range(self.n_chunks):
                 if (i & stride) == 0:
                     partner = i | stride
-                    f1 = self.io_executor.submit(self.io.read, i, self.buf_a.ptr, self.chunk_bytes)
-                    f2 = self.io_executor.submit(self.io.read, partner, self.buf_b.ptr, self.chunk_bytes)
+                    f1 = self.io_executor.submit(self._io_read_wrapped, i, self.buf_a.ptr)
+                    f2 = self.io_executor.submit(self._io_read_wrapped, partner, self.buf_b.ptr)
                     f1.result(); f2.result()
                     
-                    # NEON-optimized NumPy compute
+                    # NEON-optimized NumPy compute (Unified RAM)
                     ni = g[0,0]*view_a + g[0,1]*view_b
                     nj = g[1,0]*view_a + g[1,1]*view_b
                     np.copyto(view_a, ni); np.copyto(view_b, nj)
                     
-                    f1 = self.io_executor.submit(self.io.write, i, self.buf_a.ptr, self.chunk_bytes)
-                    f2 = self.io_executor.submit(self.io.write, partner, self.buf_b.ptr, self.chunk_bytes)
+                    f1 = self.io_executor.submit(self._io_write_wrapped, i, self.buf_a.ptr)
+                    f2 = self.io_executor.submit(self._io_write_wrapped, partner, self.buf_b.ptr)
                     f1.result(); f2.result()
 
     def cleanup(self):

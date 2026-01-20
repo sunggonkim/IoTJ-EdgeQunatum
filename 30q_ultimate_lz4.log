@@ -1,0 +1,14 @@
+=== 30Q Ultimate + LZ4 Verification ===
+[EdgeQuantum Jetson Ultimate] 30Q. Size: 8.59GB
+  -> Strategy: [96mNVMe O_DIRECT Pipeline[0m
+  -> Formatting NVMe (32 chunks)...
+❌ FAILURE: 'TieredSimulator' object has no attribute 'comp_buf_ptr'
+Traceback (most recent call last):
+  File "<string>", line 9, in <module>
+  File "/mnt/data/edgeQuantum-iotj/code/tiered_simulator.py", line 151, in __init__
+    self._init_nvme_mode(n_qubits)
+  File "/mnt/data/edgeQuantum-iotj/code/tiered_simulator.py", line 204, in _init_nvme_mode
+    self._io_write_wrapped(0, self.buf_a.ptr)
+  File "/mnt/data/edgeQuantum-iotj/code/tiered_simulator.py", line 229, in _io_write_wrapped
+    ctypes.memmove(self.comp_buf_ptr, c_data, c_len)
+AttributeError: 'TieredSimulator' object has no attribute 'comp_buf_ptr'
