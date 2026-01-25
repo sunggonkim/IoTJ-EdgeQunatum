@@ -1,0 +1,19 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented \EdgeQuantum, the first GPU-accelerated quantum simulation framework optimized for resource-constrained IoT edge devices. By integrating a tiered memory hierarchy (GPU VRAM $\to$ CPU DRAM $\to$ NVMe SSD) with LZ4 compression achieving 242.7$\times$ storage reduction, \EdgeQuantum enables simulation scales previously limited to HPC clusters with hundreds of GPUs.
+
+\textbf{Key Results}:
+\begin{itemize}
+    \item \textbf{37-qubit simulation} (1TB raw state vector) on an 8GB Jetson Orin Nano (\$200, 15W)---a \textbf{128$\times$ capacity expansion} through tiered memory.
+    \item Multi-circuit benchmarks from 20 to 30 qubits across Hadamard, GHZ, QFT, Random, and VQE ansätze, demonstrating consistent 242.7$\times$ compression across diverse circuit structures.
+    \item \textbf{100\% QAOA approximation ratio} on MaxCut problems up to 10 nodes with p=1 variational layer.
+\end{itemize}
+
+\textbf{Honest Performance Comparison}: HPC simulators like ScaleQsim achieve 42 qubits in seconds using 512 GPUs. In contrast, \EdgeQuantum requires 3.3 hours for 37-qubit single-gate simulation. This dramatic speed difference is expected---our contribution is demonstrating that \textit{HPC-scale qubit counts are achievable on edge hardware at all}, not that edge devices match HPC performance.
+
+\textbf{Limitations}: (1) Execution time scales super-linearly due to I/O overhead; (2) LZ4 compression ratio degrades for complex circuits with high entanglement; (3) Single-device execution limits parallelism.
+
+\textbf{Future Work}: Multi-device Jetson clusters for distributed simulation; hardware-aware circuit compilation; hybrid edge-cloud execution.
+
+\textbf{Availability}: \EdgeQuantum is open-source at \url{https://github.com/sunggonkim/IoTJ-EdgeQuantum}.

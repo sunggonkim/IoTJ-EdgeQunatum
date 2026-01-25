@@ -1,0 +1,97 @@
+\documentclass[journal]{IEEEtran}
+
+%% Packages
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{comment}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xspace}
+\usepackage{pifont}
+\usepackage[caption=false]{subfig}
+\usepackage{float}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{tikz}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amsfonts}
+\usepackage{algorithm,algpseudocode} %for procedure
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{bm}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pifont,array} %For ding
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{nccmath}
+\usepackage{xurl}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{makecell}
+\usepackage{hyperref}
+\usepackage{colortbl }
+\usepackage{amsmath}
+\usepackage[most]{tcolorbox} 
+
+\usetikzlibrary{fit,shapes,arrows,positioning}
+
+%% Space-saving adjustments
+\setlength{\tabcolsep}{3pt}
+\setlength{\textfloatsep}{6pt plus 1.0pt minus 2.0pt}
+\setlength{\floatsep}{6pt plus 1.0pt minus 2.0pt}
+\setlength{\intextsep}{6pt plus 1.0pt minus 2.0pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{2pt}
+
+%% Commands
+\newcommand{\edgeQsim}{\texttt{edgeQsim}\xspace}
+
+\newcommand{\cmark}{{\color{green!70!black}\ding{51}}}
+\newcommand{\xmark}{{\color{red!80!black}\ding{55}}}
+\newcommand{\pmark}{{\color{orange!80!black}$\triangle$}}
+
+\begin{document}
+
+\title{\edgeQsim: Quantum Circuit Simulation Framework for Resource-Constrained Edge Devices}
+
+
+\maketitle
+
+ㅊ
+\begin{abstract}
+Quantum circuit simulation is essential for developing and validating quantum algorithms, yet existing simulators require High-Performance Computing (HPC) clusters with hundreds of GPUs. This paper presents \EdgeQuantum, a scalable quantum circuit simulation framework that enables large-scale simulation on resource-constrained edge devices. Using a tiered memory architecture (GPU VRAM $\to$ CPU DRAM $\to$ NVMe SSD) with LZ4 compression achieving 242.7$\times$ storage reduction, \EdgeQuantum demonstrates \textbf{37-qubit simulation} (1TB state vector) on an 8GB NVIDIA Jetson Orin Nano---a 128$\times$ capacity expansion beyond device memory. We evaluate \EdgeQuantum on standard quantum benchmark circuits including QFT, Random Circuits, and Supremacy-style circuits from 20 to 30 qubits. While HPC simulators like ScaleQsim achieve 42 qubits in seconds using 512 GPUs, \EdgeQuantum enables HPC-scale qubit counts on \$200 edge hardware at 15W power consumption, trading execution speed for memory capacity.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Quantum Computing, Quantum Circuit Simulation, Edge Computing, GPU Acceleration, cuQuantum, Tiered Memory
+\end{IEEEkeywords}
+
+\input{1_Introduction.tex}
+\input{2_Background.tex}
+\input{3_Design.tex}
+\input{4_Evaluation.tex}
+\input{CaseStudy.tex}
+\input{Discussion.tex}
+\input{5_Related_Works.tex}
+\input{6_Conclusion.tex}
+\input{Appendix.tex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

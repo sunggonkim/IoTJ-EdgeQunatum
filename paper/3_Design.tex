@@ -1,0 +1,56 @@
+\section{Design of \EdgeQuantum}
+
+\noindent\textbf{Overview of \EdgeQuantum's Design.} Figure~\ref{Design_overall_design} summarizes the key techniques. First, we introduce \textit{Unified Memory State Layout} (\ref{3.1}) to exploit the shared memory architecture of edge devices, eliminating the PCIe bottleneck. Second, \textit{Zero-Copy Async Pipeline} (\ref{3.2}) overlaps computation with storage I/O without redundant memory copies. Third, \textit{Gate Fusion Strategy} (\ref{3.3}) batches operations to maximize arithmetic intensity and minimize disk thrashing. Finally, \textit{Safe Double Buffering} (\ref{3.4}) enforces data integrity through write future tracking to prevent race conditions during concurrent execution.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=6.5cm]{Figures/3.1-design.pdf}
+    \vspace{-.1cm}
+    \caption{Architecture and procedure of \EdgeQuantum.}
+    \label{overall_design}
+    \vspace{-.2cm}
+\end{figure}
+
+\subsection{Unified Memory State Layout}\label{3.1}
+\noindent\textbf{Managed Memory Allocation.} \EdgeQuantum initiates the layout configuration by partitioning the full state vector into logical chunks that fit within the physical RAM of the edge device. Unlike traditional HPC simulators~\cite{qsim, svsim} that rely on discrete memory spaces (Host DRAM and Device VRAM) connected via PCIe, \EdgeQuantum leverages the Unified Memory Architecture (UMA) inherent to embedded GPU SoCs (e.g., NVIDIA Jetson). To exploit this, \EdgeQuantum utilizes CUDA Managed Memory (\texttt{cudaMallocManaged}) with the \texttt{cudaMemAttachGlobal} flag. This allocation strategy creates a single virtual address space accessible by both the CPU host and the GPU device. Physically, the data resides in system RAM, but the GPU accesses it directly via the internal fabric without explicit \texttt{memcpy} operations. This design eliminates the memory bandwidth bottleneck associated with host-to-device data transfer, allowing the simulation to scale beyond the limitations of dedicated video memory.
+
+\noindent\textbf{Direct Device Access.} After allocating the state vector chunks in managed memory, \EdgeQuantum configures the computation kernels to operate directly on these host-resident buffers. In standard CUDA programming, passing a host pointer to a kernel often triggers an implicit copy or fails validation. To address this, \EdgeQuantum encapsulates the managed pointer within a custom memory handler that exposes the pointer as a valid device address to the linear algebra backend (e.g., \texttt{custatevec}). This ensures that the quantum gate kernels execute directly on the data residing in system RAM. Consequently, the CPU can populate the buffer from storage, and the GPU can immediately compute on that data without an intermediate copy step, achieving a true zero-copy architecture.
+
+\subsection{Zero-Copy Async Pipeline}\label{3.2}
+
+To overcome the high latency of edge storage media (e.g., SD cards or NVMe SSDs), \EdgeQuantum employs a zero-copy asynchronous execution pipeline.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.90\linewidth]{Figures/3.2-design.pdf}
+        \vspace{-.1cm}
+    \caption{Zero-Copy asynchronous pipeline of \EdgeQuantum.}
+    \label{Design_async}
+    \vspace{-.2cm}
+\end{figure}
+
+\noindent\textbf{Three-Stage Pipelining.} As shown in Figure~\ref{Design_async}, \EdgeQuantum orchestrates a three-stage pipeline consisting of Prefetch, Compute, and Write-back. 
+1) \textit{Prefetch Stage}: A dedicated I/O thread pool loads the next required state vector chunk ($Chunk_{i+1}$) from storage directly into the managed memory buffer. Since the buffer is allocated as managed memory, this operation prepares the data for GPU access instantly upon completion.
+2) \textit{Compute Stage}: Simultaneously, the GPU executes quantum gate kernels on the current chunk ($Chunk_{i}$) via a non-blocking CUDA stream. Because of the unified memory layout, the GPU accesses the data populated by the prefetch stage without stalling for data transfer.
+3) \textit{Write-back Stage}: Concurrently, a separate write thread pool commits the processed previous chunk ($Chunk_{i-1}$) back to storage. 
+This pipelined approach ensures that the high latency of storage I/O is effectively hidden behind the computation time. The system utilizes multiple managed memory buffers (e.g., Buffer A and Buffer B) to toggle between prefetching and computation, maintaining continuous GPU utilization.
+
+\noindent\textbf{Heterogeneous Compression Strategy.} A key design feature of \EdgeQuantum is the maximization of overlap between I/O and computation through a heterogeneous compression strategy. While the GPU computes the amplitudes for the current chunk, the multi-core CPU resources are dedicated to asynchronously decompressing the next chunk and compressing the previous result using the LZ4 algorithm. We specifically opt for CPU-based compression over GPU-based alternatives (e.g., nvCOMP) for two critical reasons: (1) it ensures the GPU remains 100\% committed to \texttt{cuStateVec} operations without time-sharing resources for compression, and (2) it minimizes GPU memory bandwidth contention in the Unified Memory environment, where the CPU and GPU share the same physical RAM bus. By offloading these I/O-heavy tasks to the CPU, \EdgeQuantum achieves a balanced utilization of the SoC, effectively hiding the decompression latency behind the quantum simulation.
+
+\noindent\textbf{Optimized Initialization.} Initializing the massive state vector (e.g., 16GB for 31 qubits) on storage is a time-consuming process. Naive zero-filling triggers massive I/O traffic. \EdgeQuantum optimizes this by implementing a \textit{Pre-compressed Zero-Block Strategy}. Since the initial state is mostly zeros, we pre-compress a single chunk representing the zero state and reuse this compressed binary blob to populate the NVMe storage via direct I/O. This reduces the write volume by the compression ratio (typically $>$1000x for zero blocks) and accelerates the initialization phase from minutes to seconds.
+
+\subsection{Gate Fusion Strategy}\label{3.3}
+
+\noindent\textbf{Batch Execution with Matrix Fusion.} Since edge storage devices exhibit limited random I/O performance compared to enterprise storage systems, frequent chunk swapping incurs severe thrashing. To address this, \EdgeQuantum implements \textit{Advanced Gate Fusion}. Instead of simply queuing and executing gates sequentially, the system analyzes the dependency graph of the gate queue. Consecutive single-qubit gates targeting the same qubit are identified and merged into a single unitary matrix using matrix multiplication ($U_{fused} = U_n \times \dots \times U_1$). This fused operation is then applied in a single pass. This technique not only increases arithmetic intensity but also drastically reduces the number of memory accesses and I/O transactions required for the simulation. For example, a sequence of $H \rightarrow Z \rightarrow H$ is fused into a single $X$ gate operation, triggering only one I/O cycle instead of three.
+
+\noindent\textbf{Unified Global Operations.} For global gates that require interaction between different chunks, \EdgeQuantum utilizes the Unified Memory architecture to perform direct GPU computation on pinned host memory, eliminating the need for expensive CPU fallback or explicit host-to-device transfers. We create CuPy views directly on the pinned memory pointers of the resident chunks. By employing vector operations (e.g., component-wise addition and multiplication) on these mapped pointers, the GPU kernel accesses system RAM over the internal high-speed fabric. This "Zero-Copy" approach significantly reduces memory footprint and latency compared to traditional double-buffering methods, as it avoids allocating temporary buffers on the limited device memory.
+
+\noindent\textbf{Sector-Aligned I/O.} To further optimize the NVMe pipeline, we align all compressed data writes to the storage sector size (4KB). Since Direct I/O (O\_DIRECT) requires strict memory alignment, standard variable-length compressed streams often necessitate intermediate buffering. \EdgeQuantum pads the compressed binary blobs to 4096-byte boundaries, allowing the LZ4 engine to write directly to the NVMe device without triggering read-modify-write cycles in the OS page cache.
+
+\subsection{Safe Double Buffering}\label{3.4}
+
+In a tightly coupled asynchronous pipeline, a race condition arises if the prefetcher overwrites a buffer before the write-back mechanism saves its previous contents. \EdgeQuantum enforces \textit{Safe Double Buffering} to guarantee data integrity.
+
+\noindent\textbf{Write Future Tracking.} To prevent data corruption, \EdgeQuantum maintains a registry of \textit{Write Futures} associated with each managed memory buffer. When a chunk is scheduled for write-back, the system assigns a future object to the buffer. Before the prefetch stage initiates loading new data into a buffer (e.g., Buffer A), it checks the status of the active write future associated with Buffer A. If the write operation is still pending, the prefetch thread blocks until the future resolves. This synchronization mechanism ensures that the system strictly adheres to the dependency chain: Read $\rightarrow$ Compute $\rightarrow$ Write. By tracking these dependencies explicitly, \EdgeQuantum prevents race conditions where valid simulation results are overwritten by incoming data, ensuring bit-exact correctness even under maximum pipeline saturation.
+
+\noindent\textbf{Snapshotting for Persistence.} To further decouple the compute stream from the write-back latency, \EdgeQuantum employs a snapshot mechanism. Upon completion of the GPU computation, the system creates a lightweight copy of the result within system RAM. This allows the GPU to immediately release the managed buffer for the next prefetch cycle, while the write thread processes the snapshot asynchronously. Although this incurs a memory-to-memory copy, the high bandwidth of the unified memory architecture on Jetson modules renders this overhead negligible compared to the storage latency, thereby preserving the throughput of the simulation pipeline.

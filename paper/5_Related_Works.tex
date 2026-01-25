@@ -1,0 +1,58 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{GPU-Accelerated Quantum Simulation}
+
+\textbf{cuQuantum}~\cite{cuquantum} provides NVIDIA's official GPU-accelerated quantum simulation primitives. cuStateVec achieves high throughput via $O(2^n)$ parallel gate operations but assumes in-memory state vectors, limiting scalability to GPU VRAM capacity (typically 30-33 qubits on 80GB A100).
+
+\textbf{ScaleQsim}~\cite{10.1145/3771577} extends cuQuantum with distributed multi-GPU execution using bitwise index partitioning. Evaluated on 512 A100 GPUs, it achieves 42-qubit simulation with 77.4$\times$ speedup over single-GPU baselines. However, it requires HPC infrastructure costing millions of dollars.
+
+\textbf{HyQuas}~\cite{zhang2021hyquas} employs precompiled gate kernels for reduced overhead. However, kernel compilation assumes fixed qubit configurations, limiting flexibility when memory constraints prevent the planned configuration.
+
+\textbf{Atlas}~\cite{xu2024atlas} uses static execution planning with gate fusion optimization. Its reliance on fixed qubit-GPU mappings limits flexibility when memory constraints prevent the planned configuration.
+
+\subsection{Storage-Extended Simulation}
+
+\textbf{SnuQS}~\cite{park2022snuqs} extends simulation capacity via SSD offloading, demonstrating 42-qubit execution on CPU clusters. However, its CPU-centric design achieves 16+ hours for 42 qubits, compared to seconds on GPU-accelerated systems.
+
+\textbf{BMQSim}~\cite{zhang2025bmqsim} employs GPU-side compression to reduce memory footprint. While effective, compression kernels compete with gate execution for GPU resources, potentially reducing throughput.
+
+\subsection{Tensor Network Methods}
+
+Tensor network simulators like \textbf{quimb}~\cite{gray2018quimb} decompose quantum states using tensor factorization. While memory-efficient for shallow circuits, deep circuits with high entanglement require exponential bond dimensions, negating the advantage.
+
+\subsection{Edge and IoT Quantum}
+
+Prior work on edge quantum computing has focused on:
+\begin{itemize}
+    \item \textbf{Quantum Key Distribution (QKD)}: Hardware protocols for secure communication
+    \item \textbf{Post-Quantum Cryptography (PQC)}: Algorithm implementations resistant to quantum attacks
+    \item \textbf{Hybrid Quantum-Classical}: Cloud-based quantum with edge preprocessing
+\end{itemize}
+
+PennyLane~\cite{pennylane} supports hybrid quantum-classical workflows but lacks edge-specific optimizations. To our knowledge, \EdgeQuantum is the first framework enabling large-scale (37-qubit) quantum simulation on sub-10W ARM-based edge devices.
+
+\subsection{Positioning of EdgeQuantum}
+
+Table~\ref{tab:positioning} compares \EdgeQuantum with key prior work.
+
+\begin{table}[H]
+\centering
+\caption{Comparison with Prior Quantum Simulators}
+\small
+\begin{tabular}{lcccr}
+\toprule
+\textbf{System} & \textbf{Edge} & \textbf{Compress} & \textbf{Tiered} & \textbf{Max Q} \\
+\midrule
+cuQuantum & \xmark & \xmark & \xmark & 33 \\
+ScaleQsim & \xmark & \xmark & \cmark & 42 \\
+SnuQS & \xmark & \xmark & \cmark & 42 \\
+BMQSim & \xmark & \cmark & \xmark & 36 \\
+\midrule
+\textbf{EdgeQuantum} & \cmark & \cmark & \cmark & \textbf{37} \\
+\bottomrule
+\end{tabular}
+\label{tab:positioning}
+\end{table}
+
+\EdgeQuantum combines GPU acceleration (cuQuantum), storage offloading (SnuQS), and compression (BMQSim) into a unified framework optimized for resource-constrained edge devices.

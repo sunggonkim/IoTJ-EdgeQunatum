@@ -1,0 +1,51 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{The Capacity-Speed Trade-off}
+
+\EdgeQuantum fundamentally alters the optimization landscape for quantum simulation. Traditional HPC simulators maximize \textit{speed} by keeping states in high-bandwidth memory (HBM), costing \$100/GB. In contrast, \EdgeQuantum maximizes \textit{capacity} by utilizing SSD storage at \$0.05/GB, trading execution time for economic viability.
+
+\begin{equation}
+\text{Cost(State)} = \alpha N_{gpu} \cdot \$C_{gpu} + \beta \frac{S_{state}}{B_{ssd}}
+\end{equation}
+
+For a 37-qubit state (1TB), ScaleQsim requires $\sim$16 A100-80GB GPUs (\$240,000), whereas \EdgeQuantum requires 1 Jetson + 1TB SSD (\$300). The $800\times$ cost reduction comes with a $1000\times$ slowdown, a reasonable trade-off for prototyping.
+
+\subsection{Energy Efficiency at the Edge}
+
+Operating at 15W, \EdgeQuantum is uniquely suited for energy-constrained environments. A 3.3-hour simulation consumes ~50Wh. In comparison, a supercomputer node (e.g., DGX A100) consumes ~6.5kW. Even if it finishes in 10 seconds, the \textit{standby} and \textit{cooling} overhead of such facilities is immense.
+
+\begin{table}[H]
+\centering
+\caption{Energy Efficiency Comparison (30Q QFT)}
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{System} & \textbf{Power} & \textbf{Time} & \textbf{Energy} \\
+\midrule
+HPC Node (A100x8) & 6500 W & 2 s & 3.6 Wh \\
+Workstation (3090) & 500 W & 15 s & 2.1 Wh \\
+\textbf{EdgeQuantum} & \textbf{15 W} & \textbf{1558 s} & \textbf{6.5 Wh} \\
+\bottomrule
+\end{tabular}
+\label{tab:energy}
+\end{table}
+
+While total energy per shot is higher due to long runtime, the \textit{peak power demand} is $400\times$ lower, enabling deployment on solar-powered remote sensor nodes.
+
+\subsection{Future Roadmap: Distributed Edge Quantum}
+
+The bandwidth bottleneck of a single SSD (1 GB/s) can be overcome by distributing the state across a cluster of Jetson devices.
+
+\textbf{Proposed Architecture}:
+\begin{enumerate}
+    \item \textbf{Sharding}: Partition the state vector across $N$ devices.
+    \item \textbf{Interconnect}: Use 1GbE/10GbE for peer-to-peer chunk exchange.
+    \item \textbf{Speedup}: With $N=4$ Jetsons, effective bandwidth quadruples to 4 GB/s, potentially reducing 37Q simulation time from 3.3 hours to <1 hour.
+\end{enumerate}
+
+This "Cluster-on-Desk" approach would bridge the gap between single-device prototyping and HPC-scale production runs.
+
+\subsection{Software Portability and CUDA Compatibility}
+
+A significant challenge during the development of \EdgeQuantum was navigating the evolving NVIDIA software ecosystem. While modern HPC environments track CUDA 12.x and 13.x, many edge platforms such as the Jetson Orin series remain optimized for CUDA 11.4 (JetPack 5.x). We discovered a critical compatibility threshold at cuQuantum v24.03, beyond which CUDA 11 support was discontinued. Consequently, the optimal and most stable configuration for \EdgeQuantum on Current-generation Jetson devices is cuQuantum Python 23.3.0 using cuStateVec 1.9.0. Furthermore, we implemented custom wrapper layers for \texttt{apply\_matrix} calls to bridge specific API differences in target bit management found in the ARM64-specific Python bindings of these library versions.
