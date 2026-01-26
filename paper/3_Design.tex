@@ -1,61 +1,53 @@
-\section{Design of \EdgeQuantum}\label{sec:design}
+\section{\EdgeQuantum Design}\label{sec:design}
 
-This section presents the architecture and key design decisions of \EdgeQuantum, a quantum circuit simulator optimized for edge devices with unified memory architecture. We first provide an overview of the system architecture (\S\ref{sec:overview}), then detail the critical breakthrough in unified virtual memory (UVM) utilization (\S\ref{sec:uvm}), the zero-copy I/O pipeline (\S\ref{sec:pipeline}), and edge-specific optimizations (\S\ref{sec:optimizations}).
+In this section, we present the design of \EdgeQuantum, a scalable quantum circuit simulator optimized for edge devices with limited memory. Unlike cloud-based simulators that assume abundant GPU memory, \EdgeQuantum partitions the quantum state vector across NVMe storage and employs a novel UVM-based asynchronous pipeline to maximize hardware utilization. We first provide an overview of the system architecture (\S\ref{sec:overview}), then detail the UVM compatibility discovery (\S\ref{sec:uvm}), the dynamic memory attachment mechanism (\S\ref{sec:attach}), the triple-buffer asynchronous pipeline (\S\ref{sec:pipeline}), and edge-specific optimizations (\S\ref{sec:optimizations}).
+
+\subsection{Overall Procedure}\label{sec:overview}
+
+Figure~\ref{fig:architecture} shows the overall procedure of \EdgeQuantum. \EdgeQuantum provides two main phases to support large-scale quantum circuit simulation on edge devices: \textit{Initialization} and \textit{Execution} phase.
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{Figures/3.1-design.pdf}
     \vspace{-.2cm}
-    \caption{Overall architecture of \EdgeQuantum. The system exploits CUDA Unified Virtual Memory (UVM) to enable direct disk-to-GPU data flow without explicit memory copies, achieving 2$\times$ speedup over conventional pinned memory approaches.}
+    \caption{Overall procedure of \EdgeQuantum. The system exploits CUDA Unified Virtual Memory (UVM) with dynamic access control to enable concurrent disk I/O and GPU computation without explicit memory copies.}
     \label{fig:architecture}
     \vspace{-.3cm}
 \end{figure}
 
-\subsection{System Overview}\label{sec:overview}
+\noindent\textbf{Initialization.}
+When quantum circuit simulation starts, \textit{Resource Manager} first queries the available hardware resources on the edge device, including GPU memory capacity, NVMe storage bandwidth, and CPU core count (\ding{182}).
+Based on the number of input qubits (e.g., $n = 30$, corresponding to $2^{30}$ amplitudes and 16\,GB state vector), \textit{Chunk Calculator} determines the optimal chunk size and count.
+For Jetson Orin Nano with 8\,GB unified memory, \EdgeQuantum uses 256\,MB chunks ($2^{25}$ amplitudes), which balances GPU kernel efficiency against memory pressure (\ding{183}).
 
-\noindent\textbf{Design Goals.} \EdgeQuantum is designed with three primary objectives:
-\begin{enumerate}[leftmargin=*]
-    \item \textbf{Scalability beyond RAM:} Enable simulation of quantum circuits whose state vector exceeds the physical memory capacity of the edge device.
-    \item \textbf{True zero-copy operation:} Eliminate explicit \texttt{cudaMemcpy} calls by leveraging unified memory, reducing data movement overhead.
-    \item \textbf{Maximize hardware utilization:} Exploit the shared CPU-GPU memory bus of embedded SoCs (e.g., NVIDIA Jetson) to achieve near-peak throughput.
-\end{enumerate}
+After chunk configuration, \textit{Buffer Allocator} allocates UVM buffers using \texttt{cudaMallocManaged} with the \texttt{cudaMemAttachHost} flag.
+This flag is critical: it initializes buffers in CPU-accessible mode, enabling POSIX I/O operations before GPU computation begins (\ding{184}).
+For a triple-buffer pipeline, three 256\,MB UVM buffers (768\,MB total) are allocated.
+Finally, \textit{State Initializer} writes the initial state $|0\rangle^{\otimes n}$ to NVMe storage, preparing for iterative chunk-based simulation.
 
-\noindent\textbf{Key Insight: UVM Compatibility Discovery.} A critical contribution of this work is the discovery that \textit{CUDA Unified Virtual Memory (UVM) is fully compatible with POSIX file I/O on Jetson's unified memory architecture}. Contrary to conventional assumptions that \texttt{cudaMallocManaged} pointers cannot be used with system calls like \texttt{pread()}, our extensive testing reveals that:
+\noindent\textbf{Execution.}
+After the initialization phase completes, \EdgeQuantum enters the execution phase.
+For each quantum gate or circuit layer, \EdgeQuantum processes all chunks through a three-stage asynchronous pipeline (\ding{185}).
+The key innovation is the use of \texttt{cudaStreamAttachMemAsync} to dynamically switch each UVM buffer between Host and Global access modes:
 
-\begin{enumerate}[leftmargin=*]
-    \item UVM pointers can be directly passed to \texttt{pread()}/\texttt{pwrite()} system calls.
-    \item UVM is compatible with \texttt{O\_DIRECT} flag for bypassing the page cache.
-    \item cuStateVec library fully supports UVM memory for quantum gate operations.
-\end{enumerate}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{AttachHost mode:} Enables \texttt{pread()}/\texttt{pwrite()} from I/O worker threads.
+    \item \textbf{AttachGlobal mode:} Enables GPU access via cuStateVec library.
+\end{itemize}
 
-This discovery enables a fundamentally simpler and faster architecture than previously believed possible.
+This dynamic switching allows true concurrent execution: while the GPU computes on one buffer (AttachGlobal), I/O workers read/write other buffers (AttachHost) simultaneously (\ding{186}).
+After all chunks are processed for a circuit layer, \EdgeQuantum synchronizes and proceeds to the next layer (\ding{187}).
 
-\noindent\textbf{Architectural Overview.} Figure~\ref{fig:architecture} illustrates the overall architecture. \EdgeQuantum partitions the full quantum state vector into fixed-size chunks (256\,MB by default) and processes them through a streamlined two-stage pipeline:
+\subsection{UVM Compatibility Discovery}\label{sec:uvm}
 
-\begin{enumerate}[leftmargin=*]
-    \item \textbf{Load Stage:} Read the chunk directly from NVMe storage into UVM buffer using \texttt{pread()} with \texttt{O\_DIRECT}.
-    \item \textbf{Compute Stage:} Execute quantum gate operations on the same UVM buffer using cuStateVec---no memory copy required.
-    \item \textbf{Store Stage:} Write the processed chunk directly from UVM buffer to NVMe using \texttt{pwrite()} with \texttt{O\_DIRECT}.
-\end{enumerate}
+A critical contribution of this work is the systematic analysis of memory type compatibility on Jetson's unified memory architecture.
 
-The elimination of \texttt{cudaMemcpy} calls provides a \textbf{2$\times$ performance improvement} over conventional pinned memory approaches.
-
-\subsection{Unified Virtual Memory Architecture}\label{sec:uvm}
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.95\linewidth]{Figures/memory-architecture.pdf}
-    \vspace{-.2cm}
-    \caption{Memory hierarchy comparison. (Left) Conventional approach requires explicit cudaMemcpy between pinned host memory and GPU device memory. (Right) \EdgeQuantum's UVM approach enables direct disk-GPU data flow without memory copies.}
-    \label{fig:memory}
-    \vspace{-.3cm}
-\end{figure}
-
-\noindent\textbf{UVM Compatibility Analysis.} Table~\ref{tab:memory_compat} summarizes the compatibility of different CUDA memory types with cuStateVec and POSIX I/O on Jetson Orin:
+\noindent\textbf{Memory Type Analysis.}
+Table~\ref{tab:memory_compat} summarizes our compatibility testing across three CUDA memory allocation types:
 
 \begin{table}[t]
 \centering
-\caption{Memory type compatibility on Jetson Orin Nano. UVM is the only type compatible with both cuStateVec and direct disk I/O.}
+\caption{Memory type compatibility on Jetson Orin Nano. UVM is the only type compatible with both cuStateVec and direct POSIX I/O.}
 \label{tab:memory_compat}
 \small
 \begin{tabular}{lccc}
@@ -70,24 +62,27 @@ The elimination of \texttt{cudaMemcpy} calls provides a \textbf{2$\times$ perfor
 \vspace{-.3cm}
 \end{table}
 
-The key findings are:
-\begin{itemize}[leftmargin=*]
-    \item \textbf{Device Memory:} Requires explicit \texttt{cudaMemcpy} for disk I/O, as device addresses are not accessible to kernel syscalls.
-    \item \textbf{Pinned Host Memory:} Rejected by cuStateVec's \texttt{custatevecApplyMatrix} with error code \texttt{CUSTATEVEC\_STATUS\_INVALID\_VALUE} when passed via \texttt{cudaHostGetDevicePointer}.
-    \item \textbf{UVM (Managed Memory):} Fully compatible with both POSIX syscalls and cuStateVec operations.
-\end{itemize}
-
-\noindent\textbf{Why UVM Works on Jetson.} Jetson SoCs feature a true Unified Memory Architecture (UMA) where CPU and GPU share the same physical DRAM:
+The key findings from our extensive testing are:
 
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Shared Physical Memory:} Both CPU and GPU access the same LPDDR5 banks, eliminating the need for PCIe-based data transfers.
-    \item \textbf{Coherent Memory Bus:} The memory controller maintains cache coherency between CPU and GPU views of UVM pages.
-    \item \textbf{Page Migration:} UVM pages can reside in CPU-accessible or GPU-accessible regions; the driver migrates pages transparently based on access patterns.
+    \item \textbf{Device Memory (\texttt{cudaMalloc}):} cuStateVec operates correctly, but device addresses cannot be passed to kernel syscalls like \texttt{pread()}. This necessitates explicit \texttt{cudaMemcpy} calls, doubling data movement overhead.
+    
+    \item \textbf{Pinned Host Memory (\texttt{cudaMallocHost}):} POSIX I/O works correctly, including with \texttt{O\_DIRECT}. However, cuStateVec's \texttt{custatevecApplyMatrix} rejects pinned memory pointers with error code \texttt{CUSTATEVEC\_STATUS\_INVALID\_VALUE}, even when converted via \texttt{cudaHostGetDevicePointer}.
+    
+    \item \textbf{UVM (\texttt{cudaMallocManaged}):} Both POSIX syscalls and cuStateVec operations work correctly. This is the \textit{only} memory type that enables true zero-copy operation.
 \end{itemize}
 
-When \texttt{pread()} is called with a UVM pointer, the kernel accesses the physical pages backing the UVM allocation. After the I/O completes, \texttt{cudaDeviceSynchronize()} ensures GPU visibility of the updated data before cuStateVec kernel execution.
+\noindent\textbf{Why UVM Works on Jetson.}
+Jetson SoCs feature a true Unified Memory Architecture (UMA) where CPU and GPU share the same physical DRAM banks:
 
-\noindent\textbf{Performance Advantage.} The elimination of explicit memory copies provides substantial performance benefits:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Shared Physical Memory:} Unlike discrete GPUs connected via PCIe, Jetson's integrated GPU directly accesses the same LPDDR5 as the CPU, eliminating DMA transfer overhead.
+    \item \textbf{Coherent Memory Controller:} The memory controller maintains cache coherency between CPU and GPU views of UVM pages through hardware-level snooping.
+    \item \textbf{Zero-Copy Potential:} When \texttt{pread()} writes to a UVM buffer, the data is immediately visible to the GPU after a memory barrier---no explicit copy required.
+\end{itemize}
+
+\noindent\textbf{Performance Advantage.}
+The elimination of explicit memory copies provides consistent 2$\times$ speedup across state vector sizes:
 
 \begin{table}[t]
 \centering
@@ -96,97 +91,154 @@ When \texttt{pread()} is called with a UVM pointer, the kernel accesses the phys
 \small
 \begin{tabular}{lrrr}
 \toprule
-\textbf{Qubits} & \textbf{Pinned+Copy} & \textbf{UVM Direct} & \textbf{Speedup} \\
+\textbf{Chunk Size} & \textbf{Pinned+Copy} & \textbf{UVM Direct} & \textbf{Speedup} \\
 \midrule
-20 (16 MB) & 18.9 ms & 9.8 ms & 1.92$\times$ \\
-22 (64 MB) & 74.6 ms & 37.0 ms & 2.01$\times$ \\
-24 (256 MB) & 298 ms & 149 ms & 2.00$\times$ \\
+16 MB (20Q) & 18.9 ms & 9.8 ms & 1.92$\times$ \\
+64 MB (22Q) & 74.6 ms & 37.0 ms & 2.01$\times$ \\
+256 MB (24Q) & 298 ms & 149 ms & 2.00$\times$ \\
 \bottomrule
 \end{tabular}
 \vspace{-.3cm}
 \end{table}
 
-The consistent 2$\times$ speedup across different state vector sizes demonstrates that memory copy overhead is a significant bottleneck in conventional approaches. By eliminating this overhead, \EdgeQuantum achieves near-theoretical I/O bandwidth utilization.
+The data flow comparison illustrates the overhead reduction:
+\begin{align*}
+\text{Conventional:} &\quad \text{Disk} \xrightarrow{\texttt{pread}} \text{Pinned} \xrightarrow{\texttt{cudaMemcpy}} \text{GPU} \xrightarrow{\texttt{cudaMemcpy}} \text{Pinned} \xrightarrow{\texttt{pwrite}} \text{Disk} \\
+\text{EdgeQuantum:} &\quad \text{Disk} \xrightarrow{\texttt{pread}} \text{UVM} \xrightarrow[\text{cuStateVec}]{\text{in-place}} \text{UVM} \xrightarrow{\texttt{pwrite}} \text{Disk}
+\end{align*}
 
-\noindent\textbf{Data Flow Comparison.} The conventional approach requires four data movements per chunk:
-\[
-\text{Disk} \xrightarrow{\texttt{pread}} \text{Pinned} \xrightarrow{\texttt{cudaMemcpy}} \text{GPU} \xrightarrow{\texttt{cudaMemcpy}} \text{Pinned} \xrightarrow{\texttt{pwrite}} \text{Disk}
-\]
+\subsection{Dynamic Memory Attachment Mechanism}\label{sec:attach}
 
-\EdgeQuantum's UVM approach requires only two:
-\[
-\text{Disk} \xrightarrow{\texttt{pread}} \text{UVM} \xrightarrow[\text{cuStateVec}]{\text{in-place}} \text{UVM} \xrightarrow{\texttt{pwrite}} \text{Disk}
-\]
+While UVM enables zero-copy operation, a critical challenge remains: \textit{concurrent access conflicts}. When the GPU is actively using a UVM buffer, POSIX I/O operations on other UVM buffers may fail or stall.
 
-This 50\% reduction in data movements directly translates to the observed 2$\times$ speedup.
+\noindent\textbf{Problem: UVM Access Conflicts.}
+Our investigation revealed that when any UVM buffer is in \texttt{cudaMemAttachGlobal} mode (GPU-accessible), \texttt{pread()}/\texttt{pwrite()} calls from worker threads may fail with \texttt{EFAULT} (Bad address) on other UVM buffers. This prevents naive pipelining approaches where I/O and GPU computation overlap.
 
-\subsection{Zero-Copy I/O Pipeline}\label{sec:pipeline}
+\noindent\textbf{Solution: \texttt{cudaStreamAttachMemAsync}.}
+We discovered that CUDA's \texttt{cudaStreamAttachMemAsync} API enables fine-grained control over UVM buffer accessibility:
+
+\begin{lstlisting}[language=C++, basicstyle=\ttfamily\footnotesize]
+// Make buffer accessible to CPU (worker threads)
+cudaStreamAttachMemAsync(stream, ptr, 0, cudaMemAttachHost);
+
+// Make buffer accessible to GPU (cuStateVec)
+cudaStreamAttachMemAsync(stream, ptr, 0, cudaMemAttachGlobal);
+\end{lstlisting}
+
+The critical insight is that this operation does \textit{not} involve physical data copying---it only modifies access permission flags in the UVM page tables. The overhead is approximately 10--50\,ms per call, which is negligible compared to chunk I/O time (400\,ms for 256\,MB at 640\,MB/s).
+
+\noindent\textbf{Per-Buffer Access Control.}
+By allocating each UVM buffer with \texttt{cudaMemAttachHost} and dynamically switching individual buffers to \texttt{cudaMemAttachGlobal} only during GPU computation, we enable true concurrent operation:
+
+\begin{itemize}[leftmargin=*]
+    \item Buffer A: \texttt{AttachGlobal} --- GPU computing
+    \item Buffer B: \texttt{AttachHost} --- Worker thread reading next chunk
+    \item Buffer C: \texttt{AttachHost} --- Worker thread writing previous chunk
+\end{itemize}
+
+This per-buffer access control is the key enabler for our asynchronous pipeline.
+
+\subsection{Triple-Buffer Asynchronous Pipeline}\label{sec:pipeline}
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{Figures/3.2-design.pdf}
     \vspace{-.2cm}
-    \caption{UVM-based asynchronous pipeline. Each UVM buffer cycles through Load, Compute, and Store stages without memory copies.}
+    \caption{Triple-buffer asynchronous pipeline with dynamic UVM attachment. Buffers rotate through Load, Compute, and Store stages. Access mode switching enables concurrent GPU and I/O operations.}
     \label{fig:pipeline}
     \vspace{-.3cm}
 \end{figure}
 
-\noindent\textbf{O\_DIRECT for Page Cache Bypass.} Standard Linux file I/O involves double-buffering through the page cache: data is first copied to kernel pages, then to user-space buffers. For quantum simulation where the state vector (e.g., 4\,GB for 28 qubits) exceeds available RAM, this page cache pollution evicts critical data and triggers excessive swapping. \EdgeQuantum opens state vector files with the \texttt{O\_DIRECT} flag, instructing the kernel to perform DMA directly from the NVMe device to UVM buffers. Our experiments confirm that:
+Figure~\ref{fig:pipeline} illustrates the triple-buffer pipeline architecture. Three UVM buffers cycle through Load, Compute, and Store stages with overlapped execution.
 
-\begin{lstlisting}[language=C++, basicstyle=\ttfamily\footnotesize]
-void* uvm_ptr;
-cudaMallocManaged(&uvm_ptr, size, cudaMemAttachGlobal);
-int fd = open(path, O_RDONLY | O_DIRECT);
-pread(fd, uvm_ptr, size, offset);  // Works!
-\end{lstlisting}
+\noindent\textbf{Pipeline Stages.}
+For chunk $c$ processed in buffer $B_i$ where $i = c \mod 3$:
 
-The combination of UVM and O\_DIRECT provides:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Load (async):} Worker thread executes \texttt{pread()} to load chunk data from NVMe into $B_i$ (AttachHost mode).
+    \item \textbf{Compute:} Switch $B_i$ to AttachGlobal, execute cuStateVec kernel, switch back to AttachHost.
+    \item \textbf{Store (async):} Worker thread executes \texttt{pwrite()} to persist computed results to NVMe (AttachHost mode).
+\end{enumerate}
+
+\noindent\textbf{Pipeline Scheduling.}
+Algorithm~\ref{alg:pipeline} shows the optimized pipeline scheduling logic:
+
+\begin{algorithm}[t]
+\scriptsize
+\begin{algorithmic}[1]
+\State \textbf{Input:} $n\_chunks$, UVM buffers $B[0..2]$, kernel function $K$
+\State Initialize all buffers to \texttt{AttachHost}
+\State Prefetch: \texttt{pread}(chunk[0], $B[0]$) \Comment{Synchronous}
+\State Prefetch: \texttt{async\_read}(chunk[1], $B[1]$) \Comment{Start async}
+\For{$c \gets 0$ \textbf{to} $n\_chunks - 1$}
+    \State $compute\_buf \gets c \mod 3$
+    \State $prev\_buf \gets (c + 2) \mod 3$
+    \State \textbf{wait} read\_future[$compute\_buf$] \textbf{if} $c \geq 2$
+    \State \textbf{wait} write\_future[$compute\_buf$] \textbf{if} $c \geq 3$
+    \Statex \Comment{\textit{\textbf{GPU Phase}}}
+    \State \texttt{cudaStreamAttachMemAsync}($B[compute\_buf]$, \texttt{AttachGlobal})
+    \State $K(c, B[compute\_buf])$ \Comment{cuStateVec kernel}
+    \State \texttt{cudaDeviceSynchronize}()
+    \State \texttt{cudaStreamAttachMemAsync}($B[compute\_buf]$, \texttt{AttachHost})
+    \State \texttt{cudaStreamSynchronize}() \Comment{Sync before I/O}
+    \Statex \Comment{\textit{\textbf{I/O Phase (async)}}}
+    \State write\_future[$compute\_buf$] $\gets$ \texttt{async\_write}(chunk[$c$], $B[compute\_buf]$)
+    \If{$c + 2 < n\_chunks$}
+        \State \textbf{wait} write\_future[$prev\_buf$] \textbf{if valid}
+        \State read\_future[$prev\_buf$] $\gets$ \texttt{async\_read}(chunk[$c+2$], $B[prev\_buf]$)
+    \EndIf
+\EndFor
+\State \textbf{wait} all pending write\_futures
+\end{algorithmic}
+\caption{Optimized triple-buffer pipeline scheduling.}
+\label{alg:pipeline}
+\end{algorithm}
+
+\noindent\textbf{Key Optimizations.}
+Several optimizations minimize synchronization overhead:
+
 \begin{itemize}[leftmargin=*]
-    \item \textbf{No page cache overhead:} Data flows directly from NVMe to UVM.
-    \item \textbf{Predictable latency:} No page fault handling or cache eviction.
-    \item \textbf{Reduced memory footprint:} No kernel buffer copies.
+    \item \textbf{Lazy AttachGlobal Sync:} After \texttt{cudaStreamAttachMemAsync(..., AttachGlobal)}, we do \textit{not} call \texttt{cudaStreamSynchronize}. The GPU implicitly waits for the attach operation to complete before kernel execution begins.
+    
+    \item \textbf{Eager AttachHost Sync:} Before \texttt{pwrite()}, we \textit{must} call \texttt{cudaStreamSynchronize} after switching to AttachHost, ensuring the worker thread sees the GPU's computed results.
+    
+    \item \textbf{Prefetch Pipeline Fill:} The first two chunks are prefetched synchronously and asynchronously, respectively, to fill the pipeline before the main loop begins.
+    
+    \item \textbf{Buffer Reuse Guards:} Write futures are checked before buffer reuse for the next read operation, preventing data corruption.
 \end{itemize}
 
-\noindent\textbf{Triple-Buffer Orchestration.} As shown in Figure~\ref{fig:pipeline}, \EdgeQuantum maintains three UVM buffers (A, B, C) that cycle through the pipeline stages:
-
-\begin{itemize}[leftmargin=*]
-    \item \textbf{Time $t$:} Buffer A is loading $Chunk_{i+1}$, Buffer B is computing $Chunk_i$, Buffer C is storing $Chunk_{i-1}$.
-    \item \textbf{Time $t+1$:} Buffers rotate: A $\rightarrow$ Compute, B $\rightarrow$ Store, C $\rightarrow$ Load.
-\end{itemize}
-
-Unlike conventional approaches that require six operations per chunk (pread $\rightarrow$ H2D copy $\rightarrow$ compute $\rightarrow$ D2H copy $\rightarrow$ pwrite), the UVM approach requires only three (pread $\rightarrow$ compute $\rightarrow$ pwrite), simplifying the pipeline and reducing synchronization overhead.
-
-\noindent\textbf{Synchronization Strategy.} The critical synchronization point is ensuring GPU visibility of disk-loaded data:
-
-\begin{lstlisting}[language=C++, basicstyle=\ttfamily\footnotesize]
-// Load chunk to UVM (CPU operation)
-pread(fd, uvm_ptr, chunk_size, offset);
-
-// Ensure GPU sees the updated data
-cudaDeviceSynchronize();
-
-// Execute cuStateVec kernel (in-place on UVM)
-custatevecApplyMatrix(handle, uvm_ptr, ...);
-
-// Ensure computation complete before write
-cudaDeviceSynchronize();
-
-// Store chunk from UVM (CPU operation)
-pwrite(fd, uvm_ptr, chunk_size, offset);
-\end{lstlisting}
-
-The \texttt{cudaDeviceSynchronize()} calls ensure that GPU-side caching of UVM pages is properly managed, maintaining data coherency between CPU I/O operations and GPU compute operations.
-
-\noindent\textbf{Buffer State Machine.} Each buffer cycles through four states:
+\noindent\textbf{Theoretical Analysis.}
+Let $T_{io}$ be the I/O time per chunk (read or write) and $T_{gpu}$ be the GPU compute time. For blocking execution:
 \[
-\texttt{EMPTY} \rightarrow \texttt{LOADING} \rightarrow \texttt{READY} \rightarrow \texttt{STORING} \rightarrow \texttt{EMPTY}
+T_{blocking} = n \times (T_{read} + T_{gpu} + T_{write}) = n \times (2T_{io} + T_{gpu})
 \]
 
-The orchestrator assigns operations based on buffer state, preventing race conditions where a buffer is overwritten before its contents are committed to storage.
+For fully overlapped pipeline (assuming $T_{gpu} > T_{io}$):
+\[
+T_{async} \approx T_{startup} + n \times T_{gpu} + T_{drain}
+\]
+
+where startup and drain phases each take $\approx 2T_{io}$. The theoretical speedup is:
+\[
+\text{Speedup} = \frac{2T_{io} + T_{gpu}}{T_{gpu} + \epsilon} \approx 1 + \frac{2T_{io}}{T_{gpu}}
+\]
+
+For 256\,MB chunks with $T_{io} \approx 0.4$\,s and $T_{gpu} \approx 2.2$\,s (measured on 29Q Random circuit), the theoretical speedup is $1 + 0.8/2.2 \approx 1.36\times$, which aligns with our measured 1.40$\times$ speedup.
 
 \subsection{Edge-Specific Optimizations}\label{sec:optimizations}
 
-\noindent\textbf{High-Priority CUDA Streams.} On resource-constrained edge GPUs, kernel launch latency can bottleneck performance. \EdgeQuantum creates CUDA streams with the highest available priority:
+\noindent\textbf{O\_DIRECT for Page Cache Bypass.}
+Standard Linux file I/O involves double-buffering through the page cache. For quantum simulation where the state vector (e.g., 16\,GB for 30 qubits) far exceeds RAM, page cache pollution causes severe performance degradation. \EdgeQuantum uses \texttt{O\_DIRECT} to bypass the page cache:
+
+\begin{lstlisting}[language=C++, basicstyle=\ttfamily\footnotesize]
+int fd = open(path, O_RDONLY | O_DIRECT);
+pread(fd, uvm_ptr, chunk_size, offset);  // DMA to UVM
+\end{lstlisting}
+
+Our experiments confirm O\_DIRECT compatibility with UVM pointers, enabling true DMA from NVMe to UVM buffers.
+
+\noindent\textbf{High-Priority CUDA Streams.}
+On resource-constrained edge GPUs, kernel launch latency impacts pipeline efficiency. \EdgeQuantum creates streams with the highest available priority:
 
 \begin{lstlisting}[language=C++, basicstyle=\ttfamily\footnotesize]
 int leastPri, greatestPri;
@@ -195,80 +247,53 @@ cudaStreamCreateWithPriority(&stream,
     cudaStreamNonBlocking, greatestPri);
 \end{lstlisting}
 
-This ensures cuStateVec kernels preempt background GPU tasks and execute with minimal queuing delay.
-
-\noindent\textbf{System-Level Performance Tuning.} To maximize throughput on Jetson Orin, \EdgeQuantum applies system-level optimizations via \texttt{jetson\_clocks}:
+\noindent\textbf{System-Level Performance Tuning.}
+\EdgeQuantum applies Jetson-specific optimizations via \texttt{jetson\_clocks}:
 \begin{itemize}[leftmargin=*]
-    \item \textbf{CPU Frequency:} Lock all cores at maximum (1.51\,GHz on Orin Nano).
+    \item \textbf{CPU Frequency:} Lock at maximum (1.51\,GHz on Orin Nano).
     \item \textbf{GPU Frequency:} Lock at peak (625\,MHz on Orin Nano).
-    \item \textbf{Memory Controller:} Lock EMC at maximum (2133\,MHz).
-    \item \textbf{CPU Idle States:} Disable C7 and WFI states to eliminate wake-up latency.
+    \item \textbf{Memory Controller:} Lock EMC at 2133\,MHz.
+    \item \textbf{Power Mode:} Set to MAXN (15W) for sustained performance.
 \end{itemize}
 
 These tunings reduce pipeline stalls by up to 20\% compared to default power-saving configurations.
 
-\noindent\textbf{Memory Alignment.} O\_DIRECT imposes strict alignment constraints: both the buffer address and the I/O offset must align to the filesystem block size (4\,KB). \texttt{cudaMallocManaged} returns page-aligned pointers by default, and chunk sizes are multiples of 4\,KB, ensuring compliance without additional buffering.
-
-\noindent\textbf{Graceful Fallback.} When O\_DIRECT initialization fails (e.g., on filesystems that do not support it), \EdgeQuantum gracefully falls back to buffered I/O with a warning:
-
-\begin{lstlisting}[language=C++, basicstyle=\ttfamily\footnotesize]
-fd = open(path, O_RDONLY | O_DIRECT);
-if (fd < 0 && errno == EINVAL) {
-    fd = open(path, O_RDONLY);  // Fallback
-    use_odirect = false;
-}
-\end{lstlisting}
+\noindent\textbf{Chunk Size Selection.}
+The optimal chunk size balances GPU kernel efficiency against memory pressure. Smaller chunks increase kernel launch overhead; larger chunks may cause memory allocation failures. Based on empirical testing, 256\,MB ($2^{25}$ amplitudes) provides optimal performance on Jetson Orin Nano, fitting three buffers (768\,MB) comfortably within the 8\,GB unified memory while leaving headroom for cuStateVec workspace.
 
 \subsection{Quantum Gate Execution}\label{sec:gates}
 
-\noindent\textbf{Chunk-Local vs. Global Gates.} Quantum gates are classified by their target qubit index relative to the chunk size. For a chunk containing $2^{25}$ amplitudes (chunk\_bits = 25):
+\noindent\textbf{Chunk-Local vs. Global Gates.}
+Quantum gates are classified by their target qubit index relative to the chunk boundary. For chunk\_bits = 25:
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Chunk-local gates} (target qubit $< 25$): The gate affects only amplitudes within a single chunk. \EdgeQuantum applies these using cuStateVec's \texttt{custatevecApplyMatrix} directly on the UVM buffer.
-    \item \textbf{Global gates} (target qubit $\geq 25$): The gate couples amplitudes across different chunks, requiring coordination between multiple chunks in memory.
+    \item \textbf{Chunk-local gates} (target qubit $< 25$): Affects only amplitudes within a single chunk. Applied directly via cuStateVec.
+    \item \textbf{Global gates} (target qubit $\geq 25$): Couples amplitudes across chunks, requiring multi-chunk coordination.
 \end{itemize}
 
-\noindent\textbf{Global Gate Strategy.} For global gates, \EdgeQuantum loads the required pair of chunks into separate UVM buffers and performs a fused operation:
-\begin{enumerate}[leftmargin=*]
-    \item Load $Chunk_i$ and $Chunk_{i + 2^k}$ (where $k$ is the target qubit offset within the global range).
-    \item Execute the gate operation treating the two buffers as a combined state vector.
-    \item Write both chunks back to storage.
-\end{enumerate}
+\noindent\textbf{cuStateVec Integration.}
+Each chunk is treated as an independent $2^{25}$-amplitude state vector for local gate application:
 
-This approach minimizes I/O overhead by batching chunk pairs rather than processing them individually.
+\begin{lstlisting}[language=C++, basicstyle=\ttfamily\footnotesize]
+custatevecApplyMatrix(handle, uvm_buffer, CUDA_C_32F,
+    chunk_bits,  // 25 for 256MB chunks
+    gate_matrix, CUDA_C_32F,
+    CUSTATEVEC_MATRIX_LAYOUT_ROW, 0,
+    &target_qubit, 1, nullptr, nullptr, 0,
+    CUSTATEVEC_COMPUTE_32F, workspace, ws_size);
+\end{lstlisting}
 
-\noindent\textbf{Gate Fusion.} Consecutive single-qubit gates targeting the same qubit are fused into a single unitary matrix:
-\[
-U_{\text{fused}} = U_n \times U_{n-1} \times \cdots \times U_1
-\]
+This leverages cuStateVec's highly optimized GPU kernels while maintaining compatibility with our UVM-based memory management.
 
-This reduces the number of kernel launches and memory passes, improving arithmetic intensity on the GPU.
+\subsection{Implementation}\label{sec:implementation}
 
-\subsection{Comparison with Related Approaches}\label{sec:comparison}
+We implemented \EdgeQuantum as a standalone C++ library with Python bindings for benchmarking. The implementation modifies approximately 1,200 lines of code across five core modules:
 
-Table~\ref{tab:comparison} summarizes how \EdgeQuantum differs from existing quantum simulators in its approach to memory management and I/O optimization.
+\begin{itemize}[leftmargin=*]
+    \item \textbf{\texttt{simulator.cpp}:} Main simulation loop with triple-buffer pipeline orchestration and dynamic AttachHost/AttachGlobal switching.
+    \item \textbf{\texttt{chunk\_manager.cpp}:} UVM buffer allocation with \texttt{cudaMemAttachHost} flag and chunk-level I/O operations.
+    \item \textbf{\texttt{io\_backend.cpp}:} O\_DIRECT file I/O with alignment handling and graceful fallback for incompatible filesystems.
+    \item \textbf{\texttt{main.cpp}:} Command-line interface supporting multiple circuit types (QV, VQC, QSVM, Random, GHZ, VQE).
+    \item \textbf{\texttt{comprehensive\_benchmark.py}:} Automated benchmarking across qubit counts, circuits, and baseline comparisons.
+\end{itemize}
 
-\begin{table}[t]
-\centering
-\caption{Comparison of memory management strategies.}
-\label{tab:comparison}
-\small
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Approach} & \textbf{Memory Type} & \textbf{cudaMemcpy} & \textbf{Speedup} \\
-\midrule
-cuQuantum Native & Device & N/A & 1.0$\times$ \\
-BMQSim~\cite{bmqsim} & Pinned+Device & Required & 1.0$\times$ \\
-SV-Sim~\cite{svsim} & Mmap & N/A & 0.8$\times$ \\
-\EdgeQuantum & \textbf{UVM} & \textbf{None} & \textbf{2.0$\times$} \\
-\bottomrule
-\end{tabular}
-\vspace{-.3cm}
-\end{table}
-
-\noindent\textbf{Key Differentiators:}
-\begin{enumerate}[leftmargin=*]
-    \item \textbf{UVM-based Zero-Copy:} \EdgeQuantum is the first to demonstrate that UVM is compatible with POSIX I/O and cuStateVec on Jetson platforms, enabling true zero-copy operation.
-    \item \textbf{2$\times$ Performance Gain:} By eliminating \texttt{cudaMemcpy} overhead, \EdgeQuantum achieves consistent 2$\times$ speedup over conventional pinned memory approaches.
-    \item \textbf{Simplified Architecture:} The UVM approach reduces pipeline complexity from six operations to three, lowering synchronization overhead and code complexity.
-    \item \textbf{Edge-First Design:} System-level tunings (jetson\_clocks, high-priority streams) are integrated into the runtime for optimal edge device performance.
-\end{enumerate}
+The code is available at: \url{https://github.com/sunggonkim/IoTJ-EdgeQuantum}
