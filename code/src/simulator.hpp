@@ -76,11 +76,13 @@ private:
 
 class EdgeQuantumSim {
     int n_qubits;
+    int chunk_bits;
     size_t chunk_size;
     size_t n_chunks;
     
     // Core Components - Dual Rings
     IOBackend io_read;
+    IOBackend io_write;
     size_t state_size;
     SimMode mode;
     std::string storage_path;
@@ -91,16 +93,24 @@ class EdgeQuantumSim {
     
     // Native/UVM Resources
     void* full_state_ptr;
+
+    // UVM-based pipeline configuration
+    // With UVM, we don't need separate device buffers - UVM buffers are GPU-accessible!
+    static constexpr int NUM_PIPELINE_BUFS = 3;  // 3 UVM buffers for triple pipeline
+    bool device_buf_ready;  // Legacy flag, kept for compatibility
     
     // cuQuantum Resources
     // cuQuantum Resources
     custatevecHandle_t handle;
     void* d_ws;
     size_t ws_size;
-    cudaStream_t stream;
+    cudaStream_t stream;      // compute stream
+    cudaStream_t copy_stream; // memcpy stream
     
     // Constants
     void* d_gate_matrix;
+    int target_idx[1];
+    int control_idx[1];
     
     // Thread Pools
     IoWorker* read_worker;

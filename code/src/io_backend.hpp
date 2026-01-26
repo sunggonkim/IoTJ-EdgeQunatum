@@ -7,8 +7,21 @@
 #include <sys/mman.h>
 #include <cstring>
 #include <iostream>
+#include <cstdlib>
 #include <atomic>
+#include <mutex>
+#include <dlfcn.h>
 #include "utils.hpp"
+
+#if __has_include(<cufile.h>)
+#include <cufile.h>
+#define EDGEQ_HAVE_CUFILE 1
+#else
+#define EDGEQ_HAVE_CUFILE 0
+typedef struct { int err; } CUfileError_t;
+typedef void* CUfileHandle_t;
+typedef struct { int dummy; } CUfileDescr_t;
+#endif
 
 inline int io_uring_setup(unsigned entries, struct io_uring_params *p) {
     return syscall(__NR_io_uring_setup, entries, p);
@@ -21,6 +34,7 @@ inline int io_uring_enter(int ring_fd, unsigned to_submit, unsigned min_complete
 class IOBackend {
     int fd;
     std::string path;
+    std::mutex io_mutex;
     
     // io_uring resources
     int ring_fd;
@@ -39,52 +53,81 @@ class IOBackend {
     unsigned cq_mask;
     bool uring_enabled;
 
+    // GDS (cuFile) dynamic loader
+    bool gds_enabled;
+    void* gds_lib;
+    CUfileHandle_t gds_handle;
+
+    // cuFile function pointers
+    typedef CUfileError_t (*cuFileDriverOpen_t)();
+    typedef CUfileError_t (*cuFileDriverClose_t)();
+    typedef CUfileError_t (*cuFileHandleRegister_t)(CUfileHandle_t*, CUfileDescr_t*);
+    typedef CUfileError_t (*cuFileHandleDeregister_t)(CUfileHandle_t);
+    typedef CUfileError_t (*cuFileBufRegister_t)(void*, size_t, int);
+    typedef CUfileError_t (*cuFileBufDeregister_t)(void*);
+    typedef ssize_t (*cuFileRead_t)(CUfileHandle_t, void*, size_t, off_t, off_t);
+    typedef ssize_t (*cuFileWrite_t)(CUfileHandle_t, const void*, size_t, off_t, off_t);
+
+    cuFileDriverOpen_t p_cuFileDriverOpen;
+    cuFileDriverClose_t p_cuFileDriverClose;
+    cuFileHandleRegister_t p_cuFileHandleRegister;
+    cuFileHandleDeregister_t p_cuFileHandleDeregister;
+    cuFileBufRegister_t p_cuFileBufRegister;
+    cuFileBufDeregister_t p_cuFileBufDeregister;
+    cuFileRead_t p_cuFileRead;
+    cuFileWrite_t p_cuFileWrite;
+
 public:
-    IOBackend(const std::string& filepath) : path(filepath), uring_enabled(false) {
-        fd = open(filepath.c_str(), O_RDWR | O_CREAT | O_DIRECT, 0644);
+    IOBackend(const std::string& filepath)
+        : fd(-1),
+          path(filepath),
+          ring_fd(-1),
+          sq_ptr(nullptr),
+          cq_ptr(nullptr),
+          sqes(nullptr),
+          sq_tail(nullptr),
+          sq_head(nullptr),
+          cq_tail(nullptr),
+          cq_head(nullptr),
+          sq_array(nullptr),
+          cqes(nullptr),
+          sq_entries(0),
+          cq_entries(0),
+          sq_mask(0),
+          cq_mask(0),
+          uring_enabled(false),
+          gds_enabled(false),
+          gds_lib(nullptr),
+          gds_handle(nullptr),
+          p_cuFileDriverOpen(nullptr),
+          p_cuFileDriverClose(nullptr),
+          p_cuFileHandleRegister(nullptr),
+          p_cuFileHandleDeregister(nullptr),
+          p_cuFileBufRegister(nullptr),
+          p_cuFileBufDeregister(nullptr),
+          p_cuFileRead(nullptr),
+          p_cuFileWrite(nullptr) {
+        // Always use O_DIRECT for optimal NVMe performance (bypasses page cache)
+        int flags = O_RDWR | O_CREAT | O_DIRECT;
+        fd = open(filepath.c_str(), flags, 0644);
         if (fd < 0) {
-            perror("open O_DIRECT");
+            // Fallback without O_DIRECT if filesystem doesn't support it
+            flags = O_RDWR | O_CREAT;
+            fd = open(filepath.c_str(), flags, 0644);
+        }
+        if (fd < 0) {
+            perror("open");
             exit(1);
         }
         
-        std::cout << "[IOBackend] Opened " << filepath << " (fd: " << fd << ")" << std::endl;
+        std::cout << "[IOBackend] Opened " << filepath << " (fd: " << fd << ", O_DIRECT)" << std::endl;
         
-        struct io_uring_params params;
-        memset(&params, 0, sizeof(params));
-        // params.flags = IORING_SETUP_SQPOLL; // Disabled due to EBADF issues
-        // params.sq_thread_idle = 2000;
-        
-        ring_fd = io_uring_setup(64, &params);
-        if (ring_fd < 0) {
-            perror("io_uring_setup");
-            // exit(1);
-        }
-        
-        if (ring_fd >= 0) {
-            sq_entries = params.sq_entries;
-            cq_entries = params.cq_entries;
-            
-            size_t sq_size = params.sq_off.array + sq_entries * sizeof(unsigned);
-            size_t cq_size = params.cq_off.cqes + cq_entries * sizeof(struct io_uring_cqe);
-            
-            sq_ptr = mmap(0, sq_size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_POPULATE, ring_fd, IORING_OFF_SQ_RING);
-            cq_ptr = mmap(0, cq_size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_POPULATE, ring_fd, IORING_OFF_CQ_RING);
-            sqes = (struct io_uring_sqe*)mmap(0, sq_entries * sizeof(struct io_uring_sqe), 
-                                               PROT_READ | PROT_WRITE, MAP_SHARED | MAP_POPULATE, 
-                                               ring_fd, IORING_OFF_SQES);
-            
-            if (sq_ptr != MAP_FAILED && cq_ptr != MAP_FAILED && sqes != MAP_FAILED) {
-                sq_head = (unsigned*)((char*)sq_ptr + params.sq_off.head);
-                sq_tail = (unsigned*)((char*)sq_ptr + params.sq_off.tail);
-                sq_array = (unsigned*)((char*)sq_ptr + params.sq_off.array);
-                cq_head = (unsigned*)((char*)cq_ptr + params.cq_off.head);
-                cq_tail = (unsigned*)((char*)cq_ptr + params.cq_off.tail);
-                cqes = (struct io_uring_cqe*)((char*)cq_ptr + params.cq_off.cqes);
-                sq_mask = sq_entries - 1;
-                cq_mask = cq_entries - 1;
-                uring_enabled = true;
-            }
-        }
+        // io_uring disabled - causes stability issues on Jetson
+        // GDS (cuFile) disabled - not available on Jetson R35.4
+    }
+
+    void disable_uring() {
+        uring_enabled = false;
     }
     
     // Disable copy
@@ -98,10 +141,32 @@ public:
             std::cout << "[IOBackend] Closing fd: " << fd << std::endl;
             close(fd);
         }
+        // Unmap io_uring regions before closing ring_fd
+        if (uring_enabled && ring_fd >= 0) {
+            if (sq_ptr && sq_ptr != MAP_FAILED) {
+                munmap(sq_ptr, sq_entries * sizeof(unsigned) + 64);  // Approx size
+            }
+            if (cq_ptr && cq_ptr != MAP_FAILED && cq_ptr != sq_ptr) {
+                munmap(cq_ptr, cq_entries * sizeof(struct io_uring_cqe) + 64);
+            }
+            if (sqes && (void*)sqes != MAP_FAILED) {
+                munmap(sqes, sq_entries * sizeof(struct io_uring_sqe));
+            }
+        }
         if (ring_fd >= 0) close(ring_fd);
+        if (gds_enabled && p_cuFileHandleDeregister) {
+#if EDGEQ_HAVE_CUFILE
+            p_cuFileHandleDeregister(gds_handle);
+#endif
+        }
+        if (gds_enabled && p_cuFileDriverClose) {
+            p_cuFileDriverClose();
+        }
+        if (gds_lib) dlclose(gds_lib);
     }
     
     void write(size_t offset, void* buf, size_t size) {
+        std::lock_guard<std::mutex> lock(io_mutex);
         if (uring_enabled) {
             submit_and_wait(IORING_OP_WRITEV, offset, buf, size);
         } else {
@@ -109,12 +174,43 @@ public:
         }
     }
     
+    void sync() {
+        if (fd >= 0) {
+            fsync(fd);
+        }
+    }
+    
     void read(size_t offset, void* buf, size_t size) {
+        std::lock_guard<std::mutex> lock(io_mutex);
         if (uring_enabled) {
             submit_and_wait(IORING_OP_READV, offset, buf, size);
         } else {
             if (pread(fd, buf, size, offset) < 0) { perror("pread"); exit(1); }
         }
+    }
+
+    bool is_gds_enabled() const { return gds_enabled; }
+
+    bool register_device_buffer(void* dev_ptr, size_t size) {
+        if (!gds_enabled || !p_cuFileBufRegister) return false;
+        return p_cuFileBufRegister(dev_ptr, size, 0).err == 0;
+    }
+
+    void deregister_device_buffer(void* dev_ptr) {
+        if (!gds_enabled || !p_cuFileBufDeregister) return;
+        p_cuFileBufDeregister(dev_ptr);
+    }
+
+    bool read_device(size_t offset, void* dev_ptr, size_t size) {
+        if (!gds_enabled || !p_cuFileRead) return false;
+        ssize_t ret = p_cuFileRead(gds_handle, dev_ptr, size, (off_t)offset, 0);
+        return ret == (ssize_t)size;
+    }
+
+    bool write_device(size_t offset, void* dev_ptr, size_t size) {
+        if (!gds_enabled || !p_cuFileWrite) return false;
+        ssize_t ret = p_cuFileWrite(gds_handle, dev_ptr, size, (off_t)offset, 0);
+        return ret == (ssize_t)size;
     }
 
 private:
