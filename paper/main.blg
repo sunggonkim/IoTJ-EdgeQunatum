@@ -1,68 +1,79 @@
 This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
-The style file: IEEEtran.bst
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
+The style file: plain.bst
 Database file #1: references.bib
-Warning--I didn't find a database entry for "miguel2023enhancing"
-Warning--I didn't find a database entry for "renner2022computational"
-Warning--I didn't find a database entry for "suzuki2022quantum"
-Warning--I didn't find a database entry for "preskill2019quantum"
-Warning--I didn't find a database entry for "10.1145/3771577"
-Warning--I didn't find a database entry for "park2022snuqs"
-Warning--I didn't find a database entry for "zhang2025bmqsim"
-Warning--I didn't find a database entry for "svsim"
-Warning--I didn't find a database entry for "zhang2021hyquas"
-Warning--I didn't find a database entry for "xu2024atlas"
-Warning--I didn't find a database entry for "gray2018quimb"
--- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
--- http://www.michaelshell.org/tex/ieeetran/bibtex/
--- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-
-Done.
-You've used 4 entries,
-            4087 wiz_defined-function locations,
-            846 strings with 7836 characters,
-and the built_in function-call counts, 1350 in all, are:
-= -- 94
-> -- 7
+Warning--to sort, need author or key in miguel2023enhancing
+Warning--to sort, need author or key in renner2022computational
+Warning--to sort, need author or key in graham2022multi
+Warning--to sort, need author or key in bennett1992experimental
+Warning--to sort, need author or key in childs2018toward
+Warning--to sort, need author or key in biamonte2017quantum
+Warning--to sort, need author or key in preskill2019quantum
+Warning--to sort, need author or key in suzuki2022quantum
+Warning--to sort, need author or key in 10.1145/3771577
+Warning--to sort, need author or key in qiskit
+Warning--to sort, need author or key in cuquantum
+Warning--to sort, need author or key in pennylane
+Warning--to sort, need author or key in park2022snuqs
+Warning--to sort, need author or key in zhang2025bmqsim
+Warning--to sort, need author or key in svsim
+Warning--to sort, need author or key in suzuki2021qulacs
+Warning--to sort, need author or key in villalonga2019flexible
+Warning--to sort, need author or key in gray2018quimb
+Warning--to sort, need author or key in lykov2022tensor
+Warning--to sort, need author or key in guerreschi2020intel
+Warning--to sort, need author or key in de2007massively
+Warning--to sort, need author or key in nvidia2022jetson
+Warning--to sort, need author or key in bayraktar2023cuquantum
+Warning--to sort, need author or key in lin2022hm
+Warning--to sort, need author or key in hwang2020centaur
+Warning--to sort, need author or key in zhang2021hyquas
+Warning--to sort, need author or key in xu2024atlas
+Warning--to sort, need author or key in zhang2022uniq
+Warning--to sort, need author or key in pan2022simulation
+Warning--to sort, need author or key in wang2023enabling
+Warning--to sort, need author or key in wu2019full
+Warning--to sort, need author or key in zhang2024overcoming
+You've used 33 entries,
+            2118 wiz_defined-function locations,
+            581 strings with 5836 characters,
+and the built_in function-call counts, 5388 in all, are:
+= -- 503
+> -- 39
 < -- 0
-+ -- 5
-- -- 1
-* -- 53
-:= -- 238
-add.period$ -- 8
-call.type$ -- 4
-change.case$ -- 4
++ -- 35
+- -- 2
+* -- 200
+:= -- 593
+add.period$ -- 67
+call.type$ -- 33
+change.case$ -- 100
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 118
-empty$ -- 143
-format.name$ -- 1
-if$ -- 289
+cite$ -- 65
+duplicate$ -- 231
+empty$ -- 759
+format.name$ -- 2
+if$ -- 1330
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 25
-newline$ -- 35
-num.names$ -- 1
-pop$ -- 76
+int.to.str$ -- 33
+missing$ -- 0
+newline$ -- 136
+num.names$ -- 2
+pop$ -- 293
 preamble$ -- 1
-purify$ -- 0
-quote$ -- 2
-skip$ -- 108
+purify$ -- 67
+quote$ -- 0
+skip$ -- 230
 stack$ -- 0
-substring$ -- 4
-swap$ -- 59
+substring$ -- 165
+swap$ -- 33
 text.length$ -- 0
 text.prefix$ -- 0
-top$ -- 5
-type$ -- 4
-warning$ -- 0
-while$ -- 1
-width$ -- 5
-write$ -- 51
-(There were 11 warnings)
+top$ -- 0
+type$ -- 132
+warning$ -- 32
+while$ -- 2
+width$ -- 35
+write$ -- 268
+(There were 32 warnings)

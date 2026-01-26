@@ -1,5 +1,5 @@
 \documentclass[journal]{IEEEtran}
-
+\usepackage[utf8]{inputenc}
 %% Packages
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
@@ -12,7 +12,7 @@
 \usepackage{array}
 \usepackage{xspace}
 \usepackage{pifont}
-\usepackage[caption=false]{subfig}
+% removed conflicting `subfig`; using `subcaption` below
 \usepackage{float}
 \usepackage{url}
 \usepackage{cite}
@@ -35,6 +35,9 @@
 \usepackage{bm}
 \usepackage{caption}
 \usepackage{subcaption}
+
+% Make figure and subfigure captions slightly larger for readability
+\captionsetup{font=small,labelfont=bf}
 \usepackage{pifont,array} %For ding
 \usepackage{multicol}
 \usepackage{multirow}
@@ -61,6 +64,9 @@
 %% Commands
 \newcommand{\edgeQsim}{\texttt{edgeQsim}\xspace}
 
+% Define macros used throughout the paper
+\newcommand{\EdgeQuantum}{\texttt{EdgeQuantum}\xspace}
+
 \newcommand{\cmark}{{\color{green!70!black}\ding{51}}}
 \newcommand{\xmark}{{\color{red!80!black}\ding{55}}}
 \newcommand{\pmark}{{\color{orange!80!black}$\triangle$}}
@@ -71,10 +77,13 @@
 
 
 \maketitle
-
-ㅊ
 \begin{abstract}
-Quantum circuit simulation is essential for developing and validating quantum algorithms, yet existing simulators require High-Performance Computing (HPC) clusters with hundreds of GPUs. This paper presents \EdgeQuantum, a scalable quantum circuit simulation framework that enables large-scale simulation on resource-constrained edge devices. Using a tiered memory architecture (GPU VRAM $\to$ CPU DRAM $\to$ NVMe SSD) with LZ4 compression achieving 242.7$\times$ storage reduction, \EdgeQuantum demonstrates \textbf{37-qubit simulation} (1TB state vector) on an 8GB NVIDIA Jetson Orin Nano---a 128$\times$ capacity expansion beyond device memory. We evaluate \EdgeQuantum on standard quantum benchmark circuits including QFT, Random Circuits, and Supremacy-style circuits from 20 to 30 qubits. While HPC simulators like ScaleQsim achieve 42 qubits in seconds using 512 GPUs, \EdgeQuantum enables HPC-scale qubit counts on \$200 edge hardware at 15W power consumption, trading execution speed for memory capacity.
+This paper presents \EdgeQuantum, an asynchronous pipelined quantum circuit simulator designed to overcome the memory bottleneck and scalability limits of resource-constrained edge devices. 
+Its primary strategy is to extend beyond in-memory simulation bounded by physical RAM and introduce a unified tiered-memory architecture that integrates GPU VRAM, CPU DRAM, and NVMe SSDs into a streaming framework. 
+With this design, \EdgeQuantum partitions the full state vector into chunks, manages their residency via a triple-buffered UVM zero-copy pipeline, overlaps computation with data movement through asynchronous execution, and employs on-the-fly LZ4 compression to maximize effective storage capacity.
+
+Our evaluation demonstrates that \EdgeQuantum executes up to 37-qubit simulations ($\approx$1~TB state vector) on an 8~GB NVIDIA Jetson Orin Nano, a scale unattainable by existing edge simulators due to limited memory resources. 
+\EdgeQuantum achieves up to a 242.7$\times$ storage reduction through compression, effectively providing a 128$\times$ capacity expansion beyond device RAM, while maintaining execution stability for complex circuits such as QFT and Random-20 on low-power hardware.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -91,7 +100,8 @@ Quantum Computing, Quantum Circuit Simulation, Edge Computing, GPU Acceleration,
 \input{6_Conclusion.tex}
 \input{Appendix.tex}
 
-\bibliographystyle{IEEEtran}
+% Use a generic bibliography style for local builds; change back to IEEEtran for final submission
+\bibliographystyle{plain}
 \bibliography{references}
 
 \end{document}

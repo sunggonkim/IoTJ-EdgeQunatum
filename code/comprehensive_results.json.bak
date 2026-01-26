@@ -1,0 +1,1547 @@
+{
+  "runs": [
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "QV",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:55:05.204241",
+      "success": true,
+      "sim_time": 1.57998,
+      "wall_time": 3.1985018253326416
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "QV",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:55:10.439931",
+      "success": true,
+      "sim_time": 1.58537,
+      "wall_time": 3.232483148574829
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QV",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:55:18.682679",
+      "success": true,
+      "sim_time": 3.89334,
+      "wall_time": 6.231905937194824
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QV",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:55:25.953713",
+      "success": true,
+      "sim_time": 2.92377,
+      "wall_time": 5.267913818359375
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "QV",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:56:01.684534",
+      "success": true,
+      "sim_time": 27.14713478088379,
+      "wall_time": 27.14713478088379
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "VQC",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:56:18.598912",
+      "success": true,
+      "sim_time": 3.23388,
+      "wall_time": 14.911020994186401
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "VQC",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:56:25.481161",
+      "success": true,
+      "sim_time": 3.2261,
+      "wall_time": 4.878827095031738
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQC",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:56:35.515131",
+      "success": true,
+      "sim_time": 5.64996,
+      "wall_time": 8.030481576919556
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQC",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:56:44.434804",
+      "success": true,
+      "sim_time": 4.56821,
+      "wall_time": 6.916192293167114
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "VQC",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:57:56.283351",
+      "success": true,
+      "sim_time": 69.78028130531311,
+      "wall_time": 69.78028130531311
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:01.576408",
+      "success": true,
+      "sim_time": 1.30901,
+      "wall_time": 3.289585828781128
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:06.527938",
+      "success": true,
+      "sim_time": 1.30704,
+      "wall_time": 2.9479260444641113
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:13.075761",
+      "success": true,
+      "sim_time": 2.21732,
+      "wall_time": 4.544263601303101
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:19.238902",
+      "success": true,
+      "sim_time": 1.83549,
+      "wall_time": 4.159677505493164
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "QSVM",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:21.268463",
+      "success": true,
+      "sim_time": 0.020258426666259766,
+      "wall_time": 0.020258426666259766
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "Random",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:27.013566",
+      "success": true,
+      "sim_time": 2.11638,
+      "wall_time": 3.7418482303619385
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "Random",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:32.793297",
+      "success": true,
+      "sim_time": 2.14073,
+      "wall_time": 3.777434825897217
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "Random",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:41.569554",
+      "success": true,
+      "sim_time": 4.4518,
+      "wall_time": 6.772511720657349
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "Random",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:49.369557",
+      "success": true,
+      "sim_time": 3.46744,
+      "wall_time": 5.796380519866943
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "Random",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:51.719630",
+      "success": true,
+      "sim_time": 0.16196537017822266,
+      "wall_time": 0.16196537017822266
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:55.602478",
+      "success": true,
+      "sim_time": 0.239702,
+      "wall_time": 1.8791885375976562
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:58:59.506993",
+      "success": true,
+      "sim_time": 0.239965,
+      "wall_time": 1.8926305770874023
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:59:04.564404",
+      "success": true,
+      "sim_time": 0.705474,
+      "wall_time": 3.053596258163452
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:59:09.419088",
+      "success": true,
+      "sim_time": 0.51227,
+      "wall_time": 2.8509647846221924
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "GHZ",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:59:13.927431",
+      "success": true,
+      "sim_time": 2.484804391860962,
+      "wall_time": 2.484804391860962
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "VQE",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:59:20.801374",
+      "success": true,
+      "sim_time": 3.23075,
+      "wall_time": 4.870114088058472
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "VQE",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:59:27.673567",
+      "success": true,
+      "sim_time": 3.22326,
+      "wall_time": 4.8697850704193115
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQE",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:59:37.534969",
+      "success": true,
+      "sim_time": 5.52576,
+      "wall_time": 7.857532501220703
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQE",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T16:59:46.450149",
+      "success": true,
+      "sim_time": 4.5731,
+      "wall_time": 6.911231756210327
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "VQE",
+      "qubits": 26,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:01:24.010779",
+      "success": true,
+      "sim_time": 95.50988960266113,
+      "wall_time": 95.50988960266113
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "QV",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:01:31.333806",
+      "success": true,
+      "sim_time": 3.15822,
+      "wall_time": 5.319164037704468
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "QV",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:01:38.337870",
+      "success": true,
+      "sim_time": 3.15671,
+      "wall_time": 5.00011134147644
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QV",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:01:50.744406",
+      "success": true,
+      "sim_time": 7.85622,
+      "wall_time": 10.40224552154541
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QV",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:02:00.699061",
+      "success": true,
+      "sim_time": 5.39037,
+      "wall_time": 7.950608015060425
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "QV",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:02:51.125109",
+      "success": true,
+      "sim_time": 48.29203176498413,
+      "wall_time": 48.29203176498413
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "VQC",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:03:10.598234",
+      "success": true,
+      "sim_time": 6.44117,
+      "wall_time": 17.462393283843994
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "VQC",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:03:20.922558",
+      "success": true,
+      "sim_time": 6.46064,
+      "wall_time": 8.320099353790283
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQC",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:03:36.591294",
+      "success": true,
+      "sim_time": 11.0906,
+      "wall_time": 13.664289236068726
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQC",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:03:49.807589",
+      "success": true,
+      "sim_time": 8.67247,
+      "wall_time": 11.212071895599365
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "VQC",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:06:13.122124",
+      "success": true,
+      "sim_time": 141.1745800971985,
+      "wall_time": 141.1745800971985
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "QSVM",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:06:27.820776",
+      "success": true,
+      "sim_time": 2.5905,
+      "wall_time": 12.694461822509766
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "QSVM",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:06:34.271345",
+      "success": true,
+      "sim_time": 2.60309,
+      "wall_time": 4.446383237838745
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QSVM",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:06:43.282734",
+      "success": true,
+      "sim_time": 4.47503,
+      "wall_time": 7.007030010223389
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QSVM",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:06:51.350239",
+      "success": true,
+      "sim_time": 3.52054,
+      "wall_time": 6.0631818771362305
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "QSVM",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:06:53.381503",
+      "success": true,
+      "sim_time": 0.02054142951965332,
+      "wall_time": 0.02054142951965332
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "Random",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:07:01.443586",
+      "success": true,
+      "sim_time": 4.23149,
+      "wall_time": 6.058149337768555
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "Random",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:07:09.517375",
+      "success": true,
+      "sim_time": 4.23508,
+      "wall_time": 6.069352388381958
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "Random",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:07:22.993818",
+      "success": true,
+      "sim_time": 8.91022,
+      "wall_time": 11.472001075744629
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "Random",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:07:34.051511",
+      "success": true,
+      "sim_time": 6.48379,
+      "wall_time": 9.053256511688232
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "Random",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:08:00.916919",
+      "success": true,
+      "sim_time": 24.58095121383667,
+      "wall_time": 24.58095121383667
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "GHZ",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:08:12.877914",
+      "success": true,
+      "sim_time": 0.481531,
+      "wall_time": 9.94741678237915
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "GHZ",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:08:17.194510",
+      "success": true,
+      "sim_time": 0.478261,
+      "wall_time": 2.3121159076690674
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "GHZ",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:08:23.213533",
+      "success": true,
+      "sim_time": 1.46497,
+      "wall_time": 4.014251232147217
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "GHZ",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:08:28.710086",
+      "success": true,
+      "sim_time": 0.938876,
+      "wall_time": 3.492064952850342
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "GHZ",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:08:36.154841",
+      "success": true,
+      "sim_time": 5.328052520751953,
+      "wall_time": 5.328052520751953
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "VQE",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:08:46.509287",
+      "success": true,
+      "sim_time": 6.44434,
+      "wall_time": 8.349942445755005
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "VQE",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:08:56.816901",
+      "success": true,
+      "sim_time": 6.46337,
+      "wall_time": 8.30306625366211
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQE",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:09:12.516651",
+      "success": true,
+      "sim_time": 11.1474,
+      "wall_time": 13.69677734375
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQE",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T17:09:25.862077",
+      "success": true,
+      "sim_time": 8.77221,
+      "wall_time": 11.340874671936035
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "VQE",
+      "qubits": 27,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:22:15.760540",
+      "success": true,
+      "sim_time": 211.05587577819824,
+      "wall_time": 211.05587577819824
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "QV",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:22:36.933661",
+      "success": true,
+      "sim_time": 6.31541,
+      "wall_time": 19.168452501296997
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "QV",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:22:47.737222",
+      "success": true,
+      "sim_time": 6.28908,
+      "wall_time": 8.798986434936523
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QV",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:23:05.793220",
+      "success": true,
+      "sim_time": 13.2097,
+      "wall_time": 16.0514554977417
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QV",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:23:24.721281",
+      "success": true,
+      "sim_time": 13.188,
+      "wall_time": 16.923239707946777
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "QV",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:25:20.874962",
+      "success": true,
+      "sim_time": 113.78062438964844,
+      "wall_time": 113.78062438964844
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "VQC",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:25:50.292959",
+      "success": true,
+      "sim_time": 12.8765,
+      "wall_time": 27.25795555114746
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "VQC",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:26:07.511085",
+      "success": true,
+      "sim_time": 12.9,
+      "wall_time": 15.213396072387695
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQC",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:26:29.279367",
+      "success": true,
+      "sim_time": 16.836,
+      "wall_time": 19.76340937614441
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQC",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:26:51.434260",
+      "success": true,
+      "sim_time": 17.3247,
+      "wall_time": 20.150320291519165
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "VQC",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:31:46.907000",
+      "success": true,
+      "sim_time": 292.93158173561096,
+      "wall_time": 292.93158173561096
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:32:08.198761",
+      "success": true,
+      "sim_time": 5.18639,
+      "wall_time": 19.11968183517456
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:32:17.663679",
+      "success": true,
+      "sim_time": 5.17174,
+      "wall_time": 7.459883451461792
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:32:29.705637",
+      "success": true,
+      "sim_time": 7.36642,
+      "wall_time": 10.036608457565308
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:32:41.777914",
+      "success": true,
+      "sim_time": 7.06581,
+      "wall_time": 10.066998720169067
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "QSVM",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:32:43.992956",
+      "success": true,
+      "sim_time": 0.029688596725463867,
+      "wall_time": 0.029688596725463867
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "Random",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:32:56.766344",
+      "success": true,
+      "sim_time": 8.50139,
+      "wall_time": 10.768561363220215
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "Random",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:33:09.515097",
+      "success": true,
+      "sim_time": 8.45465,
+      "wall_time": 10.743608951568604
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "Random",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:33:29.529838",
+      "success": true,
+      "sim_time": 15.0657,
+      "wall_time": 18.009288787841797
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "Random",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:33:48.547906",
+      "success": true,
+      "sim_time": 14.1849,
+      "wall_time": 17.012763738632202
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "Random",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:33:50.771629",
+      "success": true,
+      "sim_time": 0.05333566665649414,
+      "wall_time": 0.05333566665649414
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:33:55.997405",
+      "success": true,
+      "sim_time": 0.955287,
+      "wall_time": 3.2215421199798584
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:34:01.265399",
+      "success": true,
+      "sim_time": 0.963311,
+      "wall_time": 3.2548062801361084
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:34:08.706351",
+      "success": true,
+      "sim_time": 2.76738,
+      "wall_time": 5.434430360794067
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:34:16.136430",
+      "success": true,
+      "sim_time": 2.4446,
+      "wall_time": 5.424744367599487
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "GHZ",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:34:32.449348",
+      "success": true,
+      "sim_time": 14.00467562675476,
+      "wall_time": 14.00467562675476
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "VQE",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:35:01.724208",
+      "success": true,
+      "sim_time": 13.0561,
+      "wall_time": 27.25893545150757
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "VQE",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:35:18.899177",
+      "success": true,
+      "sim_time": 12.8856,
+      "wall_time": 15.169702053070068
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQE",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:35:40.731255",
+      "success": true,
+      "sim_time": 16.8674,
+      "wall_time": 19.826704502105713
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQE",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T18:36:02.710215",
+      "success": true,
+      "sim_time": 17.1181,
+      "wall_time": 19.97330379486084
+    },
+    {
+      "scheme": "Cirq",
+      "circuit": "VQE",
+      "qubits": 28,
+      "depth": 5,
+      "timestamp": "2026-01-26T19:34:36.454082",
+      "success": true,
+      "sim_time": 3510.57524061203,
+      "wall_time": 3510.57524061203
+    },
+    {
+      "scheme": "cuQuantum Native",
+      "circuit": "QV",
+      "qubits": 29,
+      "depth": 5,
+      "timestamp": "2026-01-26T19:35:08.551400",
+      "success": true,
+      "sim_time": 12.7749,
+      "wall_time": 29.942472219467163
+    },
+    {
+      "scheme": "cuQuantum UVM",
+      "circuit": "QV",
+      "qubits": 29,
+      "depth": 5,
+      "timestamp": "2026-01-26T19:35:40.033674",
+      "success": true,
+      "sim_time": 12.7124,
+      "wall_time": 29.436747074127197
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QV",
+      "qubits": 29,
+      "depth": 5,
+      "timestamp": "2026-01-26T19:36:34.014801",
+      "success": true,
+      "sim_time": 35.4537,
+      "wall_time": 51.94330978393555
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QV",
+      "qubits": 29,
+      "depth": 5,
+      "timestamp": "2026-01-26T19:37:17.827051",
+      "success": true,
+      "sim_time": 34.4795,
+      "wall_time": 41.80508518218994
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QV",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:07.158138",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0018546581268310547
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QV",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:09.165882",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0023508071899414062
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQC",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:11.173392",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0024051666259765625
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQC",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:13.186219",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002271890640258789
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QSVM",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:15.193411",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0019659996032714844
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QSVM",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:17.200441",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.001932382583618164
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "Random",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:19.206272",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0022478103637695312
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "Random",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:21.213525",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0018761157989501953
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "GHZ",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:23.221149",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002416372299194336
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "GHZ",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:25.228666",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002137422561645508
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQE",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:27.234994",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0023310184478759766
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQE",
+      "qubits": 30,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:29.242687",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002308368682861328
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QV",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:31.258426",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0024061203002929688
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QV",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:33.266185",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0023484230041503906
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQC",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:35.273559",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0019741058349609375
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQC",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:37.281276",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0023555755615234375
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QSVM",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:39.289268",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0025284290313720703
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QSVM",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:41.363399",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.06851077079772949
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "Random",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:43.370473",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0024280548095703125
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "Random",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:45.378485",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0024712085723876953
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "GHZ",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:47.385917",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.001981973648071289
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "GHZ",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:49.393475",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0019845962524414062
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQE",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:51.400887",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0019578933715820312
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQE",
+      "qubits": 31,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:53.408407",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0019617080688476562
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QV",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:55.414101",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002175569534301758
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QV",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:57.422310",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002391815185546875
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQC",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:33:59.429952",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0020301342010498047
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQC",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:01.437958",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002264738082885742
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QSVM",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:03.450292",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0022280216217041016
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QSVM",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:05.458094",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0021104812622070312
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "Random",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:07.466085",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0021011829376220703
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "Random",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:09.474206",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0023603439331054688
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "GHZ",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:11.482355",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002424478530883789
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "GHZ",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:13.490319",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002370119094848633
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQE",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:15.498064",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002129077911376953
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQE",
+      "qubits": 32,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:17.506272",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002400636672973633
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QV",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:19.513942",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0020160675048828125
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QV",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:21.522208",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002393007278442383
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQC",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:23.529981",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.001984119415283203
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQC",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:25.537875",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002062082290649414
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QSVM",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:27.545676",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0020117759704589844
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QSVM",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:29.553955",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002402782440185547
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "Random",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:31.562167",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0022597312927246094
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "Random",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:33.570265",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0021364688873291016
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "GHZ",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:35.578597",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0022001266479492188
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "GHZ",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:37.586421",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0023345947265625
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQE",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:39.594176",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0021979808807373047
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQE",
+      "qubits": 33,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:41.602721",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002436399459838867
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QV",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:43.610152",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002187013626098633
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QV",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:45.618278",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0023300647735595703
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQC",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:47.626335",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002344846725463867
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQC",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:49.635853",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0021772384643554688
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "QSVM",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:51.644281",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002218961715698242
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "QSVM",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:53.652605",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002117633819580078
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "Random",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:55.661126",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002280712127685547
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "Random",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:57.669684",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002214670181274414
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "GHZ",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:34:59.678427",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002473592758178711
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "GHZ",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:35:01.686564",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.0018813610076904297
+    },
+    {
+      "scheme": "BMQSim-like (Offload)",
+      "circuit": "VQE",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:35:03.695056",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002191305160522461
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "circuit": "VQE",
+      "qubits": 34,
+      "depth": 5,
+      "timestamp": "2026-01-26T21:35:05.702177",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: './build/edge_quantum'",
+      "wall_time": 0.002117633819580078
+    }
+  ],
+  "meta": {
+    "start_time": "2026-01-26T16:55:02.005471"
+  }
+}

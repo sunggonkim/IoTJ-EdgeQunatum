@@ -7,11 +7,17 @@ EdgeQuantum is a tiered-memory quantum circuit simulator targeting NVIDIA Jetson
 ```
 edgeQuantum/
 ├── README.md
-├── paper/                # LaTeX sources
+├── paper/                # LaTeX sources (figures, manuscript)
 ├── code/                 # C++/Python benchmarks and runner scripts
-│   ├── src/              # C++ simulator
-│   ├── run_28q_schemes.py # 28-qubit scheme validation
-│   └── grand_benchmark.py # Multi-circuit benchmark
+│   ├── src/              # C++ simulator core
+│   │   ├── main.cpp
+│   │   ├── simulator.cpp/hpp
+│   │   ├── chunk_manager.cpp/hpp
+│   │   └── io_backend.cpp/hpp
+│   ├── build/            # compiled binary: build/edge_quantum
+│   ├── comprehensive_benchmark.py  # full grid benchmark (26-34Q x circuits x schemes)
+│   ├── grand_benchmark.py # Multi-circuit benchmark
+│   └── run_28q_schemes.py # 28-qubit scheme validation
 └── third_party/          # cuQuantum archives (downloaded)
 ```
 
@@ -72,6 +78,27 @@ Results are written to `code/results_28q_schemes.json`.
 cd code
 python3 grand_benchmark.py
 ```
+
+## Full Comprehensive Benchmark (recommended)
+
+This repository includes `comprehensive_benchmark.py` that runs the full grid used in the paper:
+
+- Qubits: 26..34
+- Circuits: QV, VQC, QSVM, Random, GHZ, VQE
+- Schemes: cuQuantum Native, cuQuantum UVM, BMQSim-like (Offload), EdgeQuantum, Cirq
+
+Run it from `code/` (it will use `./build/edge_quantum` for the C++ schemes and a local Cirq implementation for CPU runs):
+
+```bash
+cd code
+nohup python3 comprehensive_benchmark.py > benchmark_output.log 2>&1 &
+tail -f benchmark_output.log
+```
+
+Notes:
+- The C++ schemes ("cuQuantum Native", "cuQuantum UVM", "BMQSim-like (Offload)", "EdgeQuantum") are implemented inside the single binary `code/build/edge_quantum` and selected via runtime flags.
+- `EdgeQuantum` is the async UVM pipeline (cudaStreamAttachMemAsync) implementation. `BMQSim-like (Offload)` runs the blocking offload I/O path for comparison.
+
 
 ## Notes
 

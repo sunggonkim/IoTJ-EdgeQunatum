@@ -21,6 +21,21 @@ This doubles the number of non-zero amplitudes. A full layer of Hadamard gates (
 
 However, many practical circuits (e.g., QFT, VQE) maintain structured sparsity or local correlations for significant depth. \EdgeQuantum exploits this dynamic sparsity. As observed in Table~\ref{tab:circuits}, circuits like GHZ (highly entangled but simple correlation) maintain high compression, whereas Random circuits rapidly approach the uncompressible limit.
 
+\begin{table}[t]
+	\centering
+	\caption{Representative benchmark circuits and typical compression behavior.}
+	\label{tab:circuits}
+	\begin{tabular}{lccc}
+	\hline
+	Circuit & Typical Qubits & Typical Depth & Typical Compression \\
+	\hline
+	GHZ & 10--30 & low & High (>>100x) \\
+	QFT & 12--30 & medium & Moderate (10--50x) \\
+Random & 20--34 & variable & Low ($\approx$ 1--5x) \\
+	\hline
+	\end{tabular}
+\end{table}
+
 \subsection{Memory Traffic Model}
 The total data transferred $D_{total}$ for a circuit with $G$ gates and effective compression ratio $r$ is:
 \begin{equation}
