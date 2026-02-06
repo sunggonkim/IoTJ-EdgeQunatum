@@ -11,12 +11,11 @@
 #include <cuComplex.h>
 #include "chunk_manager.hpp"
 #include "io_backend.hpp"
+#include "compression.hpp"
 
 enum class SimMode {
-    Tiered_Async,
-    Tiered_Blocking,
-    Native,
-    UVM
+    Native,      // Full state in GPU memory (fast, limited by VRAM)
+    Tiered       // State on NVMe, async pipeline (slower, unlimited size)
 };
 
 // Simple Thread Pool for I/O
@@ -87,6 +86,10 @@ class EdgeQuantumSim {
     SimMode mode;
     std::string storage_path;
     
+    // Compressed Storage (used when compression enabled)
+    CompressedStorage* compressed_storage;
+    bool use_compression;
+    
     // Tiered Memory Resources
     ChunkManager* chunk_mgr;
     IOBackend* io;
@@ -94,9 +97,9 @@ class EdgeQuantumSim {
     // Native/UVM Resources
     void* full_state_ptr;
 
-    // UVM-based pipeline configuration
-    // With UVM, we don't need separate device buffers - UVM buffers are GPU-accessible!
-    static constexpr int NUM_PIPELINE_BUFS = 3;  // 3 UVM buffers for triple pipeline
+    // UVM-based pipeline configuration  
+    // 4 buffers: more overlap time for slow TLC writes (450ms)
+    static constexpr int NUM_PIPELINE_BUFS = 4;
     bool device_buf_ready;  // Legacy flag, kept for compatibility
     
     // cuQuantum Resources
@@ -119,7 +122,9 @@ class EdgeQuantumSim {
     // Mode
 
 public:
-    EdgeQuantumSim(int qubits, std::string path, SimMode m, bool force_mode=false);
+    // mode_str: "auto", "native", "uvm", "tiered"
+    // force_mode: if true, skip memory check and force the specified mode
+    EdgeQuantumSim(int qubits, std::string path, std::string mode_str = "auto", bool force_mode = false);
     ~EdgeQuantumSim();
     
     // Benchmarks

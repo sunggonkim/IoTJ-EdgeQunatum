@@ -8,9 +8,9 @@ int main(int argc, char** argv) {
     int depth = 5;
     std::string circuit = "Random";
     std::string storage_path = "cpp_state_vector.bin";
-    SimMode mode = SimMode::Tiered_Async;
-    bool verify = false;
+    std::string sim_mode_str = "auto";  // auto, native, uvm, tiered
     bool force_mode = false;
+    bool verify = false;
 
     // Simple Argument Parser
     for(int i=1; i<argc; i++) {
@@ -21,34 +21,29 @@ int main(int argc, char** argv) {
             if(i+1 < argc) depth = std::stoi(argv[++i]);
         } else if(arg == "--circuit") {
             if(i+1 < argc) circuit = argv[++i];
-        } else if(arg == "--sim-mode") {
-            if(i+1 < argc) {
-                 std::string m = argv[++i];
-                 if(m == "blocking") mode = SimMode::Tiered_Blocking;
-                 else if(m == "native") mode = SimMode::Native;
-                 else if(m == "uvm") mode = SimMode::UVM;
-                 else mode = SimMode::Tiered_Async;
-            }
         } else if(arg == "--storage") {
-           if(i+1 < argc) storage_path = argv[++i];
-          } else if(arg == "--verify") {
-              verify = true;
-          } else if(arg == "--force-mode") {
-              force_mode = true;
+            if(i+1 < argc) storage_path = argv[++i];
+        } else if(arg == "--sim-mode") {
+            if(i+1 < argc) sim_mode_str = argv[++i];
+        } else if(arg == "--force-mode") {
+            force_mode = true;
+        } else if(arg == "--verify") {
+            verify = true;
         }
     }
 
     std::cout << "Starting C++ EdgeQuantum with " << qubits << " Qubits, " << depth << " Layers/Depth" << std::endl;
     std::cout << "Circuit: " << circuit << std::endl;
-    // Mode printed by Sim constructor
     std::cout << "Storage: " << storage_path << std::endl;
+    std::cout << "Mode: " << sim_mode_str << (force_mode ? " (forced)" : "") << std::endl;
     
-    // ... path logic ... 
+    // Path normalization
     if (storage_path.find("/") == std::string::npos) {
         storage_path = "/mnt/nvme/skim/edgeQuantum/code/" + storage_path;
     }
 
-    EdgeQuantumSim sim(qubits, storage_path, mode, force_mode);
+    // Create simulator with specified mode
+    EdgeQuantumSim sim(qubits, storage_path, sim_mode_str, force_mode);
 
     if (verify) {
         bool ok = sim.validate_hadamard();

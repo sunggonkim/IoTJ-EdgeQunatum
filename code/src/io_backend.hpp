@@ -11,6 +11,8 @@
 #include <atomic>
 #include <mutex>
 #include <dlfcn.h>
+#include <lz4.h>
+#include <vector>
 #include "utils.hpp"
 
 #if __has_include(<cufile.h>)

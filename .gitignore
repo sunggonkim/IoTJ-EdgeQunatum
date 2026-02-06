@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.bin
+*.bin.lz4*
 *.so
 *.a
 *.o
@@ -10,6 +11,7 @@ __pycache__/
 *.log
 *.tmp
 *.swp
+*.bak
 build/
 code/build/
 code/test_kernel
@@ -17,11 +19,10 @@ code/test_pauli
 code/test_verification_28q
 code/grand_results_*.json
 code/results_*.json
-code/*.json
+code/additional_results.json
 code/backup/
-third_party/cuquantum-*
-third_party/*.tar.xz
-third_party/*-archive/
-cpp_state_vector.bin
+third_party/
+cpp_state_vector.*
 30q_benchmark_result.txt
-tatus
+# Allow comprehensive_results.json
+!code/comprehensive_results.json

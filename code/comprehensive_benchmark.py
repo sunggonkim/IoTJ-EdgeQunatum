@@ -14,17 +14,16 @@ import datetime
 import traceback
 
 # === Configuration ===
-QUBITS = [26, 27, 28, 29, 30, 31, 32, 33, 34]
+# Storage-only test: 29q+ where state exceeds GPU memory
+QUBITS = [29, 30, 31, 32, 33, 34]
 CIRCUITS = ["QV", "VQC", "QSVM", "Random", "GHZ", "VQE"]
 DEPTH = 5
 TIMEOUT_SEC = 3600  # 1 hour timeout per run
 
+# Only BMQSim-like and EdgeQuantum for storage comparison
 SCHEMES = [
-    {"name": "cuQuantum Native", "type": "cpp", "mode": "native", "force_mode": False},
-    {"name": "cuQuantum UVM", "type": "cpp", "mode": "uvm", "force_mode": False},
-    {"name": "BMQSim-like (Offload)", "type": "cpp", "mode": "blocking", "force_mode": True},
-    {"name": "EdgeQuantum", "type": "cpp", "mode": "async", "force_mode": True},
-    {"name": "Cirq", "type": "cirq", "mode": None, "force_mode": False}
+    {"name": "BMQSim-like (Offload)", "type": "cpp", "mode": "auto", "force_mode": False, "env": {"FORCE_BLOCKING": "1"}},
+    {"name": "EdgeQuantum", "type": "cpp", "mode": "auto", "force_mode": False, "env": {}},
 ]
 
 RESULTS_FILE = "comprehensive_results.json"
@@ -36,20 +35,26 @@ def log(msg):
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{timestamp}] {msg}", flush=True)
 
-def run_cpp_engine(qubits, circuit, depth, sim_mode, force_mode):
+def run_cpp_engine(qubits, circuit, depth, sim_mode, force_mode, env_vars=None):
     """Run C++ EdgeQuantum Binary"""
     cmd = [BINARY, "--qubits", str(qubits), "--circuit", circuit, "--depth", str(depth)]
     
-    if sim_mode and sim_mode != "async":
+    if sim_mode:
         cmd += ["--sim-mode", sim_mode]
     if force_mode:
         cmd += ["--force-mode"]
+    
+    # Prepare environment with optional overrides
+    run_env = os.environ.copy()
+    if env_vars:
+        run_env.update(env_vars)
+        log(f"  ENV: {env_vars}")
     
     log(f"  CMD: {' '.join(cmd)}")
     
     start_time = time.time()
     try:
-        res = subprocess.run(cmd, capture_output=True, text=True, timeout=TIMEOUT_SEC)
+        res = subprocess.run(cmd, capture_output=True, text=True, timeout=TIMEOUT_SEC, env=run_env)
         wall_time = time.time() - start_time
         
         if res.returncode != 0:
@@ -78,6 +83,11 @@ def run_cpp_engine(qubits, circuit, depth, sim_mode, force_mode):
 
 def run_cirq(qubits, circuit, depth):
     """Run Cirq Simulator"""
+    # Cirq uses CPU memory. 29q = 4GB state vector, exceeds available RAM.
+    # Skip to avoid swap thrashing (would take hours)
+    if qubits >= 29:
+        return {"success": False, "error": "OOM (skipped: 29q+ exceeds RAM)", "wall_time": 0}
+    
     try:
         import cirq
         import numpy as np
@@ -208,7 +218,12 @@ def main():
                 if scheme["type"] == "cirq":
                     result = run_cirq(qubits, circuit, DEPTH)
                 else:
-                    result = run_cpp_engine(qubits, circuit, DEPTH, scheme["mode"], scheme["force_mode"])
+                    result = run_cpp_engine(
+                        qubits, circuit, DEPTH, 
+                        scheme.get("mode"), 
+                        scheme.get("force_mode", False),
+                        scheme.get("env", {})
+                    )
                 
                 # Record result
                 run_record = {
