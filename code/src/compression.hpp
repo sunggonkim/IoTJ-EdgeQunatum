@@ -315,11 +315,10 @@ inline bool should_enable_compression(const std::string& path, size_t required_b
     }
     
     size_t available = (size_t)stat.f_bavail * stat.f_frsize;
-    
-    // Need space for 2 ping-pong files, but compressed
-    // Assume average 10% compression ratio for quantum states
-    // So need: available > required * 0.10 * 2 = required * 0.20
-    // But be conservative: available > required * 0.30
+
+    // Enable compression when the *raw* state would not fit on disk.
+    // We intentionally do not try to predict the final compression ratio here.
+    // (For large-qubit runs, the raw state is enormous, so compression is required.)
     bool need_compression = (available < required_bytes * 11 / 10);
     
     std::cout << "[Storage] Available: " << available / (1024ULL*1024*1024) << " GB, "

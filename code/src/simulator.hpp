@@ -21,7 +21,7 @@ enum class SimMode {
 // Simple Thread Pool for I/O
 class IoWorker {
 public:
-    IoWorker() : stop(false), is_working(false) {
+    IoWorker() : stop(false) {
         worker_thread = std::thread([this]{ run(); });
     }
     
@@ -52,16 +52,11 @@ private:
                 std::unique_lock<std::mutex> lock(m);
                 cv.wait(lock, [this]{ return stop || !tasks.empty(); });
                 if (stop && tasks.empty()) return;
-                
-                is_working = true;
+
                 task = std::move(tasks.front());
                 tasks.erase(tasks.begin());
             }
             task();
-            {
-                std::lock_guard<std::mutex> lock(m);
-                is_working = false;
-            }
         }
     }
 
@@ -70,7 +65,6 @@ private:
     std::mutex m;
     std::condition_variable cv;
     bool stop;
-    bool is_working;
 };
 
 class EdgeQuantumSim {
@@ -116,7 +110,6 @@ class EdgeQuantumSim {
     int control_idx[1];
     
     // Thread Pools
-    IoWorker* read_worker;
     IoWorker* write_worker;
     
     // Mode

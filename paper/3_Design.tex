@@ -122,7 +122,7 @@ For each chunk, the pipeline executes the following steps:
 \begin{enumerate}
     \item \textbf{Wait Write}: If a previous write operation is pending on the current buffer, wait for its completion.
     \item \textbf{Read}: Load chunk $c$ from NVMe into buffer $b_{c \mod 4}$ using synchronous \texttt{pread}. No concurrent write operations are active during this phase.
-    \item \textbf{Launch Async Write}: Start an asynchronous write for chunk $c-1$ on buffer $b_{(c-1) \mod 4}$ using \texttt{std::async}.
+    \item \textbf{Launch Async Write}: Enqueue an asynchronous write task for chunk $c-1$ on buffer $b_{(c-1) \mod 4}$ to a dedicated background worker thread.
     \item \textbf{GPU Compute}: Execute quantum gate operations on chunk $c$ while the write operation proceeds concurrently on a different buffer.
     \item \textbf{Mode Switch}: Transition buffer $b_{c \mod 4}$ back to \texttt{AttachHost} mode for subsequent I/O operations.
 \end{enumerate}
@@ -160,15 +160,17 @@ For quantum simulations where the state vector size far exceeds the physical RAM
 On Jetson's unified memory architecture, \texttt{O\_DIRECT} combined with UVM buffers achieves optimal performance: data flows directly from NVMe to the UVM buffer without intermediate copies through the page cache.
 Our empirical testing shows that \texttt{O\_DIRECT} is approximately 15\% faster than buffered I/O with \texttt{POSIX\_FADV\_DONTNEED} on the Jetson platform.
 
-\noindent\textbf{Graceful Fallback and Storage Hygiene.}
+\noindent\textbf{Why Not io\_uring on Jetson.}
+Although Linux \texttt{io\_uring} can reduce syscall overhead in modern server environments, we observed stability issues on the Jetson platform (JetPack 5.x / kernel 5.10) during repeated large \texttt{O\_DIRECT} transfers.
+Therefore, our evaluation uses the more stable \texttt{O\_DIRECT}-based synchronous \texttt{pread/pwrite} path, and achieves performance primarily through pipeline scheduling (overlapping GPU compute with storage writes while avoiding read--write contention).
+
+\noindent\textbf{Graceful Fallback.}
 \EdgeQuantum employs \texttt{O\_DIRECT} file access as the primary I/O strategy for optimal NVMe performance.
 If the filesystem does not support \texttt{O\_DIRECT}, the system automatically falls back to buffered I/O.
-Before each run, stale storage artifacts are deleted and the I/O backend is recreated to guarantee that the initial state is written to a fresh file descriptor.
-The file is pre-allocated using \texttt{posix\_fallocate} to ensure contiguous disk blocks and optimal sequential throughput.
 
 \noindent\textbf{Adaptive Compression Under Storage Pressure.}
 When the available free space is smaller than the estimated spill size (number of chunks $\times$ chunk size), \EdgeQuantum enables per-chunk LZ4 compression.
-Each chunk is written to an individual \texttt{.chunkN} file, reducing the required NVMe footprint while keeping the 4-buffer pipeline intact.
+To preserve sequential write behavior while still supporting read--modify--write across layers, we use a two-file ``ping-pong'' layout with variable-size LZ4 blocks: the simulator reads all chunks from file~A (using an in-memory offset table), writes compressed chunks sequentially into file~B (building the next offset table), and swaps the roles of the two files at the end of each layer.
 Compression is transparent to the simulator: the pipeline still streams chunks through UVM buffers, decompressing on read and compressing on write.
 
 \noindent\textbf{Kernel Execution Tuning.}
@@ -182,13 +184,13 @@ The total memory footprint of 1 GB (4 $\times$ 256 MB) fits comfortably within t
 
 \subsection{\EdgeQuantum Implementation}
 
-We implemented \EdgeQuantum as a standalone C++ library with Python bindings for benchmarking.
+We implemented \EdgeQuantum as a standalone C++ simulator, and use Python scripts to invoke the binary for benchmarking.
 The implementation comprises approximately 1,200 lines of code across five core modules: \texttt{simulator.cpp}, \texttt{chunk\_manager.cpp}, \texttt{io\_backend.hpp}, \texttt{main.cpp}, and \texttt{comprehensive\_benchmark.py}.
 1) We designed a \textit{Chunk Manager} module that handles the allocation of UVM buffers with \texttt{cudaMemAttachHost} flags and manages the mapping between logical state vector indices and physical NVMe offsets.
 2) We implemented the \textit{IO Backend} using \texttt{O\_DIRECT} file access for optimal NVMe performance.
 On Jetson's unified memory architecture, \texttt{O\_DIRECT} with UVM buffers achieves true zero-copy I/O, bypassing the page cache entirely.
-File preallocation via \texttt{ftruncate} and \texttt{posix\_fallocate} ensures optimal sequential throughput.
-3) We developed the main simulation loop with a 4-buffer async pipeline using \texttt{std::async} for concurrent write operations.
+In our current implementation, we focus on stable \texttt{O\_DIRECT} streaming I/O and pipeline scheduling to achieve high throughput.
+3) We developed the main simulation loop with a 4-buffer async pipeline using asynchronous task submission to a dedicated write worker thread for concurrent write operations.
 Our key finding is that while GPU computation can overlap with write operations (different hardware), read and write operations must be serialized to avoid NVMe bandwidth contention.
 This design reduces execution time by 39\% compared to a naive 2-buffer configuration for 30-qubit depth-5 simulations.
 4) Auto mode selection: if the state vector fits within 80\% of available RAM, \EdgeQuantum uses cuQuantum's native in-memory execution; otherwise, it automatically switches to tiered mode with NVMe storage.

@@ -53,7 +53,6 @@ EdgeQuantumSim::EdgeQuantumSim(int qubits, std::string path, std::string mode_st
             io(nullptr),
             full_state_ptr(nullptr),
             device_buf_ready(false),
-            read_worker(nullptr),
             write_worker(nullptr)
 {
     // ============================================================
@@ -157,7 +156,6 @@ EdgeQuantumSim::EdgeQuantumSim(int qubits, std::string path, std::string mode_st
         // Use 4 UVM buffers for quad-buffer pipeline
         // UVM eliminates the need for separate device buffers and cudaMemcpy!
         chunk_mgr = new ChunkManager(chunk_size, n_chunks, NUM_PIPELINE_BUFS);
-        read_worker = new IoWorker();
         write_worker = new IoWorker();
 
         // Check if compression is needed based on available disk space
@@ -175,7 +173,6 @@ EdgeQuantumSim::EdgeQuantumSim(int qubits, std::string path, std::string mode_st
 }
 
 EdgeQuantumSim::~EdgeQuantumSim() {
-    if (read_worker) delete read_worker;
     if (write_worker) delete write_worker;
     
     if (full_state_ptr) cudaFree(full_state_ptr);
@@ -399,8 +396,12 @@ void EdgeQuantumSim::process_pipeline(KernelFunc kernel) {
     //   ...
     // ============================================================
     
-    // Store write futures for each buffer
-    std::future<ssize_t> write_futures[NUM_PIPELINE_BUFS];
+    // Single outstanding async write task.
+    // (We explicitly avoid overlapping pread/pwrite due to NVMe contention,
+    // but do overlap pwrite with GPU compute.)
+    std::future<void> pending_write;
+    int pending_write_chunk = -1;
+    int pending_write_buf = -1;
     
     // Initialize all buffers to Host mode
     for (int i = 0; i < NUM_PIPELINE_BUFS; i++) {
@@ -409,9 +410,6 @@ void EdgeQuantumSim::process_pipeline(KernelFunc kernel) {
     }
     CUDA_CHECK(cudaStreamSynchronize(stream));
 
-    // Track previous buffer for Write overlap
-    int prev_completed_buf = -1;
-    
     for (size_t c = 0; c < n_chunks; c++) {
         int buf = c % NUM_PIPELINE_BUFS;
         void* uvm_buffer = chunk_mgr->get_buffer(buf);
@@ -427,52 +425,42 @@ void EdgeQuantumSim::process_pipeline(KernelFunc kernel) {
         //   4. GPU compute
         // ============================================================
         
-        // 1. Wait for THIS buffer's previous Write (buffer reuse safety)
-        if (write_futures[buf].valid()) {
-            write_futures[buf].get();
+        // 1. CRITICAL: wait for pending write to avoid R+W contention
+        if (pending_write.valid()) {
+            pending_write.get();
         }
-        
-        // 2. CRITICAL: Wait for ANY pending write to avoid R+W contention!
-        for (int i = 0; i < NUM_PIPELINE_BUFS; i++) {
-            if (write_futures[i].valid()) {
-                write_futures[i].get();
-            }
-        }
-        
-        // 3. Read chunk c (NO concurrent Write now!)
+
+        // 2. Read chunk c (NO concurrent Write now!)
         read_chunk_data(c, buf);
-        
-        // 4. Start async Write for PREVIOUS chunk (overlaps with GPU!)
-        if (prev_completed_buf >= 0) {
-            int prev_c = c - 1;
-            write_futures[prev_completed_buf] = std::async(std::launch::async,
-                [this, write_chunk_data, prev_completed_buf, prev_c]() {
-                    write_chunk_data(prev_c, prev_completed_buf);
-                    return (ssize_t)0;
-                });
+
+        // 3. Start async Write for PREVIOUS chunk (overlaps with GPU!)
+        if (pending_write_chunk >= 0) {
+            const int chunk_to_write = pending_write_chunk;
+            const int buf_to_write = pending_write_buf;
+            pending_write = submit_async_task(write_worker, [write_chunk_data, chunk_to_write, buf_to_write]() {
+                write_chunk_data((size_t)chunk_to_write, buf_to_write);
+            });
         }
         
-        // 5. GPU compute (overlaps with Write[c-1]!)
+        // 4. GPU compute (overlaps with Write[c-1]!)
         CUDA_CHECK(cudaStreamAttachMemAsync(stream, uvm_buffer, 0, cudaMemAttachGlobal));
         kernel((int)c, uvm_buffer, stream);
         CUDA_CHECK(cudaStreamSynchronize(stream));
         
-        // 6. Back to Host mode
+        // 5. Back to Host mode
         CUDA_CHECK(cudaStreamAttachMemAsync(stream, uvm_buffer, 0, cudaMemAttachHost));
         CUDA_CHECK(cudaStreamSynchronize(stream));
-        
-        prev_completed_buf = buf;
+
+        pending_write_chunk = (int)c;
+        pending_write_buf = buf;
     }
-    
-    // Drain: wait for pending write, then write last chunk
-    for (int i = 0; i < NUM_PIPELINE_BUFS; i++) {
-        if (write_futures[i].valid()) {
-            write_futures[i].get();
-        }
+
+    // Drain: wait for pending write, then write last chunk sync
+    if (pending_write.valid()) {
+        pending_write.get();
     }
-    // Write last chunk (sync)
-    if (prev_completed_buf >= 0) {
-        write_chunk_data(n_chunks - 1, prev_completed_buf);
+    if (pending_write_chunk >= 0) {
+        write_chunk_data((size_t)pending_write_chunk, pending_write_buf);
     }
     
     // Swap ping-pong files after each layer (for compression)

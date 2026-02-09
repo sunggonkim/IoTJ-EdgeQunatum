@@ -23,7 +23,6 @@ add_executable(edge_quantum
     src/main.cpp
     src/simulator.cpp
     src/chunk_manager.cpp
-    src/io_backend.cpp
 )
 
 target_link_libraries(edge_quantum

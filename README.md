@@ -193,7 +193,7 @@ edgeQuantum/
 │   │   ├── simulator.cpp/hpp     # Pipeline engine (4-buffer async)
 │   │   ├── chunk_manager.cpp/hpp # UVM buffer allocation
 │   │   ├── compression.hpp       # LZ4 variable-size ping-pong I/O
-│   │   ├── io_backend.cpp/hpp    # O_DIRECT NVMe I/O
+│   │   ├── io_backend.hpp        # O_DIRECT NVMe I/O
 │   │   └── utils.hpp             # Utilities
 │   ├── Makefile / CMakeLists.txt # Build system
 │   ├── comprehensive_benchmark.py# Full grid benchmark runner

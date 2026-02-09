@@ -23,6 +23,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{tabularx}
+\usepackage{threeparttable}
 \usepackage{amsmath}
 \usepackage{braket}
 \usepackage{amsfonts}
@@ -80,7 +81,7 @@
 \begin{abstract}
 This paper presents \EdgeQuantum, an asynchronous pipelined quantum circuit simulator designed to overcome the memory bottleneck and scalability limits of resource-constrained edge devices. 
 Its primary strategy is to extend beyond in-memory simulation bounded by physical RAM and introduce a unified tiered-memory architecture that integrates GPU VRAM, CPU DRAM, and NVMe SSDs into a streaming framework. 
-With this design, \EdgeQuantum partitions the full state vector into chunks, manages their residency via a triple-buffered UVM zero-copy pipeline, overlaps computation with data movement through asynchronous execution, and employs on-the-fly LZ4 compression to maximize effective storage capacity.
+With this design, \EdgeQuantum partitions the full state vector into chunks, manages their residency via a 4-buffer UVM zero-copy pipeline, overlaps computation with data movement through asynchronous execution, and employs on-the-fly LZ4 compression to maximize effective storage capacity.
 
 Our evaluation demonstrates that \EdgeQuantum executes up to 37-qubit simulations ($\approx$1~TB state vector) on an 8~GB NVIDIA Jetson Orin Nano, a scale unattainable by existing edge simulators due to limited memory resources. 
 \EdgeQuantum achieves up to a 242.7$\times$ storage reduction through compression, effectively providing a 128$\times$ capacity expansion beyond device RAM, while maintaining execution stability for complex circuits such as QFT and Random-20 on low-power hardware.

@@ -4,7 +4,7 @@ CUQUANTUM_ROOT ?= /mnt/nvme/skim/edgeQuantum/third_party/cuquantum-linux-sbsa-22
 INCLUDES := -Isrc -I$(CUQUANTUM_ROOT)/include
 LDFLAGS := -Lbuild -L$(CUQUANTUM_ROOT)/lib -Xlinker -rpath -Xlinker $(CUQUANTUM_ROOT)/lib -lcustatevec -llz4
 
-SRCS := src/main.cpp src/simulator.cpp src/chunk_manager.cpp src/io_backend.cpp
+SRCS := src/main.cpp src/simulator.cpp src/chunk_manager.cpp
 OBJS := $(SRCS:.cpp=.o)
 TARGET := build/edge_quantum
 

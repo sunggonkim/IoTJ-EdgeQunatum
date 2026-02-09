@@ -7,11 +7,11 @@
 class ChunkManager {
     size_t chunk_size;
     size_t n_chunks;
-    int n_buffers;  // 3 for triple-buffer pipeline
+    int n_buffers;  // number of UVM buffers for the pipeline (default used by EdgeQuantum: 4)
     void** host_buffer;
     
 public:
-    // num_buffers: 3 = triple-buffer (read/compute/write overlap)
+    // num_buffers: number of pipeline buffers (EdgeQuantum typically uses 4)
     ChunkManager(size_t chunk_bytes, size_t num_chunks, int num_buffers = 3);
     ~ChunkManager();
     

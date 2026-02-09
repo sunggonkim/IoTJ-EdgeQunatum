@@ -12,6 +12,16 @@ __pycache__/
 *.tmp
 *.swp
 *.bak
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.synctex.gz
+paper/*.toc
 build/
 code/build/
 code/test_kernel
