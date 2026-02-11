@@ -1637,9 +1637,94 @@
       "success": true,
       "sim_time": 23804.7,
       "wall_time": 24994.935
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "type": "cpp",
+      "mode": "async",
+      "force_mode": true,
+      "qubits": 39,
+      "circuit": "QV",
+      "depth": 5,
+      "success": true,
+      "sim_time": 26894.1,
+      "wall_time": 27430.92462873459,
+      "timestamp": "2026-02-09T17:06:47.805610",
+      "log_file": "run_logs/high_qubit/eq3942_20260209-092935/edgeq_39q_QV_d5_20260209T092936.log"
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "type": "cpp",
+      "mode": "async",
+      "force_mode": true,
+      "qubits": 39,
+      "circuit": "VQC",
+      "depth": 5,
+      "success": true,
+      "sim_time": 40885.5,
+      "wall_time": 41423.80121803284,
+      "timestamp": "2026-02-10T04:37:11.619557",
+      "log_file": "run_logs/high_qubit/eq3942_20260209-092935/edgeq_39q_VQC_d5_20260209T170647.log"
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "type": "cpp",
+      "mode": "async",
+      "force_mode": true,
+      "qubits": 39,
+      "circuit": "QSVM",
+      "depth": 5,
+      "success": true,
+      "sim_time": 15972.0,
+      "wall_time": 16507.385904550552,
+      "timestamp": "2026-02-10T09:12:19.012091",
+      "log_file": "run_logs/high_qubit/eq3942_20260209-092935/edgeq_39q_QSVM_d5_20260210T043711.log"
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "type": "cpp",
+      "mode": "async",
+      "force_mode": true,
+      "qubits": 39,
+      "circuit": "Random",
+      "depth": 5,
+      "success": true,
+      "sim_time": 30952.6,
+      "wall_time": 31477.174840450287,
+      "timestamp": "2026-02-10T17:56:56.193420",
+      "log_file": "run_logs/high_qubit/eq3942_20260209-092935/edgeq_39q_Random_d5_20260210T091219.log"
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "type": "cpp",
+      "mode": "async",
+      "force_mode": true,
+      "qubits": 39,
+      "circuit": "GHZ",
+      "depth": 5,
+      "success": true,
+      "sim_time": 4635.22,
+      "wall_time": 5159.235502243042,
+      "timestamp": "2026-02-10T19:22:55.435663",
+      "log_file": "run_logs/high_qubit/eq3942_20260209-092935/edgeq_39q_GHZ_d5_20260210T175656.log"
+    },
+    {
+      "scheme": "EdgeQuantum",
+      "type": "cpp",
+      "mode": "async",
+      "force_mode": true,
+      "qubits": 39,
+      "circuit": "VQE",
+      "depth": 5,
+      "success": true,
+      "sim_time": 39823.3,
+      "wall_time": 40348.69222712517,
+      "timestamp": "2026-02-11T06:35:24.273115",
+      "log_file": "run_logs/high_qubit/eq3942_20260209-092935/edgeq_39q_VQE_d5_20260210T192255.log"
     }
   ],
   "meta": {
-    "start_time": "2026-01-29T12:05:31.454153"
+    "start_time": "2026-01-29T12:05:31.454153",
+    "last_update": "2026-02-11T06:35:24.273301"
   }
 }
